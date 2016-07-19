@@ -1,0 +1,455 @@
+/* Empty. Add your own CSS if you like */
+
+/* 通用样式 */
+ion-content.scroll-content{
+  background-color: #f0f0f0;
+  padding:0;
+}
+ion-content div.common{
+  background-color: white;
+  margin-top: 10px;
+}
+ion-content div.common a{
+  position: relative;
+  display: block;
+  color: black;
+  text-decoration: none;
+  width: 90%;
+  margin:0 auto;
+  padding-left:2.5em;
+  line-height:3.5em;
+  vertical-align: middle;
+  border-bottom: 1px solid #f0f0f0;
+}
+ion-content div.common a:last-child{
+  border-bottom:0;
+}
+ion-content div.common i{
+  position: absolute;
+  font-size: 2.5em;
+  left: -0.3em;
+  color: rgb(7,156,246);
+}
+ion-content div.common i.right{
+  position: static;
+  float: right;
+  color: black;
+}
+  /* work页面和team页面分隔p样式 */
+.work ion-content div div, .team ion-content div div{
+  margin-top:0;
+}
+.work ion-content p.split, .team ion-content p.split{
+  margin:0;
+  font-weight: bolder;
+  margin-top:10px;
+}
+  /* work页面和team页面分隔p样式end */
+  /* 消息数量span样式 */
+.home .has-msg-span span, .team span{
+  float:right;
+  display: inline-block;
+  width:1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  background: red;
+  color: #fff;
+  border-radius: 1em;
+  text-align: center;
+  margin-top: 1.15em;
+}
+  /* 消息数量span样式end */
+  /* tab栏样式 */
+div.tab-nav.tabs{
+  background-color: rgb(7,156,246);
+}
+div.tab-nav.tabs .tab-item{
+  opacity: 1;
+}
+div.tab-nav.tabs a i{
+  color: white;
+}
+div.tab-nav.tabs a span{
+  color: white;
+}
+  /* tab栏样式end */
+/* 通用样式end */
+
+
+
+/* head-bar样式 */
+ion-header-bar.head-bar{
+  background-color: rgb(7,156,246);
+}
+ion-header-bar.head-bar .title{
+  color: #fff;
+}
+ion-header-bar.head-bar {
+  background-size:0 ;
+}
+ion-header-bar.head-bar button{
+  background: transparent;
+  color: #fff;
+  border:0;
+}
+ion-header-bar.head-bar button.activated{
+  border:0;
+  font-weight: bold;
+  background: transparent;
+  color: #fff;
+}
+ion-header-bar.head-bar button:hover{
+  background: transparent;
+  color: #fff;
+}
+/* head-bar样式end */
+
+
+/* Home页面样式 */
+  /* 搜索区域样式 */
+.home .search {
+  display: block;
+  margin-top: 44px;
+  width:100%;
+  background-color: rgb(7,156,246);
+  padding:5px 20px;
+}
+.home .search input{
+  display: inline-block;
+  width:85%;
+}
+.home .search i{
+  float: right;
+  color:white;
+  font-size: 2.5em;
+}
+  /* 搜索区域样式end */
+
+  /* home页面content样式 */
+.home .padding{
+  margin-top:44px;
+}
+    /* home页面日历样式 */
+.home .padding .date{
+  background-color: white;
+  width: 100%;
+  padding:0.5em 0;
+  margin-top: 10px;
+  margin-bottom:10px;
+}
+.home ion-content .date table{
+  width: 100%;
+  margin:0 auto;
+  text-align: center;
+}
+.home ion-content .date table thead{
+  color:#a0a0a0;
+}
+.home .date .lastMonth {
+  color: #a0a0a0;
+}
+.home .date table th, .home .date table td{
+  position: relative;
+  font-size:0.8em;
+  display: inline-block;
+  width: 2.5em;
+  margin:0 2%;
+  height: 2.5em;
+  line-height: 2.5em;
+  vertical-align: middle;
+}
+.home .date table td.selected{
+  background-color: rgb(241,216,91);
+  border-radius: 40px;
+}
+.home .date table td.has-activity:after{
+  content: '';
+  position: absolute;
+  bottom:-2px;
+  left:1.1em;
+  display: block;
+  width: 0.3em;
+  height: 0.3em;
+  background-color: red;
+  border-radius: 0.2em;
+}
+    /* home页面日历样式end */
+    /* home页面活动样式 */
+.home .activity{
+  background-color: white;
+  width: 100%;
+}
+.home .activity p{
+  position: relative;
+  width: 90%;
+  margin:0 auto;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 3.5em;
+  padding-left: 2.5em;
+  vertical-align: middle;
+}
+.home .activity p i{
+  position: absolute;
+  font-size: 2.5em;
+  left: -0.3em;
+  color: rgb(7,156,246);
+}
+.home .activity ion-item{
+  min-height: 0;
+  margin:0 auto;
+  height:49px;
+  border:0;
+  border-bottom: 1px solid #f0f0f0;
+  width: 90%;
+  text-align: left;
+  padding-left: 0;
+  padding-right: 0;
+}
+.home .activity ion-item:last-child{
+  border:0;
+}
+.home .activity ion-item .time{
+  color: rgb(7,100,200);
+  margin-right: 70px;
+}
+.home .activity ion-item i{
+  font-size: 1.3em;
+  float: right;
+  color: rgb(200,180,60);
+}
+    /* home页面活动样式end */
+    /* home页面报销单和消息样式 */
+.home .has-msg-span span{
+  margin-right: 10px;
+}
+    /* home页面报销单和消息样式end */
+  /* home页面content样式end */
+/* home页面样式end */
+
+/*CRM页面样式*/
+
+/* CRM页面样式end */
+
+/* Work页面样式 */
+
+/* Work页面样式end */
+
+/*team页面样式 */
+.team span{
+  margin-right: 67%;
+}
+/* team页面样式end */
+
+
+/* me界面样式 */
+.me .info {
+  background-color: white;
+  padding:10px 0;
+}
+.me .info>div {
+  width: 90%;
+  margin:0 auto;
+}
+.me .info img{
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  margin-right:10px;
+}
+.me .info>div div{
+  display: inline-block;
+  min-height: 50px;
+  margin-top:20px;
+  vertical-align: top;
+  margin-right:10px;
+}
+.me .info p {
+  font-size: 1.2em;
+  margin:0;
+}
+.me .info span, .me .info div label {
+  font-size: 0.9em;
+  color:#505050;
+}
+.me .info i{
+  position: static;
+  float: right;
+  color: black;
+  font-size: 2.5em;
+  margin-top:0.5em;
+}
+/* me界面样式end */
+
+/* expense-claim界面样式 */
+.expense-claim ion-header-bar button i{
+  line-height: 45px;
+}
+.expense-claim .is-examine{
+  width:100%;
+  background-color: white;
+}
+.expense-claim .is-examine div{
+  display: inline-block;
+  width: 49%;
+  text-align: center;
+  border-right:1px solid #a0a0a0;
+}
+.expense-claim .is-examine div:last-child{
+  border:0;
+}
+.expense-claim .is-examine div button{
+  background-color: white;
+  height: 3em;
+  border:0;
+  margin-bottom: 5px;
+}
+.expense-claim .is-examine div button.selected{
+  margin-bottom: 3px;
+  border-bottom: 2px solid rgb(7,156,246);
+}
+.expense-claim .list{
+  width: 100%;
+}
+.expense-claim .list p{
+  margin:5px auto;
+  width: 90%;
+  font-size: 1.1em;
+  font-weight: bolder;
+  background-color: #f0f0f0;
+}
+.expense-claim .list a.item-content{
+  padding:0;
+}
+.expense-claim .list a.item-content div{
+  display: block;
+  background-color: white;
+  width: 100%;
+  padding:10px 5%;
+  color: #505050;
+  font-size: 0.5em;
+}
+.expense-claim .list i{
+  position: relative;
+  float: right;
+  color: black;
+  font-size: 4.4em;
+  right:-0.2em;
+  top:0.3em;
+}
+.expense-claim span.date, .expense-claim span.applicant, .expense-claim span.theme{
+  display: inline-block;
+}
+.expense-claim span.date{
+  width:44%;
+}
+.expense-claim span.applicant{
+  width:30%;
+}
+.expense-claim span.theme{
+  width:74%;
+}
+.expense-claim .list .item{
+  padding:0;
+}
+/* expense-claim界面样式 end*/
+
+/* expense-clain-detail界面样式 */
+.expense-claim-detail p {
+  margin:5px auto;
+  font-size: 1.1em;
+  font-weight: 600;
+  background-color: #f0f0f0;
+}
+.expense-claim-detail .head-info{
+  background-color: white;
+  border: 0;
+}
+.expense-claim-detail .head-info div{
+  border-bottom:1px solid #f0f0f0;
+  height: 2.5em;
+  line-height: 2.5em;
+  vertical-align: middle;
+}
+.expense-claim-detail .head-info div i{
+  font-size: 2em;
+  color: rgb(7,156,246);
+  margin-right:10px;
+  margin-left:1em;
+}
+.expense-claim-detail .head-info div.suggestion input{
+  display: inline-block;
+  width: 70%;
+  height: 1.8em;
+  line-height: 1.8em;
+  border:1px black solid;
+  margin-top: 5px;
+  vertical-align: top;
+}
+.expense-claim-detail .head-info div:last-child{
+  border-bottom: 0;
+}
+.expense-claim-detail .head-info div label{
+  margin-left:20px;
+}
+.expense-claim-detail .head-info div span{
+  float: right;
+  margin-right: 40px;
+}
+.expense-claim-detail .detail .table-head{
+  width: 100%;
+  background-color: white;
+  padding:10px 5px;
+  height: 2.5em;
+}
+.expense-claim-detail .detail .table-head p{
+  display: inline-block;
+  width: 14%;
+  text-align: center;
+}
+.expense-claim-detail .detail .table-head p.explanation{
+  width: 25%;
+  margin-left: 10px;
+}
+.expense-claim-detail .detail .item{
+  padding:10px 5px 5px 5px;
+  min-height: 2.5em;
+}
+.expense-claim-detail .detail p {
+  background-color: white;
+  display: inline-block;
+  height:2.5em;
+  line-height: 1em;
+  font-size: 0.5em;
+  vertical-align: middle;
+  margin:0;
+  width: 14%;
+  text-align: center;
+  color: black;
+  font-weight: lighter;
+}
+.expense-claim-detail .detail .explanation {
+  margin-left: 3px;
+  width: 25%;
+  white-space:normal;
+  text-align: left;
+}
+.expense-claim-detail .examine{
+  width: 90%;
+  margin:0 auto;
+  text-align: center;
+}
+.expense-claim-detail .examine button{
+  height: 44px;
+  margin:5px 10px;
+  width: 40%;
+  background-color: rgb(7,156,246);
+  color: white;
+  border:0;
+  border-radius: 15px;
+  font-size: 1.2em;
+  white-space: pre;
+}
+.expense-claim-detail .examine button.activated{
+  font-weight: bolder;
+}
+/* expense-clain-detail界面样式end */

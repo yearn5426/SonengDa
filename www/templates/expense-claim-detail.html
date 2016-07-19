@@ -1,0 +1,51 @@
+<ion-view view-title="Expense-claim" class="expense-claim-detail">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Expense Claim Detail</h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <p>报销单头信息 -  {{expenseClaim.head}}</p>
+    <div class="head-info">
+      <div>
+        <label>申请人</label><span>{{expenseClaim.applicantId}} - {{expenseClaim.applicant}}</span>
+      </div>
+      <div>
+        <label>所在部门</label><span>{{expenseClaim.department}}</span>
+      </div>
+      <div>
+        <label>申请日期</label><span>{{expenseClaim.date}}</span>
+      </div>
+      <div>
+        <label>主题</label><span>{{expenseClaim.theme}}</span>
+      </div>
+      <div>
+        <label>总金额</label><span>{{expenseClaim.totalSum}}</span>
+      </div>
+      <div class="suggestion">
+        <i class="icon ion-ios-paper-outline"></i><input type="text" placeholder="-请填写审批意见">
+      </div>
+    </div>
+    <p>报销单明细</p>
+    <div class="detail">
+      <div class="table-head">
+        <p>类型</p><p>类别</p><p class="explanation ">说明</p><p>数量</p><p>单价</p> <p>金额</p>
+      </div>
+      <ion-list>
+        <ion-item ng-repeat="claimDetail in expenseClaim.detail track by $index"
+                  type="item-text-wrap" >
+          <div>
+            <p>{{claimDetail.type}}</p><p>{{claimDetail.category}}</p>
+            <p class="explanation ">{{claimDetail.explanation }}</p><p>{{claimDetail.num}}</p>
+            <p>{{claimDetail.unitPrice}}</p> <p>{{claimDetail.sum}}</p>
+          </div>
+        </ion-item>
+      </ion-list>
+    </div>
+    <div class="examine">
+      <button>拒    绝</button>
+      <button>批    准</button>
+    </div>
+  </ion-content>
+</ion-view>
