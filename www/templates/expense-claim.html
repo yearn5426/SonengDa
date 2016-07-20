@@ -17,7 +17,7 @@
     <div class="examine list" ng-if="isExamine">
       <p>已审批报销单</p>
       <ion-list>
-        <ion-item ng-repeat="expenseClaim in examineList track by $index"
+        <ion-item ng-repeat="expenseClaim in nowClaim track by $index"
                   type="item-text-wrap" href="#/tab/home/expense-claim/{{expenseClaim.head}}">
           <div>
             <i class="icon ion-ios-arrow-right right"></i>
@@ -31,7 +31,7 @@
     <div class="not-examine list" ng-if="!isExamine">
       <p>未审批报销单</p>
       <ion-list>
-        <ion-item ng-repeat="expenseClaim in notExamineList track by $index"
+        <ion-item ng-repeat="expenseClaim in nowClaim track by $index"
                   type="item-text-wrap" href="#/tab/home/expense-claim/{{expenseClaim.head}}" >
           <div>
             <i class="icon ion-ios-arrow-right right"></i>

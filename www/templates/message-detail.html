@@ -1,0 +1,35 @@
+<ion-view view-title="Message-detail" class="message-detail">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">{{chat.people}}</h1>
+
+    <button class="button icon" ng-click="" style="float: right;">
+      <i class="icon ion-ios-gear-outline right"></i>
+    </button>
+    <button class="button icon" ng-click="" >
+    <i class="icon ion-ios-telephone-outline right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <ion-list>
+      <ion-item ng-repeat="message in chat.message track by $index"
+      type="item-text-wrap" >
+        <div class="receive">
+          <img ng-src="{{chat.face}}" >
+          <span ng-bind="message"></span>
+        </div>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+  <div>
+    <form>
+      <button class="toolBtn"><i class="icon ion-ios-plus-outline"></i></button>
+      <input name="msg" type="text" class="msg" placeholder="请输入消息"/>
+      <button class="expressionBtn"><i class="icon ion-happy-outline"></i></button>
+      <button class="sendBtn" ng-click=""><i class="icon ion-ios-redo"></i></button>
+    </form>
+  </div>
+</ion-view>

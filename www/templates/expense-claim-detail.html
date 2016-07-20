@@ -24,7 +24,7 @@
         <label>总金额</label><span>{{expenseClaim.totalSum}}</span>
       </div>
       <div class="suggestion">
-        <i class="icon ion-ios-paper-outline"></i><input type="text" placeholder="-请填写审批意见">
+        <i class="icon ion-ios-paper-outline"></i><input type="text" ng-model="input" placeholder="-请填写审批意见">
       </div>
     </div>
     <p>报销单明细</p>
@@ -44,8 +44,8 @@
       </ion-list>
     </div>
     <div class="examine">
-      <button>拒    绝</button>
-      <button>批    准</button>
+      <button ng-click="doExamine(false)">拒    绝</button>
+      <button ng-click="doExamine(true)">批    准</button>
     </div>
   </ion-content>
 </ion-view>

@@ -1,0 +1,30 @@
+<ion-view view-title="Dashboard-aggregate" class="dashboard-aggregate" ng-controller="DashboardAggregateCtrl">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <h1 class="title">Dashboard Aggregate</h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="times">
+      <button class="month" ng-class="{true:'selected',false:''}[timesSelected[0]]" ng-click="selectTimes(0)">本月</button><button class="season" ng-class="{true:'selected',false:''}[timesSelected[1]]" ng-click="selectTimes(1)">本季度</button><button class="year"  ng-class="{true:'selected',false:''}[timesSelected[2]]" ng-click="selectTimes(2)">本年</button>
+    </div>
+    <div class="list">
+      <div class="row">
+        <span class="col-50">销售目标</span><span class="col-50">5,000,000</span>
+      </div>
+      <div class="row">
+        <span class="col-50">完成总值</span><span class="col-50">4,000,000 (80%)</span>
+      </div>
+      <div class="row">
+        <span class="col-50">漏斗总值</span><span class="col-50">12,000,000</span>
+      </div>
+      <div class="row">
+        <span class="col-50">预计完成</span><span class="col-50">4,850,000</span>
+      </div>
+    </div>
+    <div class="echarts-trend">
+
+    </div>
+    <div class="echarts-funnel">
+
+    </div>
+  </ion-content>
+</ion-view>

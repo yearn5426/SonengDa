@@ -102,6 +102,9 @@ ion-header-bar.head-bar button:hover{
   background: transparent;
   color: #fff;
 }
+ion-header-bar.head-bar button.icon i.icon:before{
+  font-size: 2.5em;
+}
 /* head-bar样式end */
 
 
@@ -171,6 +174,7 @@ ion-header-bar.head-bar button:hover{
   width: 0.3em;
   height: 0.3em;
   background-color: red;
+  z-index: 10;
   border-radius: 0.2em;
 }
     /* home页面日历样式end */
@@ -178,6 +182,12 @@ ion-header-bar.head-bar button:hover{
 .home .activity{
   background-color: white;
   width: 100%;
+}
+.home .activity a{
+  padding:0;
+  min-height: 48px;
+  line-height: 48px;
+  vertical-align: middle;
 }
 .home .activity p{
   position: relative;
@@ -311,11 +321,15 @@ ion-header-bar.head-bar button:hover{
   width: 100%;
 }
 .expense-claim .list p{
-  margin:5px auto;
-  width: 90%;
+  margin:0;
+  padding:5px 0;
+  padding-left:5%;
+  width: 100%;
   font-size: 1.1em;
   font-weight: bolder;
   background-color: #f0f0f0;
+  border-top: 1px solid rgb(211,211,211);
+  border-bottom: 1px solid rgb(211,211,211);
 }
 .expense-claim .list a.item-content{
   padding:0;
@@ -350,6 +364,9 @@ ion-header-bar.head-bar button:hover{
 }
 .expense-claim .list .item{
   padding:0;
+}
+.expense-claim .list .item:first-child{
+  border-top:0;
 }
 /* expense-claim界面样式 end*/
 
@@ -453,3 +470,371 @@ ion-header-bar.head-bar button:hover{
   font-weight: bolder;
 }
 /* expense-clain-detail界面样式end */
+
+/* dashboard-aggregate界面样式 */
+.dashboard-aggregate ion-content.scroll-content{
+  background-color: white;
+}
+.dashboard-aggregate .echarts-trend div{
+  margin:0 auto;
+}
+.dashboard-aggregate .times{
+  width: 90%;
+  margin:10px auto;
+  text-align: center;
+}
+.dashboard-aggregate .times button{
+  background-color: white;
+  width:20%;
+  margin:0;
+  border:1px solid rgb(211,211,211);
+  height:2.5em;
+}
+.dashboard-aggregate .times .month{
+  border-top-left-radius:9px;
+  border-bottom-left-radius:9px;
+}
+.dashboard-aggregate .times .year {
+  border-top-right-radius:9px;
+  border-bottom-right-radius:9px;
+}
+.dashboard-aggregate .times .season{
+  border-left:0;
+  border-right: 0;
+}
+.dashboard-aggregate .times button.selected{
+  background-color: rgb(211,211,211);
+}
+.dashboard-aggregate .list {
+  width: 90%;
+  margin:20px auto;
+  padding:10px 0;
+  border-bottom:1px solid rgb(211,211,211);
+}
+.dashboard-aggregate .list div{
+  width: 80%;
+  margin:0 auto;
+}
+.dashboard-aggregate .echarts-trend, .dashboard-aggregate .echarts-funnel{
+  border-bottom:1px solid rgb(211,211,211);
+  width: 90%;
+  height:300px;
+  margin:0 auto;
+}
+.dashboard-aggregate .echarts-funnel{
+  height:250px;
+}
+/* dashboard-aggregate界面样式end */
+
+/* work-circle界面样式 */
+.work-circle ion-content.scroll-content{
+  background-color: white;
+}
+.work-circle .background-img{
+  position: absolute;
+  width: 100%;
+  height:783px;
+  overflow: visible;
+  margin-top:-550px;
+  background-image: url('../img/background.jpg');
+}
+.work-circle .background-img span{
+  white-space:pre;
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #fff;
+  position: absolute;
+  bottom: 10px;
+  right:100px;
+}
+.work-circle .background-img img{
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  bottom: -10px;
+  right:10px;
+  box-shadow: 2px 2px 2px #808080;
+}
+.work-circle .dynamic{
+  position: relative;
+  width: 90%;
+  margin:0 auto;
+  padding-top:290px;
+  padding-left:65px;
+}
+.work-circle .dynamic .head{
+  position: absolute;
+  width: 50px;
+  left:0;
+  height: 50px;
+  box-shadow: 2px 2px 2px #808080;
+  display: inline-block;
+}
+.work-circle .dynamic .name{
+  margin:0;
+  font-size: 1.2em;
+}
+.work-circle .dynamic div img{
+  width:60px;
+  height:60px;
+  margin-right: 5%;
+}
+.work-circle .dynamic div span{
+  font-size: 0.8em;
+  color: #808080;
+}
+.work-circle .dynamic div i{
+  color: rgb(7,156,246);
+  float: right;
+  font-size: 1.6em;
+  margin-right: 8px;
+}
+/* work-circle界面样式end */
+
+/* activity-detail界面样式 */
+.activity-detail .head{
+  background-color: white;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+.activity-detail .head a{
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  margin:0;
+}
+.activity-detail .split{
+  width:100%;
+  padding:5px 0 5px 5%;
+  margin:0;
+}
+.activity-detail .detail{
+  background-color: white;
+  margin-bottom:20px;
+}
+.activity-detail .detail p{
+  border-bottom:1px solid #f0f0f0;
+  width:100%;
+  padding:0;
+  padding-left:5%;
+  height: 2.7em;
+  line-height: 2.7em;
+  margin:0;
+}
+.activity-detail .detail span{
+  margin-right: 2%;
+}
+.activity-detail .detail span.col-25{
+  margin-right: 0;
+}
+.activity-detail .detail p i{
+  font-size: 1.8em;
+  margin-left:0.5em;
+  color: rgb(7,156,246);
+}
+.activity-detail .detail p span i{
+  float: none;
+  margin-left:0;
+  font-size: 2.5em;
+  color: rgb(7,156,246);
+}
+.activity-detail .detail p i.right{
+  margin-left:1.8em;
+  color: #000;
+}
+.activity-detail .detail p i.ion-android-close{
+  color: #000;
+}
+.activity-detail .tool{
+  width:100%;
+  background-color: white;
+}
+.activity-detail .tool button{
+  font-size: 2.5em;
+  width:24%;
+  border:0;
+  background-color: transparent;
+  color: rgb(7,156,246);
+}
+/* activity-detail界面样式end */
+
+/* message界面样式 */
+.message .item-content{
+  position: relative;
+  padding: 0;
+}
+.message .item-content img{
+  position: absolute;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  top: 10px;
+  left:15px;
+  border-radius: 25px;
+}
+.message .item-content span.messageNum{
+  position: absolute;
+  top: 10px;
+  left:50px;
+  display: block;
+  width: 20px;
+  height:20px;
+  background-color: red;
+  border-radius:10px;
+  color: #fff;
+  text-align: center;
+}
+.message .item-content p{
+  display: inline-block;
+  margin-left: 80px;
+}
+.message .item-content p.name, .message .item-content p.time{
+  height:3em;
+  vertical-align: bottom;
+}
+.message .item-content p.name{
+  width: 25%;
+  line-height: 3em;
+}
+.message .item-content p.time{
+  margin-left: 25%;
+  font-size: 0.5em;
+}
+.message .item-content i{
+  position: absolute;
+  right: 10px;
+  bottom:15px;
+  font-size: 2em;
+}
+/* message界面样式end */
+
+/* message-detail样式 */
+.message-detail .item{
+  width: 70%;
+  background-color: transparent;
+  border:0;
+  margin-left:10px;
+  margin-top:10px;
+  padding:10px;
+}
+.message-detail .receive img{
+  display: inline-block;
+  width:50px;
+  height: 50px;
+  border-radius: 10px;
+}
+.message-detail .receive span{
+  position: absolute;
+  display: inline-block;
+  top:15px;
+  margin-left: 25px;
+  background-color: white;
+  line-height: 20px;
+  padding:10px 10px;
+  vertical-align: baseline;
+  border-radius: 13px;
+  white-space: normal;
+}
+.message-detail .receive span:before{
+  position: absolute;
+  left:-20px;
+  content: '';
+  border-right: 20px solid white;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  font-size: 0;
+  line-height: 0;
+  z-index: 999;
+}
+.message-detail form *{
+  padding:0;
+  margin:0;
+  color: rgb(7,156,246);
+}
+.message-detail form{
+  background-color: white;
+  position: absolute;
+  flex-flow:row;
+  width: 100%;
+  bottom:0;
+  height: 3em;
+  margin-bottom:50px;
+  padding-top:2px;
+  border-top:1px solid #cccccc;
+}
+.message-detail form button {
+  display: inline-block;
+  width: 10%;
+  font-size:1.5em;
+  height: 2em;
+  padding:0;
+  color: #444;
+  vertical-align: middle;
+  border:0;
+  background-color: white;
+}
+.message-detail form button i{
+  display: inline-block;
+  vertical-align: bottom;
+}
+.message-detail form .msg{
+  display: inline-block;
+  width: 66%;
+  border:0;
+  border-bottom:2px solid #ccc;
+  padding:1px 0;
+  vertical-align: middle;
+  color: #000;
+}
+.message-detail form .msg:focus{
+  border-color: #387ef5;
+}
+/* message-detail样式end */
+
+/* sale-funnel界面样式 */
+.sale-funnel .chart{
+  width:100%;
+  height:600px;
+}
+/* sale-funnel界面样式end */
+
+/* performance-ranking界面样式 */
+.dashboard-specific .container{
+  width:92%;
+  margin:0 auto;
+  margin-top:10px;
+  background-color: white;
+  border-radius: 10px;
+}
+.dashboard-specific .chartHead{
+  font-size:0.9em;
+  width:95%;
+  margin:0 auto;
+  padding-top: 5px;
+  border-bottom: 1px solid #a0a0a0;
+  padding-left: 5px;
+  padding-bottom:10px;
+}
+.dashboard-specific .chartHead p{
+  margin:0;
+}
+.dashboard-specific .chartHead i{
+  font-size:1.5em;
+  color: #808080;
+  margin-right: 5px;
+}
+.dashboard-specific .chartHead span{
+  margin-right:10%;
+}
+.dashboard-specific .chart{
+  width:100%;
+  height: 500px;
+}
+.goal-achievement .chart, .top-custom .chart{
+  height:350px;
+}
+.key-niche .chart{
+  height: 180px;
+}
+/* performance-ranking界面样式end */

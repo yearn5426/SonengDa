@@ -1,67 +1,23 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
-  // Might use a resource here that returns a JSON array
 
-  // Some fake testing data
-  var chats = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
-
-  return {
-    all: function() {
-      return chats;
-    },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
-    },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
-        }
-      }
-      return null;
-    }
-  };
-})
 
 .factory('Activities', function() {
   //存储活动数据
   var activities = [{
     date: 1,
     concreteActivities: [{
+      activityId:'1',
       time: '08:00 - 10:00',
       content: '拜访张总',
       completed: true
     },{
+      activityId:'2',
       time: '11:00 - 12:00',
       content: '新产品展览',
       completed: true
     },{
+      activityId:'3',
       time: '15:00 - 16:00',
       content: '总结大会',
       completed: false
@@ -69,14 +25,17 @@ angular.module('starter.services', [])
   },{
     date: 3,
     concreteActivities: [{
+      activityId:'1',
       time: '08:00 - 10:00',
       content: 'Coding',
       completed: true
     },{
+      activityId:'2',
       time: '11:00 - 12:00',
       content: '吃饭',
       completed: true
     },{
+      activityId:'3',
       time: '15:00 - 16:00',
       content: 'Coding',
       completed: false
@@ -84,14 +43,17 @@ angular.module('starter.services', [])
   },{
     date: 5,
     concreteActivities: [{
+      activityId:'1',
       time: '08:00 - 10:00',
       content: '起床?',
       completed: true
     },{
+      activityId:'2',
       time: '11:00 - 12:00',
       content: '出去玩?',
       completed: true
     },{
+      activityId:'3',
       time: '15:00 - 16:00',
       content: '吃东西',
       completed: false
@@ -99,14 +61,17 @@ angular.module('starter.services', [])
   },{
     date: 12,
     concreteActivities: [{
+      activityId:'1',
       time: '08:00 - 10:00',
       content: '出去玩',
       completed: true
     },{
+      activityId:'2',
       time: '11:00 - 12:00',
       content: '吃大餐',
       completed: true
     },{
+      activityId:'3',
       time: '15:00 - 16:00',
       content: '玩',
       completed: false
@@ -126,6 +91,7 @@ angular.module('starter.services', [])
     }
   }
 })
+
 .factory('ExpenseClaim',function(){
   var expenseClaim = [{
     head:'ID0000001',
@@ -261,29 +227,74 @@ angular.module('starter.services', [])
     }]
   }];
   return {
-    getExamine: function(){
-      var examineExpenseClaim = [];
-      for(var i = 0; i < expenseClaim.length; i++){
-        if(expenseClaim[i].examine == true)
-          examineExpenseClaim.push(expenseClaim[i]);
-      }
-      return examineExpenseClaim;
-    },
-    getNotExamine:function(){
-      var notExamineExpenseClaim = [];
-      for(var i = 0; i < expenseClaim.length; i++){
-        if(expenseClaim[i].examine != true)
-          notExamineExpenseClaim.push(expenseClaim[i]);
-      }
-      return notExamineExpenseClaim;
-    },
     getByHead: function(head){
       for(var i = 0; i < expenseClaim.length; i++){
         if(head == expenseClaim[i].head)
           return expenseClaim[i];
       }
       return null;
+    },
+    getAll: function(){
+      return expenseClaim;
     }
   }
 })
+
+.factory('Chats',function(){
+    var chats = [{
+      people:'张冉',
+      messageNum:'1',
+      date:'2015-11-11',
+      time:'16:00',
+      face:'img/mike.png',
+      message:[
+        'Hey'
+      ]
+    }, {
+      people:'陈东',
+      messageNum:'2',
+      date:'2015-11-12',
+      time:'17:00',
+      face:'img/max.png',
+      message:[
+        'Hey',
+        '玩得开心'
+      ]
+    }, {
+      people:'讨论组',
+      messageNum:'3',
+      date:'2015-11-12',
+      time:'18:00',
+      face:'img/perry.png',
+      message:[
+        '我的天',
+        '还有讨论组',
+        '这个我不写了,太麻烦了,太麻烦了,太麻烦了'
+      ]
+    }, {
+      people:'销售管理组',
+      messageNum:'4',
+      date:'2015-11-11',
+      time:'19:00',
+      face:'img/ben.png',
+      message:[
+        '好多要做啊',
+        '怎么这么多页面',
+        '谁能告诉我',
+        '好多啊!!!!'
+      ]
+    }];
+    return {
+      getAll: function(){
+        return chats;
+      },
+      getByPeople: function(people){
+        for(var i = 0; i < chats.length; i++){
+          if(chats[i].people == people)
+            return chats[i];
+        }
+        return null;
+      }
+    }
+  })
 ;

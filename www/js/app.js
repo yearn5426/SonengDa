@@ -49,6 +49,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
+
   .state('tab.expense-claim', {
     url: '/home/expense-claim',
     views: {
@@ -64,29 +65,140 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     views: {
       'tab-home': {
         templateUrl: 'templates/expense-claim-detail.html',
-        controller: 'ExpenseClaimDetailCtrl'
+        controller: 'ExpenseClaimCtrl'
       }
     }
   })
 
-  .state('tab.crm', {
-      url: '/crm',
+  .state('tab.dashboard-aggregate', {
+    url: '/home/dashboard-aggregate',
+    views: {
+      'tab-dashboard-aggregate': {
+        templateUrl: 'templates/Home/dashboard-aggregate.html',
+        controller: 'DashboardAggregateCtrl'
+      }
+    }
+  })
+
+  .state('tab.work-circle', {
+    url: '/work-circle',
+    views: {
+     'tab-work-circle': {
+        templateUrl: 'templates/work-circle.html',
+        controller: 'WorkCircleCtrl'
+     }
+    }
+  })
+
+  .state('tab.activity-detail', {
+      url: '/home/activity-detail/:date/:activityId',
       views: {
-        'tab-crm': {
-          templateUrl: 'templates/tab-crm.html',
-          controller: 'CrmCtrl'
+        'tab-home': {
+          templateUrl: 'templates/activity-detail.html',
+          controller: 'ActivityDetailCtrl'
         }
       }
     })
-    // .state('tab.chat-detail', {
-    //   url: '/chats/:chatId',
-    //   views: {
-    //     'tab-chats': {
-    //       templateUrl: 'templates/chat-detail.html',
-    //       controller: 'ChatDetailCtrl'
-    //     }
-    //   }
-    // })
+
+  .state('tab.message', {
+      url: '/home/message',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/message.html',
+          controller: 'MessageCtrl'
+        }
+      }
+    })
+
+  .state('tab.message-detail', {
+      url: '/home/message/:people',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/message-detail.html',
+          controller: 'MessageDetailCtrl'
+        }
+      }
+    })
+
+  .state('tab.crm', {
+    url: '/crm',
+    views: {
+      'tab-crm': {
+        templateUrl: 'templates/tab-crm.html',
+        controller: 'CrmCtrl'
+      }
+    }
+  })
+
+  .state('tab.dashboard', {
+      url: '/crm/dashboard',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/crm/dashboard.html',
+          controller: 'DashboardCtrl'
+        }
+      }
+    })
+
+  .state('tab.sale-funnel', {
+      url: '/crm/dashboard/sale-funnel',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/crm/Dashboard/sale-funnel.html',
+          controller: 'SaleFunnelCtrl'
+        }
+      }
+    })
+
+  .state('tab.performance-ranking', {
+      url: '/crm/dashboard/performance-ranking',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/crm/Dashboard/performance-ranking.html',
+          controller: 'PerformanceRankingCtrl'
+        }
+      }
+    })
+
+  .state('tab.goal-achievement', {
+      url: '/crm/dashboard/goal-achievement',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/crm/Dashboard/goal-achievement.html',
+          controller: 'GoalAchievementCtrl'
+        }
+      }
+    })
+
+  .state('tab.top-niche', {
+      url: '/crm/dashboard/top-niche',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/crm/Dashboard/top-niche.html',
+          controller: 'TopNicheCtrl'
+        }
+      }
+    })
+
+  .state('tab.top-custom', {
+      url: '/crm/dashboard/top-custom',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/crm/Dashboard/top-custom.html',
+          controller: 'TopCustomCtrl'
+        }
+      }
+    })
+
+  .state('tab.key-niche', {
+      url: '/crm/dashboard/key-niche',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/crm/Dashboard/key-niche.html',
+          controller: 'KeyNicheCtrl'
+        }
+      }
+    })
 
   .state('tab.work', {
     url: '/work',
@@ -97,7 +209,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     }
   })
-    .state('tab.team', {
+
+  .state('tab.team', {
       url: '/team',
       views: {
         'tab-team': {
@@ -107,7 +220,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-    .state('tab.me', {
+  .state('tab.me', {
       url: '/me',
       views: {
         'tab-me': {
