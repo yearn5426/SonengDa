@@ -587,6 +587,10 @@ angular.module('starter.controllers', [])
         }
       }
     ],
+
+    legend: {
+      data:['利润', '赢率']
+    },
     yAxis : [
       {
         type : 'category',
@@ -609,9 +613,8 @@ angular.module('starter.controllers', [])
         }
       }
     ],
-    series : [
-      {
-        name:'金额',
+    series : [{
+        name:'利润',
         type:'bar',
         label: {
           normal: {
@@ -619,7 +622,17 @@ angular.module('starter.controllers', [])
             position: 'inside'
           }
         },
-        data:[1500000, 2800000]
+        data:[150, 280]
+      }, {
+        name:'赢率',
+        type:'bar',
+        label: {
+          normal: {
+            show: true,
+            position: 'inside'
+          }
+        },
+        data:[60, 30]
       }
     ]
   };
