@@ -1,6 +1,6 @@
 <ion-view view-title="Expense-claim" class="expense-claim">
   <ion-header-bar align-title="center" class="head-bar" >
-    <button ng-click="back()">
+    <button class="button icon" ng-click="back()">
       <i class="icon ion-ios-arrow-left"></i>
     </button>
     <h1 class="title">Expense Claim</h1>
@@ -8,39 +8,40 @@
   <ion-content class="padding">
     <div class="is-examine">
       <div>
-        <button ng-class="{true:'', false:'selected'}[isExamine]" ng-click="changeIsExamine()">未审批</button>
+        <button ng-class="{true:'', false:'selected'}[isExamine]" ng-click="changeIsExamine(false)">未审批</button>
       </div>
       <div>
-        <button ng-class="{true:'selected', false:''}[isExamine]" ng-click="changeIsExamine()">已审批</button>
+        <button ng-class="{true:'selected', false:''}[isExamine]" ng-click="changeIsExamine(true)">已审批</button>
       </div>
     </div>
-    <div class="examine list" ng-if="isExamine">
-      <p>已审批报销单</p>
+    <div class="examine list" >
+      <p ng-if="isExamine">已审批报销单</p>
+      <p ng-if="!isExamine">未审批报销单</p>
       <ion-list>
         <ion-item ng-repeat="expenseClaim in nowClaim track by $index"
-                  type="item-text-wrap" href="#/tab/home/expense-claim/{{expenseClaim.head}}">
+                  type="item-text-wrap" ng-click="goDetail(expenseClaim.head)">
           <div>
             <i class="icon ion-ios-arrow-right right"></i>
             <span>单号：{{expenseClaim.head}}</span><br>
             <span class="date">提交日期：{{expenseClaim.date}}</span><span class="applicant">提交人：{{expenseClaim.applicant}}</span><span>金额：{{expenseClaim.totalSum}}</span><br>
-            <span class="theme">报销主题：{{expenseClaim.theme}}</span><span>已审批</span><br>
+            <span class="theme">报销主题：{{expenseClaim.theme}}</span><span ng-if="isExamine">已审批</span><span ng-if="!isExamine">未审批</span><br>
           </div>
         </ion-item>
       </ion-list>
     </div>
-    <div class="not-examine list" ng-if="!isExamine">
-      <p>未审批报销单</p>
-      <ion-list>
-        <ion-item ng-repeat="expenseClaim in nowClaim track by $index"
-                  type="item-text-wrap" href="#/tab/home/expense-claim/{{expenseClaim.head}}" >
-          <div>
-            <i class="icon ion-ios-arrow-right right"></i>
-            <span>单号：{{expenseClaim.head}}</span><br>
-            <span class="date">提交日期：{{expenseClaim.date}}</span><span class="applicant">提交人：{{expenseClaim.applicant}}</span><span>金额：{{expenseClaim.totalSum}}</span><br>
-            <span class="theme">报销主题：{{expenseClaim.theme}}</span><span>未审批</span><br>
-          </div>
-        </ion-item>
-      </ion-list>
-    </div>
+    <!--<div class="not-examine list" >-->
+      <!---->
+      <!--<ion-list>-->
+        <!--<ion-item ng-repeat="expenseClaim in notExamineClaim track by $index"-->
+                  <!--type="item-text-wrap" ng-click="goDetail(expenseClaim.head)">-->
+          <!--<div>-->
+            <!--<i class="icon ion-ios-arrow-right right"></i>-->
+            <!--<span>单号：{{expenseClaim.head}}</span><br>-->
+            <!--<span class="date">提交日期：{{expenseClaim.date}}</span><span class="applicant">提交人：{{expenseClaim.applicant}}</span><span>金额：{{expenseClaim.totalSum}}</span><br>-->
+            <!--<span class="theme">报销主题：{{expenseClaim.theme}}</span><span>未审批</span><br>-->
+          <!--</div>-->
+        <!--</ion-item>-->
+      <!--</ion-list>-->
+    <!--</div>-->
   </ion-content>
 </ion-view>

@@ -12,7 +12,7 @@
           </button>
         </ion-header-bar>
         <div class="search">
-          <input type="text" placeholder="输入客户/联系人/活动/消息关键字"><i class="icon ion-ios-search"></i>
+          <input type="text" ng-model="search"  placeholder="输入客户/联系人/活动/消息关键字"><i ng-click="goSearchResult()" class="icon ion-ios-search"></i>
         </div>
         <ion-content class="padding">
           <div class="date">
@@ -54,17 +54,18 @@
             <p><i class="icon ion-ios-browsers-outline"></i>活动</p>
             <ion-list>
               <ion-item class="item-avatar"
-                        ng-repeat="activity in activities" type="item-text-wrap" href="#/tab/home/activity-detail/{{date}}/{{activity.activityId}}">
+                        ng-repeat="activity in activities" type="item-text-wrap"
+                        ng-click="goActivityDetail(date, activity.activityId)">
               <span class="time" ng-bind="activity.time"></span><span class="content" ng-bind="activity.content"></span><i class="icon" ng-class="{true:'ion-ios-star', false:'ion-ios-star-outline'}[activity.completed]"></i>
               </ion-item>
             </ion-list>
             <p ng-show="noActivities">无</p>
           </div>
           <div class="has-msg-span common" >
-            <a href="#/tab/home/expense-claim"><i class="icon ion-ios-checkmark-outline"></i>报销单审批 <i class="icon ion-ios-arrow-right right"></i><span>2</span></a>
+            <p ng-click="goExpenseClaim()"><i class="icon ion-ios-checkmark-outline"></i>报销单审批 <i class="icon ion-ios-arrow-right right"></i><span>2</span></p>
           </div>
           <div class="has-msg-span common">
-            <a href="#/tab/home/message"><i class="icon ion-ios-paperplane-outline"></i>消息 <i class="icon ion-ios-arrow-right right"></i><span>10</span></a>
+            <p ng-click="goMessage()"><i class="icon ion-ios-paperplane-outline"></i>消息 <i class="icon ion-ios-arrow-right right"></i><span>10</span></p>
           </div>
         </ion-content>
       </ion-view>

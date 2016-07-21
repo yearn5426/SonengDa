@@ -1,11 +1,14 @@
 angular.module('starter.controllers', [])
 
-.controller('HomeCtrl', function($scope, Activities) {
+.controller('HomeCtrl', function($scope, Activities, $state) {
+
   $scope.date = 1;
   $scope.activities = Activities.get(1);
   $scope.noActivities = false;
   $scope.selected = [false, true, false, false, false, false, false,
     false, false, false, false, false, false, false];
+  $scope.search ='';
+
   $scope.chooseDate= function(date){
     $scope.activities = Activities.get(date);
     $scope.noActivities = !Activities.get(date);
@@ -16,25 +19,70 @@ angular.module('starter.controllers', [])
       $scope.selected[0] = true;
     else
       $scope.selected[date] = true;
-  }
+  };
+
+  $scope.goExpenseClaim = function(){
+    $state.go('tab.expense-claim');
+  };
+
+  $scope.goMessage = function(){
+    $state.go('tab.message');
+  };
+
+  $scope.goActivityDetail = function(date, activityId){
+    var param = {
+      date: date,
+      activityId: activityId
+    };
+    $state.go('tab.activity-detail',{
+      'ActivityIndex':param
+    });
+  };
+
+  $scope.goSearchResult = function(){
+   $state.go('tab.search-result');
+  };
 })
 
+.controller('SearchCtrl', function($scope,$ionicHistory, $state) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+  $scope.goSearchResult = function(){
+    $state.go('tab.search-result');
+  };
+})
 
+.controller('SearchResultCtrl', function($scope,$ionicHistory, $state) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
 
-.controller('ExpenseClaimCtrl', function($scope, ExpenseClaim, $ionicHistory, $stateParams, $timeout) {
-  $scope.isExamine = false;
+  $scope.goMessageDetail = function(people){
+    $state.go('tab.message-detail',{
+      'People':people
+    })
+  };
 
-  $scope.allClaim = ExpenseClaim.getAll();
-  $scope.nowClaim = [];
-  $scope.doneExamine = false;
-  $scope.expenseClaim = ExpenseClaim.getByHead($stateParams.head);
+  $scope.goActivityDetail = function(){
+    $state.go('tab.activity-detail');
+  };
+})
 
+.controller('ExpenseClaimCtrl', function($scope, ExpenseClaim, $ionicHistory, $state, $rootScope) {
   $scope.refresh = function(){
+    $scope.nowClaim = [];
     for(var i = 0; i < $scope.allClaim.length; i++){
       if($scope.allClaim[i].examine == $scope.isExamine)
         $scope.nowClaim.push($scope.allClaim[i]);
     }
   };
+
+  $scope.isExamine = false;
+
+  $scope.allClaim = ExpenseClaim.getAll();
+  $scope.nowClaim = [];
+
 
   $scope.refresh();
 
@@ -42,29 +90,52 @@ angular.module('starter.controllers', [])
     $ionicHistory.goBack();
   };
 
-  $scope.changeIsExamine = function(){
-    $scope.isExamine = !$scope.isExamine;
-    $scope.nowClaim = [];
+  $scope.changeIsExamine = function(selceted){
+    if ($scope.isExamine == !selceted){
+      $scope.isExamine = !$scope.isExamine;
+    }
     $scope.refresh();
   };
 
 
-  $scope.doExamine = function(isApproval){
-    for (var i = 0; i < $scope.allClaim.length; i++){
-      if ($scope.allClaim[i].head == $stateParams.head){
-        $scope.allClaim[i].examine = true;
-        $scope.allClaim[i].approval = true;
-      }
-    }
-    $scope.changeIsExamine();
-    window.location.href = '#/tab/home/expense-claim';
-    // $scope.refresh()
-    // $scope.isExamine = !$scope.isExamine;
-    // $timeout($scope.refresh(),500);
+  $scope.goDetail = function(expenseClaimHead){
 
+    $state.go('tab.expense-claim-detail',{
+      'ExpenseClaimHead':expenseClaimHead
+    });
   };
 
+  $rootScope.$on("DONE_EXAMINE", function(e, param){
+    for(var i = 0; i < $scope.allClaim.length; i++){
+      if($scope.allClaim[i].head == param.head){
+        $scope.allClaim[i].examine = true;
+        $scope.allClaim[i].approval = param.approval;
+      }
+    };
+    $scope.isExamine = !$scope.isExamine;
+    $scope.refresh();
+  });
+
+
 })
+
+.controller('ExpenseClaimDetailCtrl', function($scope, ExpenseClaim, $ionicHistory, $stateParams, $rootScope) {
+    $scope.expenseClaim = ExpenseClaim.getByHead($stateParams.ExpenseClaimHead);
+
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+
+    $scope.doExamine = function(isApproval){
+      var param = {
+        head:$stateParams.ExpenseClaimHead,
+        approval:isApproval
+      };
+      $rootScope.$broadcast("DONE_EXAMINE",param);
+      $ionicHistory.goBack();
+    };
+
+  })
 
 .controller('DashboardAggregateCtrl', function($scope) {
   $scope.timesSelected = [false, true, false];
@@ -162,29 +233,70 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ActivityDetailCtrl', function($scope, $ionicHistory) {
+.controller('ActivityDetailCtrl', function($scope, $ionicHistory, Activities, $stateParams){
   $scope.back = function(){
     $ionicHistory.goBack();
   };
+  $scope.activity = Activities.get($stateParams.ActivityIndex.date);
 })
 
-.controller('MessageCtrl', function($scope, Chats, $ionicHistory) {
+.controller('MessageCtrl', function($scope, Chats, $ionicHistory, $state) {
   $scope.chats = Chats.getAll();
   $scope.back = function(){
     $ionicHistory.goBack();
   };
+  $scope.goMessageDetail = function(people){
+    $state.go('tab.message-detail',{
+      'People':people
+    })
+  };
+  $scope.goSearch = function(){
+    $state.go('tab.search');
+  };
 })
 
 .controller('MessageDetailCtrl', function($scope, Chats, $stateParams, $ionicHistory) {
-  $scope.chat = Chats.getByPeople($stateParams.people);
+  $scope.chat = Chats.getByPeople($stateParams.People);
   $scope.back = function(){
     $ionicHistory.goBack();
   };
 })
-.controller('DashboardCtrl', function($scope, $ionicHistory) {
+
+.controller('CrmCtrl', function($scope, $state) {
+  $scope.goDashboard = function(){
+    $state.go('tab.dashboard');
+  };
+
+  $scope.goContacts = function(){
+    $state.go('tab.contacts');
+  };
+  $scope.goScan = function(){
+    $state.go('tab.scan')
+  };
+})
+
+.controller('DashboardCtrl', function($scope, $ionicHistory, $state) {
   $scope.back = function(){
     $ionicHistory.goBack();
-  }
+  };
+  $scope.goSaleFunnel = function(){
+    $state.go('tab.sale-funnel');
+  };
+  $scope.goPerformanceRanking = function(){
+    $state.go('tab.performance-ranking');
+  };
+  $scope.goGoalAchievement = function(){
+    $state.go('tab.goal-achievement');
+  };
+  $scope.goTopNiche = function(){
+    $state.go('tab.top-niche');
+  };
+  $scope.goTopCustom = function(){
+    $state.go('tab.top-custom');
+  };
+  $scope.goKeyNiche = function(){
+    $state.go('tab.key-niche');
+  };
 })
 
 .controller('SaleFunnelCtrl', function($scope, $ionicHistory) {
@@ -313,7 +425,10 @@ angular.module('starter.controllers', [])
         label: {
           normal: {
             show: true,
-            position: 'inside'
+            position: ['70%',5],
+            textStyle: {
+              color:'#000'
+            }
           }
         },
         data:[400000, 500000, 500000, 800000, 1000000, 2180000, 2400000, 2500000, 2800000]
@@ -541,7 +656,10 @@ angular.module('starter.controllers', [])
         label: {
           normal: {
             show: true,
-            position: 'inside'
+            position: ['70%',5],
+            textStyle: {
+              color:'#000'
+            }
           }
         },
         data:[1180000, 1500000, 2800000, 4000000, 5800000]
@@ -639,7 +757,74 @@ angular.module('starter.controllers', [])
   chart.setOption(option);
 })
 
-.controller('CrmCtrl', function($scope) {
+.controller('ContactsCtrl', function($scope, $state, $ionicHistory) {
+  $scope.goContactDetail = function(){
+    $state.go('tab.contact-detail');
+  };
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+  $scope.goSearch = function(){
+    $state.go('tab.search');
+  };
+  $scope.goNewContact = function(){
+    $state.go('tab.new-contact');
+  };
+})
+
+.controller('ContactDetailCtrl', function($scope, $state, $ionicHistory) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+
+  $scope.goNicheList = function(){
+    $state.go('tab.niche-list');
+  };
+  $scope.goActivityRecord = function(){
+    $state.go('tab.activity-record');
+  };
+  $scope.goCustomList = function(){
+    $state.go('tab.custom-list');
+  };
+  $scope.goNewContact = function(){
+    $state.go('tab.new-contact');
+  };
+})
+
+.controller('NewContactCtrl', function($scope, $ionicHistory) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+})
+
+.controller('NicheListCtrl', function($scope, $ionicHistory) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+
+})
+
+.controller('ActivityRecordCtrl', function($scope, $ionicHistory) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+})
+
+.controller('CustomListCtrl', function($scope, $ionicHistory) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+})
+
+.controller('ScanCtrl', function($scope, $ionicHistory) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+  // $scope.onHover = [false, false];
+  //
+  // $scope.click = function(selected){
+  //   $scope.onHover[selected] = true;
+  // }
 })
 
 .controller('WorkCtrl', function($scope) {
@@ -647,11 +832,13 @@ angular.module('starter.controllers', [])
     enableFriends: true
   }
 })
+
 .controller('TeamCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   }
 })
+
 .controller('MeCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true

@@ -1,0 +1,179 @@
+<ion-view view-title="New-contact" class="new-contact">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">New Contact</h1>
+    <button class="button icon" ng-click="goNewContact()">
+      Save
+    </button>
+  </ion-header-bar>
+  <style>
+    .new-contact ion-content.scroll-content{
+      background-color: white;
+    }
+    .new-contact .scan-card{
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      padding-bottom: 0;
+      margin:0;
+    }
+    .new-contact span{
+      font-size: 2em;
+      position: relative;
+      color: #808080;
+    }
+    .new-contact .scan-card span{
+      display: inline-block;
+      width: 30px;
+    }
+    .new-contact .scan-card span.before:before {
+      content: '└';
+      position: absolute;
+      right:-5px;
+      top:-5px;
+    }
+    .new-contact .scan-card span.before:after {
+      content: '┌';
+      position: absolute;
+      right:-5px;
+      top:-57px;
+    }
+    .new-contact .scan-card span.after:before {
+      content: '┐';
+      position: absolute;
+      right:7px;
+      top:-57px;
+    }
+    .new-contact .scan-card span.after:after {
+      content: '┘';
+      position: absolute;
+      right:7px;
+      top:-5px;
+    }
+    .new-contact .scan-card img{
+      width: 55px;
+      height: 40px;
+      border:0;
+    }
+    .new-contact p.scan{
+      width: 25%;
+      text-align: center;
+      margin:0 auto;
+      white-space: pre;
+      font-size: 0.8em;
+      line-height: 2em;
+      height: 2em;
+      vertical-align: middle;
+    }
+    .new-contact .split{
+      width:100%;
+      padding:5px 0 5px 5%;
+      margin:0;
+      font-weight: bold;
+      background-color: #f0f0f0;
+    }
+    .new-contact .info div{
+      border-bottom:1px solid #f0f0f0;
+      height: 40px;
+      padding:1px 10px;
+      line-height: 40px;
+    }
+    .new-contact .info label{
+      display: inline-block;
+      font-size: 0.9em;
+      width:26%;
+      margin-right:2%;
+    }
+    .new-contact .info label i{
+      font-size: 2em;
+      line-height: 0.5em;
+      vertical-align: middle;
+      margin-left: 5px;
+    }
+    .new-contact .info input[type="text"]{
+      display: inline-block;
+      border:1px solid #a0a0a0;
+      height:25px;
+      vertical-align: baseline;
+      font-size: 0.9em;
+      width: 55%;
+    }
+    .new-contact .info select{
+      display: inline-block;
+      height:25px;
+      vertical-align: baseline;
+      font-size: 0.9em;
+      width: 55%;
+    }
+    .new-contact .info .sex i{
+      margin-left: 5px;
+      margin-right:15px;
+      font-size: 1.2em;
+    }
+    .new-contact .info input[type="radio"]{
+      font-size: 1.2em;
+    }
+    .new-contact .info input[type="text"]+i{
+      margin-left: 2%;
+      font-size: 1.3em;
+      line-height: 0.5em;
+    }
+  </style>
+  <ion-content>
+    <div class="scan-card">
+      <span class="before"></span><img src=""><span class="after"></span>
+    </div>
+    <p class="scan"> 扫描名片</p>
+    <p class="split">基本信息</p>
+    <div class="info">
+      <div>
+        <label for="name"><i class="icon ion-ios-person-outline"></i></label><input type="text" id="name" placeholder="马云">
+      </div>
+      <div>
+        <label for="company">客户</label><input type="text" id="company" placeholder="阿里巴巴科技公司">
+      </div>
+      <div>
+        <label for="post">职务</label><input type="text" id="post" placeholder="采购经理">
+      </div>
+      <div class="sex">
+        <label for="sex">性别</label><input type="radio" id="sex" checked="true" name="sex" value="0"><i class="icon ion-male"></i><input type="radio" name="sex" value="1"><i class="icon ion-female"></i>
+      </div>
+      <div>
+        <label for="phone">电话</label><input type="text" id="phone" placeholder="021-66735652">
+      </div>
+      <div>
+        <label for="telephone">手机</label><input type="text" id="telephone" placeholder="18612345678">
+      </div>
+      <div>
+        <label for="address">地址</label><input type="text" id="address" placeholder="杭州市滨江区长河路99号"><i class="icon ion-ios-location-outline"></i>
+      </div>
+      <div>
+        <label for="mail">邮箱</label><input type="text" id="mail" placeholder="Yun.ma@alibaba.com">
+      </div>
+      <div>
+        <label for="fax">传真</label><input type="text" id="fax" placeholder="1123455">
+      </div>
+      <div>
+        <label for="contact">首选联系方式</label><select name="contact" id="contact"><option value="0" selected="selected">电话</option><option value="1">手机</option><option value="2">传真</option><option value="3">邮箱</option></select>
+      </div>
+      <div>
+        <label for="birthday">出生日期</label><input type="text" id="birthday" placeholder="1988-10-01">
+      </div>
+      <div>
+        <label for="sale">销售</label><input type="text" id="sale" placeholder="Andy">
+      </div>
+      <div>
+        <label for="custom">潜在客户来源</label><select name="custom" id="custom"><option value="0" selected="selected">网络</option><option value="1">天上</option><option value="2">地下</option></select>
+      </div>
+    </div>
+    <p class="split">基本信息</p>
+    <div class="info">
+      <div>
+        <label for="note">备注</label><input type="text" id="note" placeholder="非常有钱的人">
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+

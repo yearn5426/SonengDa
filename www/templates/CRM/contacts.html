@@ -1,0 +1,33 @@
+<ion-view view-title="Contacts" class="contacts">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Contacts</h1>
+    <button class="button icon" ng-click="goSearch()">
+      <i class="icon ion-ios-search right"></i>
+    </button>
+    <button class="button icon" ng-click="goNewContact()">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="tool">
+      <div>
+        <button>排序</button>
+      </div>
+      <div>
+        <button>筛选</button>
+      </div>
+    </div>
+    <div class="common">
+      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>马云 <i class="icon ion-ios-arrow-right right"></i></p>
+    </div>
+    <div class="common">
+      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>陈彦宏 <i class="icon ion-ios-arrow-right right"></i></p>
+    </div>
+    <div class="common">
+      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>Lisa <i class="icon ion-ios-arrow-right right"></i></p>
+    </div>
+  </ion-content>
+</ion-view>

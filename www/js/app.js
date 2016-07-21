@@ -50,6 +50,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
   })
 
+  .state('tab.search', {
+      url: '/home/search',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/Home/search.html',
+          controller: 'SearchCtrl'
+        }
+      }
+  })
+
+  .state('tab.search-result', {
+      url: '/home/search-result',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/Home/search-result.html',
+          controller: 'SearchResultCtrl'
+        }
+      },
+      params: {
+        'Search':''
+      }
+    })
+
   .state('tab.expense-claim', {
     url: '/home/expense-claim',
     views: {
@@ -61,12 +84,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.expense-claim-detail', {
-    url: '/home/expense-claim/:head',
+    url: '/home/expense-claim-detail',
     views: {
       'tab-home': {
         templateUrl: 'templates/expense-claim-detail.html',
-        controller: 'ExpenseClaimCtrl'
+        controller: 'ExpenseClaimDetailCtrl'
       }
+    },
+    params: {
+      'ExpenseClaimHead':''
     }
   })
 
@@ -91,12 +117,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   })
 
   .state('tab.activity-detail', {
-      url: '/home/activity-detail/:date/:activityId',
+      url: '/home/activity-detail',
       views: {
         'tab-home': {
           templateUrl: 'templates/activity-detail.html',
           controller: 'ActivityDetailCtrl'
         }
+      },
+      params: {
+        'ActivityIndex':''
       }
     })
 
@@ -111,12 +140,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
   .state('tab.message-detail', {
-      url: '/home/message/:people',
+      url: '/home/message-detail',
       views: {
         'tab-home': {
           templateUrl: 'templates/message-detail.html',
           controller: 'MessageDetailCtrl'
         }
+      },
+      params: {
+        'People':''
       }
     })
 
@@ -134,7 +166,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/crm/dashboard',
       views: {
         'tab-crm': {
-          templateUrl: 'templates/crm/dashboard.html',
+          templateUrl: 'templates/CRM/dashboard.html',
           controller: 'DashboardCtrl'
         }
       }
@@ -144,7 +176,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/crm/dashboard/sale-funnel',
       views: {
         'tab-crm': {
-          templateUrl: 'templates/crm/Dashboard/sale-funnel.html',
+          templateUrl: 'templates/CRM/Dashboard/sale-funnel.html',
           controller: 'SaleFunnelCtrl'
         }
       }
@@ -154,7 +186,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/crm/dashboard/performance-ranking',
       views: {
         'tab-crm': {
-          templateUrl: 'templates/crm/Dashboard/performance-ranking.html',
+          templateUrl: 'templates/CRM/Dashboard/performance-ranking.html',
           controller: 'PerformanceRankingCtrl'
         }
       }
@@ -164,7 +196,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/crm/dashboard/goal-achievement',
       views: {
         'tab-crm': {
-          templateUrl: 'templates/crm/Dashboard/goal-achievement.html',
+          templateUrl: 'templates/CRM/Dashboard/goal-achievement.html',
           controller: 'GoalAchievementCtrl'
         }
       }
@@ -174,7 +206,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/crm/dashboard/top-niche',
       views: {
         'tab-crm': {
-          templateUrl: 'templates/crm/Dashboard/top-niche.html',
+          templateUrl: 'templates/CRM/Dashboard/top-niche.html',
           controller: 'TopNicheCtrl'
         }
       }
@@ -184,7 +216,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/crm/dashboard/top-custom',
       views: {
         'tab-crm': {
-          templateUrl: 'templates/crm/Dashboard/top-custom.html',
+          templateUrl: 'templates/CRM/Dashboard/top-custom.html',
           controller: 'TopCustomCtrl'
         }
       }
@@ -194,11 +226,81 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/crm/dashboard/key-niche',
       views: {
         'tab-crm': {
-          templateUrl: 'templates/crm/Dashboard/key-niche.html',
+          templateUrl: 'templates/CRM/Dashboard/key-niche.html',
           controller: 'KeyNicheCtrl'
         }
       }
     })
+
+  .state('tab.contacts', {
+      url: '/crm/contacts',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/contacts.html',
+          controller: 'ContactsCtrl'
+        }
+      }
+    })
+
+  .state('tab.contact-detail', {
+      url: '/crm/contact-detail',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Contacts/contact-detail.html',
+          controller: 'ContactDetailCtrl'
+        }
+      }
+  })
+
+  .state('tab.niche-list', {
+      url: '/crm/niche-list',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Contacts/niche-list.html',
+          controller: 'NicheListCtrl'
+        }
+      }
+  })
+
+  .state('tab.activity-record', {
+      url: '/crm/activity-record',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Contacts/activity-record.html',
+          controller: 'ActivityRecordCtrl'
+        }
+      }
+  })
+
+  .state('tab.custom-list', {
+      url: '/crm/custom-list',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Contacts/custom-list.html',
+          controller: 'CustomListCtrl'
+        }
+      }
+  })
+
+  .state('tab.new-contact', {
+      url: '/crm/new-contact',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Contacts/new-contact.html',
+          controller: 'NewContactCtrl'
+        }
+      }
+  })
+    
+  .state('tab.scan', {
+      url: '/crm/scan',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/scan.html',
+          controller: 'ScanCtrl'
+        }
+      }
+  })
 
   .state('tab.work', {
     url: '/work',

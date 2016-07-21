@@ -1,0 +1,40 @@
+<ion-view view-title="Search" class="search-result">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Search Result</h1>
+  </ion-header-bar>
+  <ion-content>
+    <p class="split">相关客户 {{search}}</p>
+    <div class="common">
+      <p><i class="icon ion-ios-analytics-outline"></i>阿里巴巴科技公司 <i class="icon ion-ios-arrow-right right"></i></p>
+    </div>
+    <p class="split">相关联系人</p>
+    <div class="common">
+      <p><i class="icon ion-ios-body-outline"></i>马云 <i class="icon ion-ios-arrow-right right"></i></p>
+    </div>
+    <p class="split">相关活动</p>
+    <div class="common" ng-click="goActivityDetail()">
+      <p class="activity">
+        <i class="icon ion-ios-cart-outline"></i>新展品展览 <i class="icon ion-ios-arrow-right right"></i><br>
+        <span>2015-11-11 16:00 客户 阿里巴巴科技公司 进行中</span><i class="icon ion-ios-compose-outline comment">0</i>
+      </p>
+    </div>
+    <p class="split">相关消息</p>
+    <div class="message" ng-click="goMessageDetail('张冉')">
+      <img src="img/mike.png">
+      <p class="name">张冉</p><p class="time"><span>2015-11-11</span><br><span>16:00</span></p><br>
+      <p class="text">Hey</p>
+      <i class="icon ion-ios-arrow-right"></i>
+      <i class="icon ion-ios-redo-outline transmit">转发</i>
+    </div>
+    <div class="message" ng-click="goMessageDetail('销售管理组')">
+      <img src="img/ben.png">
+      <p class="name">销售管理组</p><p class="time"><span>2015-11-11</span><br><span>19:00</span></p><br>
+      <p class="text">好多啊!!!</p>
+      <i class="icon ion-ios-arrow-right"></i>
+      <i class="icon ion-ios-redo-outline transmit">转发</i>
+    </div>
+  </ion-content>
+</ion-view>
