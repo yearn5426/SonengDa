@@ -1492,11 +1492,11 @@ ion-content.new.scroll-content{
 /* attachment-list界面样式end */
 
 /* custom-record和distribution-custom界面样式 */
-.repeat-go-item ion-item{
+ion-item.repeat-go-item{
   padding: 10px;
   margin-bottom: 20px;
 }
-.repeat-go-item ion-item.activated{
+ion-item.repeat-go-item.activated{
   padding: 10px;
   margin-bottom: 20px;
   background-color: white;
@@ -1582,5 +1582,21 @@ ion-content.new.scroll-content{
   display: block;
   width:90%;
   margin:50px auto;
+}
+.attachment-detail .tool{
+  width:100%;
+  padding:10px 23%;
+  height:1.6em;
+  background-color: white;
+  font-size: 2.5em;
+  color: rgb(7,156,246);
+  border-top:1px solid #a0a0a0;
+  border-bottom:1px solid #a0a0a0;
+}
+.attachment-detail .tool .left{
+  float: left;
+}
+.attachment-detail .tool .right{
+  float: right;
 }
 /* attachment-detail界面样式end */

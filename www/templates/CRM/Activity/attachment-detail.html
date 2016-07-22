@@ -5,29 +5,11 @@
     </button>
     <h1 class="title">Attachment Detail</h1>
   </ion-header-bar>
-  <style>
-      .tool{
-        width:100%;
-        padding:10px 20px;
-        height:1.6em;
-        background-color: white;
-        font-size: 2.5em;
-        color: rgb(7,156,246);
-        border-top:1px solid #a0a0a0;
-        border-bottom:1px solid #a0a0a0;
-      }
-      .tool .left{
-        float: left;
-      }
-      .tool .right{
-        float: right;
-       }
-  </style>
   <ion-content>
     <div class="info">
       <h5>简要说明</h5>
-      <p>西门子开关插座面板 远景系列 雅白色 带荧光二开双开弹孔开关</p>
-      <img src="img/attachment2.png">
+      <p>{{attachment.explanation}}</p>
+      <img src="{{attachment.image}}">
     </div>
     <div class="tool">
       <buttom class="left"><i class="icon ion-ios-information-outline"></i></buttom>

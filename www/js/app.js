@@ -107,6 +107,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           templateUrl: 'templates/CRM/Activity/attachment-detail.html',
           controller: 'AttachmentDetailCtrl'
         }
+      },
+      params: {
+        'AttachmentName':''
       }
     })
 

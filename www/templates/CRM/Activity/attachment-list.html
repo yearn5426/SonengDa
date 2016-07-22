@@ -9,11 +9,11 @@
     </button>
   </ion-header-bar>
   <ion-content>
-    <div class="attachment" ng-click="goAttachmentDetail()">
-      <img src="img/attachment.png">
-      <p>新产品</p><br>
-      <span>2015-11-11 890KB jpg</span><br>
-      <span>Andy</span>
+    <div ng-repeat="attachment in attachments" class="attachment" ng-click="goAttachmentDetail(attachment.name)">
+      <img src="{{attachment.image}}">
+      <p>{{attachment.name}}</p><br>
+      <span>{{attachment.explanation}}</span><br>
+      <span>{{attachment.sale}}</span>
       <i class="icon ion-ios-arrow-right"></i>
     </div>
   </ion-content>

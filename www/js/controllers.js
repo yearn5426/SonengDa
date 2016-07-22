@@ -331,20 +331,26 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AttachmentListCtrl', function($scope, $ionicHistory, $state) {
+.controller('AttachmentListCtrl', function($scope, $ionicHistory, $state, Attachments) {
+  $scope.attachments = Attachments.getAll();
+  
   $scope.back = function(){
     $ionicHistory.goBack();
   };
-  $scope.goAttachmentDetail = function(){
-    $state.go('tab.attachment-detail');
+  $scope.goAttachmentDetail = function(name){
+    $state.go('tab.attachment-detail',{
+      'AttachmentName':name
+    });
   };
 })
 
-.controller('AttachmentDetailCtrl', function($scope, $ionicHistory) {
-    $scope.back = function(){
-      $ionicHistory.goBack();
-    };
-  })
+.controller('AttachmentDetailCtrl', function($scope, $ionicHistory, $stateParams, Attachments) {
+  $scope.attachment = Attachments.getByName($stateParams.AttachmentName);
+  
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+})
 
 .controller('NewActivityCtrl', function($scope, $ionicHistory) {
   $scope.back = function(){

@@ -615,4 +615,44 @@ angular.module('starter.services', [])
     }
   }
 })
+
+.factory('Attachments',function() {
+  var attachments = [{
+    name:'守望先锋 ',
+    type:'新产品',
+    sale:'网易',
+    explanation:'沉迷学习,日渐消瘦',
+    image:'img/attachment.png'
+  }, {
+    name:'西门子双开开关 ',
+    type:'新产品',
+    sale:'西门子',
+    explanation:'西门子开关插座面板 远景系列 雅白色 带荧光二开双开弹孔开关',
+    image:'img/attachment2.png'
+  }, {
+    name:'施耐德三位开关 ',
+    type:'新产品',
+    sale:'施耐德',
+    explanation:'C86系列10A 250V单控大按板开关C230/1W 白色',
+    image:'img/attachment3.png'
+  }, {
+    name:'小米手机 ',
+    type:'新产品',
+    sale:'小米',
+    explanation:'陶瓷后盖 128G内存',
+    image:'img/attachment4.png'
+  }];
+  return {
+    getAll: function(){
+      return attachments;
+    },
+    getByName: function(name){
+      for(var i = 0; i < attachments.length; i++){
+        if(attachments[i].name == name)
+          return attachments[i];
+      }
+      return null;
+    }
+  }
+})
 ;
