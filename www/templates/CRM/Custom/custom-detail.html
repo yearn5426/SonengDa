@@ -1,0 +1,34 @@
+<ion-view view-title="Custom-detail" class="custom-detail">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Custom Detail</h1>
+    <button class="button icon" ng-click="goNewCustom()">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="head">
+      <p ng-click="goCustomList()">1<br>联系人</p><p ng-click="goNicheList()">2<br>商机</p><p ng-click="goActivityRecord()">2<br>活动</p><p ng-click="">2<br>订单</p><p ng-click="">1<br>报价</p>
+    </div>
+    <p class="split">基本信息</p>
+    <div class="detail">
+      <p class="row"><span class="col-28"><i class="icon ion-ios-bookmarks-outline"></i></span><span class="col-50">{{custom.name}}</span><i class="icon ion-android-close"></i><i class="icon ion-android-create"></i></p>
+      <p class="row"><span class="col-28">类型</span><span>{{custom.type}}</span></p>
+      <p class="row"><span class="col-28">阶段</span><span>{{custom.stage}}</span></p>
+      <p class="row"><span class="col-28">销售</span><span>{{custom.sale}}</span></p>
+      <p class="row"><span class="col-28">网站</span><a>{{custom.web}}</a></p>
+      <p class="row"><span class="col-28">行业</span><span>{{custom.industry}}</span></p>
+      <p class="row"><span class="col-28">地址</span><span class="col-50">{{custom.address}}</span><i class="icon ion-ios-location-outline right"></i></p>
+      <p class="row"><span class="col-28">年收入</span><span>{{custom.income}}</span></p>
+      <p class="row"><span class="col-28">员工数</span><span>{{custom.employeeNum}}</span></p>
+      <p class="row"><span class="col-28">主要联系人</span><span class="col-50">{{custom.contact}}</span><i class="icon ion-ios-chatbubble-outline"></i><i class="icon ion-ios-telephone-outline"></i></p>
+    </div>
+    <p class="split">其他信息</p>
+    <div class="detail">
+      <p class="row"><span class="col-28">备注</span><span>{{custom.note}}</span></p>
+    </div>
+
+  </ion-content>
+</ion-view>

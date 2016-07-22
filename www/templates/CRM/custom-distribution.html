@@ -1,0 +1,16 @@
+<ion-view view-title="Custom-distribution" class="custom-distribution">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Custom Distribution</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="common">
+      <p ng-click="goDistributionCustom(false)"><i class="icon ion-ios-pie-outline"></i>未分配客户 <i class="icon ion-ios-arrow-right right"></i></p>
+    </div>
+    <div class="common">
+      <p ng-click="goDistributionCustom(true)"><i class="icon ion-ios-pie-outline"></i>已分配客户 <i class="icon ion-ios-arrow-right right"></i></p>
+    </div>
+  </ion-content>
+</ion-view>

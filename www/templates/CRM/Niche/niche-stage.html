@@ -1,0 +1,59 @@
+<ion-view view-title="Niche-stage" class="niche-stage">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Niche Stage</h1>
+    <button class="button icon" ng-click="save()">
+      Save
+    </button>
+  </ion-header-bar>
+  <style>
+
+    .niche-stage .stage{
+      margin: 0;
+      background-color: white;
+      padding:10px;
+      border-top: 1px solid #c0c0c0;
+      position: relative;
+    }
+    .niche-stage .stage:first-child{
+      margin-top: 20px;
+      border:0;
+    }
+    .niche-stage div p{
+      display: inline-block;
+      margin: 0;
+      margin-left: 5%;
+      width:80%;
+      line-height: 2em;
+      height:2em;
+    }
+    .niche-stage .stage i{
+      position: absolute;
+      font-size: 2em;
+      vertical-align: middle;
+      color: rgb(7,156,246);
+    }
+  </style>
+  <ion-content>
+    <div class="stage" ng-click="select(0)">
+      <p>初步接洽(10%)</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="stage[0]" ></i></div>
+    <div class="stage" ng-click="select(1)">
+      <p>需求确定(30%)</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="stage[1]" ></i></div>
+    <div class="stage" ng-click="select(2)">
+      <p>方案/报价(60%)</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="stage[2]" ></i></div>
+    <div class="stage" ng-click="select(3)">
+      <p>商务谈判(80%)</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="stage[3]" ></i></div>
+    <div class="stage" ng-click="select(4)">
+      <p>赢单(100%)</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="stage[4]" ></i></div>
+    <div class="stage" ng-click="select(5)">
+      <p>输单(0%)</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="stage[5]" ></i></div>
+  </ion-content>
+</ion-view>

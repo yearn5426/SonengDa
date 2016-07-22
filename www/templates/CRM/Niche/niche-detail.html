@@ -1,0 +1,37 @@
+<ion-view view-title="Niche-detail" class="niche-detail">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Niche Detail</h1>
+    <button class="button icon" ng-click="goNewNiche()">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="head">
+      <p ng-click="goCustomList()">3<br>联系人</p><p ng-click="goNicheList()">2<br>产品</p><p ng-click="goActivityRecord()">2<br>活动</p><p ng-click="">2<br>报价</p><p ng-click="">2<br>订单</p><p ng-click="">1<br>附件</p>
+    </div>
+    <p class="split">基本信息</p>
+    <div class="detail">
+      <p class="row"><span class="col-28"><i class="icon ion-ios-bookmarks-outline"></i></span><span class="col-50">{{niche.name}}</span><i class="icon ion-android-close"></i><i class="icon ion-android-create"></i></p>
+      <p class="row"><span class="col-28">客户</span><span>{{niche.custom}}</span></p>
+      <p class="row"><span class="col-28">销售</span><span>{{niche.sale}}</span></p>
+      <p class="row"><span class="col-28">阶段</span><span class="col-50">{{niche.stage}}</span><i class="icon ion-ios-arrow-right right" ng-click="goNicheStage()"></i></p>
+      <p class="row"><span class="col-28">类型</span><span>{{niche.type}}</span></p>
+      <p class="row"><span class="col-28">状态</span><span>{{niche.state}}</span></p>
+      <p class="row"><span class="col-28">预计收入</span><span>{{niche.income}}</span></p>
+      <p class="row"><span class="col-28">预算金额</span><span>{{niche.budgetAmount}}</span></p>
+      <p class="row"><span class="col-28">币种</span><span>{{niche.currency}}</span></p>
+      <p class="row"><span class="col-28">预计结束日期</span><span>{{niche.endDate}}</span>
+      <p class="row"><span class="col-28">购买流程</span><span>{{niche.purchasingProcess}}</span>
+      <p class="row"><span class="col-28">机会来源</span><span>{{niche.chance}}</span>
+      <p class="row"><span class="col-28">竞争对手</span><span>{{niche.opponents}}</span>
+    </div>
+    <p class="split">其他信息</p>
+    <div class="detail">
+      <p class="row"><span class="col-28">备注</span><span>{{niche.note}}</span></p>
+    </div>
+
+  </ion-content>
+</ion-view>

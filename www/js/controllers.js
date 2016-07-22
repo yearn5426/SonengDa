@@ -1,5 +1,21 @@
 angular.module('starter.controllers', [])
 
+.controller('TabCtrl', function($scope, $state) {
+  // $scope.$on('$ionicView.beforeEnter', function(){
+  //   var currentViewName = $state.current.name;
+  //   if(currentViewName != 'tab.home' && currentViewName != 'tab.crm' && currentViewName != 'tab.work' && currentViewName != 'tab.team' && currentViewName != 'tab.me'){
+  //     $scope.hideTabs = true;
+  //   }
+  // });
+  // $scope.$on('$ionicView.afterEnter', function () {
+  //   var currentViewName = $state.current.name;
+  //   if(currentViewName == 'tab.home' || currentViewName != 'tab.crm' || currentViewName == 'tab.work' || currentViewName == 'tab.team' || currentViewName == 'tab.me'){
+  //     $scope.hideTabs = false;
+  //   }
+  // })
+  //
+})
+
 .controller('HomeCtrl', function($scope, Activities, $state) {
 
   $scope.date = 1;
@@ -34,13 +50,21 @@ angular.module('starter.controllers', [])
       date: date,
       activityId: activityId
     };
-    $state.go('tab.activity-detail',{
+    $state.go('tab.activity-detail-home',{
       'ActivityIndex':param
     });
   };
 
   $scope.goSearchResult = function(){
    $state.go('tab.search-result');
+  };
+
+  $scope.goContacts = function(){
+    $state.go('tab.contacts');
+  };
+
+  $scope.goScan = function(){
+    $state.go('tab.scan')
   };
 })
 
@@ -49,7 +73,7 @@ angular.module('starter.controllers', [])
     $ionicHistory.goBack();
   };
   $scope.goSearchResult = function(){
-    $state.go('tab.search-result');
+    $state.go('tab.search-result-crm');
   };
 })
 
@@ -111,7 +135,7 @@ angular.module('starter.controllers', [])
         $scope.allClaim[i].examine = true;
         $scope.allClaim[i].approval = param.approval;
       }
-    };
+    }
     $scope.isExamine = !$scope.isExamine;
     $scope.refresh();
   });
@@ -120,22 +144,21 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ExpenseClaimDetailCtrl', function($scope, ExpenseClaim, $ionicHistory, $stateParams, $rootScope) {
-    $scope.expenseClaim = ExpenseClaim.getByHead($stateParams.ExpenseClaimHead);
+  $scope.expenseClaim = ExpenseClaim.getByHead($stateParams.ExpenseClaimHead);
 
-    $scope.back = function(){
-      $ionicHistory.goBack();
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+
+  $scope.doExamine = function(isApproval){
+    var param = {
+      head:$stateParams.ExpenseClaimHead,
+      approval:isApproval
     };
-
-    $scope.doExamine = function(isApproval){
-      var param = {
-        head:$stateParams.ExpenseClaimHead,
-        approval:isApproval
-      };
-      $rootScope.$broadcast("DONE_EXAMINE",param);
-      $ionicHistory.goBack();
-    };
-
-  })
+    $rootScope.$broadcast("DONE_EXAMINE",param);
+    $ionicHistory.goBack();
+  };
+})
 
 .controller('DashboardAggregateCtrl', function($scope) {
   $scope.timesSelected = [false, true, false];
@@ -233,11 +256,100 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('ActivityDetailCtrl', function($scope, $ionicHistory, Activities, $stateParams){
+.controller('ActivityDetailCtrl', function($scope, $ionicHistory, Activities, $stateParams, $rootScope, $state){
   $scope.back = function(){
     $ionicHistory.goBack();
   };
-  $scope.activity = Activities.get($stateParams.ActivityIndex.date);
+  $scope.activity = Activities.get($stateParams.ActivityIndex.date)[$stateParams.ActivityIndex.activityId - 1];
+  $scope.goNicheList = function(){
+    $state.go('tab.niche-list');
+  };
+  $scope.goContacts = function(){
+    $state.go('tab.contacts');
+  };
+  $scope.goCustomList = function(){
+    $state.go('tab.custom-list');
+  };
+
+  $scope.goActivityState = function () {
+    var state = $scope.activity.state;
+    $state.go('tab.activity-state',{
+      'ActivityState':state
+    })
+  };
+
+  $scope.goAttachmentList = function(){
+    $state.go('tab.attachment-list');
+  };
+
+  $rootScope.$on('CHANGE_STATE',function(e, param){
+    switch (param.stateId){
+      case 0:
+            $scope.activity.state = '已计划';
+            break;
+      case 1:
+            $scope.activity.state = '进行中';
+            break;
+      case 2:
+            $scope.activity.state = '已结束';
+            break;
+      case 3:
+            $scope.activity.state = '中止';
+            break;
+      default:
+            break;
+    }
+  });
+})
+
+.controller('ActivityStateCtrl', function($scope, $ionicHistory, $stateParams, $rootScope){
+  $scope.state = [false, false, false, false];
+
+  $scope.state[$stateParams.ActivityState=='已计划'?0:$stateParams.ActivityState=='进行中'?1:$stateParams.ActivityState=='已结束'?2:3] = true;
+
+  $scope.select = function(stateId) {
+    for(var i = 0; i < 4; i++)
+      $scope.state[i] = false;
+    $scope.state[stateId] = true;
+  };
+
+  $scope.save = function(){
+    var stateId;
+    for(var i = 0; i < 4; i++){
+      if($scope.state[i] == true)
+        stateId = i;
+    }
+    var param = {
+      stateId:stateId
+    };
+    $rootScope.$broadcast("CHANGE_STATE",param);
+    $ionicHistory.goBack();
+  };
+
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+})
+
+.controller('AttachmentListCtrl', function($scope, $ionicHistory, $state) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+  $scope.goAttachmentDetail = function(){
+    $state.go('tab.attachment-detail');
+  };
+})
+
+.controller('AttachmentDetailCtrl', function($scope, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+  })
+
+.controller('NewActivityCtrl', function($scope, $ionicHistory) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
 })
 
 .controller('MessageCtrl', function($scope, Chats, $ionicHistory, $state) {
@@ -272,6 +384,19 @@ angular.module('starter.controllers', [])
   };
   $scope.goScan = function(){
     $state.go('tab.scan')
+  };
+  $scope.goActivityRecord = function(){
+    $state.go('tab.activity-record');
+  };
+  $scope.goCustomRecord = function(){
+    $state.go('tab.custom-record');
+  };
+  $scope.goCustomDistribution = function () {
+    $state.go('tab.custom-distribution');
+  };
+
+  $scope.goNicheList = function () {
+    $state.go('tab.niche-list');
   };
 })
 
@@ -761,14 +886,38 @@ angular.module('starter.controllers', [])
   $scope.goContactDetail = function(){
     $state.go('tab.contact-detail');
   };
+
   $scope.back = function(){
     $ionicHistory.goBack();
   };
+
   $scope.goSearch = function(){
-    $state.go('tab.search');
+    $state.go('tab.search-crm');
   };
+
   $scope.goNewContact = function(){
     $state.go('tab.new-contact');
+  };
+
+  $scope.showTool = [false, false];
+
+  $scope.show = function(index){
+    if($scope.showTool[index]){
+      $scope.showTool[index] = false;
+    } else {
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+      if(!$scope.showTool[index]){
+        $scope.showTool[index] = true;
+      }
+    }
+  };
+
+  $scope.close = function() {
+    if($scope.showTool[0] || $scope.showTool[1]){
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+    }
   };
 })
 
@@ -797,17 +946,170 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('NicheListCtrl', function($scope, $ionicHistory) {
+.controller('NicheListCtrl', function($scope, $ionicHistory, $state, Niches) {
+  $scope.niches = Niches.getAll();
+
   $scope.back = function(){
     $ionicHistory.goBack();
+  };
+  $scope.showTool = [false, false];
+
+  $scope.show = function(index){
+    if($scope.showTool[index]){
+      $scope.showTool[index] = false;
+    } else {
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+      if(!$scope.showTool[index]){
+        $scope.showTool[index] = true;
+      }
+    }
+  };
+
+  $scope.close = function() {
+    if($scope.showTool[0] || $scope.showTool[1]){
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+    }
+  };
+
+  $scope.goNicheDetail = function(name){
+    $state.go('tab.niche-detail',{
+      'NicheName':name
+    })
+  };
+  $scope.goNewNiche = function () {
+    $state.go('tab.new-niche');
+  };
+})
+
+.controller('NicheDetailCtrl', function($scope, $ionicHistory, Niches, $stateParams, $state, $rootScope) {
+  $scope.niche = Niches.getByName($stateParams.NicheName);
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+
+  $scope.goNicheStage = function(){
+    $state.go('tab.niche-stage',{
+      'NicheStage':$scope.niche.stage
+    })
+  };
+
+  $rootScope.$on('CHANGE_STAGE',function(e, param){
+    switch (param.stageId){
+      case 0:
+        $scope.niche.stage = '初步接洽(10%)';
+        break;
+      case 1:
+        $scope.niche.stage = '需求确定(30%)';
+        break;
+      case 2:
+        $scope.niche.stage = '方案/报价(60%)';
+        break;
+      case 3:
+        $scope.niche.stage = '商务谈判(80%)';
+        break;
+      case 4:
+        $scope.niche.stage = '赢单(100%)';
+        break;
+      case 5:
+        $scope.niche.stage = '输单(0%)';
+        break;
+      default:
+        break;
+    }
+  });
+  $scope.goNewNiche = function () {
+    $state.go('tab.new-niche');
   };
 
 })
 
-.controller('ActivityRecordCtrl', function($scope, $ionicHistory) {
+.controller('NicheStageCtrl', function($scope, $ionicHistory, $stateParams, $rootScope){
+  $scope.stage = [false, false, false, false, false, false];
+
+  switch($stateParams.NicheStage){
+    case '初步接洽(10%)':
+          $scope.stage[0] = true;
+          break;
+    case '需求确定(30%)':
+          $scope.stage[1] = true;
+          break;
+    case '方案/报价(60%)':
+          $scope.stage[2] = true;
+          break;
+    case '商务谈判(80%)':
+          $scope.stage[3] = true;
+          break;
+    case '赢单(100%)':
+          $scope.stage[4] = true;
+          break;
+    case '输单(0%)':
+          $scope.stage[5] = true;
+          break;
+    default:
+          break;
+  }
+
+  $scope.select = function(stateId) {
+    for(var i = 0; i < 6; i++)
+      $scope.stage[i] = false;
+    $scope.stage[stateId] = true;
+  };
+
+  $scope.save = function(){
+    var stageId;
+    for(var i = 0; i < 6; i++){
+      if($scope.stage[i] == true)
+        stageId = i;
+    }
+    var param = {
+      stageId:stageId
+    };
+    $rootScope.$broadcast("CHANGE_STAGE",param);
+    $ionicHistory.goBack();
+  };
+
   $scope.back = function(){
     $ionicHistory.goBack();
   };
+})
+
+.controller('NewNicheCtrl', function($scope, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+  })
+
+.controller('ActivityRecordCtrl', function($scope, $ionicHistory, $state) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+
+  $scope.showTool = [false, false];
+
+  $scope.show = function(index){
+    if($scope.showTool[index]){
+      $scope.showTool[index] = false;
+    } else {
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+      if(!$scope.showTool[index]){
+        $scope.showTool[index] = true;
+      }
+    }
+  };
+
+  $scope.close = function() {
+    if($scope.showTool[0] || $scope.showTool[1]){
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+    }
+  };
+
+  $scope.goNewActivity = function(){
+    $state.go('tab.new-activity');
+  }
 })
 
 .controller('CustomListCtrl', function($scope, $ionicHistory) {
@@ -825,6 +1127,126 @@ angular.module('starter.controllers', [])
   // $scope.click = function(selected){
   //   $scope.onHover[selected] = true;
   // }
+})
+
+.controller('CustomRecordCtrl', function($scope, $ionicHistory, $state, Customs) {
+  $scope.customs = Customs.getAll();
+
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+
+  $scope.showTool = [false, false];
+
+  $scope.show = function(index){
+    if($scope.showTool[index]){
+      $scope.showTool[index] = false;
+    } else {
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+      if(!$scope.showTool[index]){
+        $scope.showTool[index] = true;
+      }
+    }
+  };
+
+  $scope.close = function() {
+    if($scope.showTool[0] || $scope.showTool[1]){
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+    }
+  };
+    // $scope.onHover = [false, false];
+    //
+    // $scope.click = function(selected){
+    //   $scope.onHover[selected] = true;
+    // }
+  $scope.goCustomDetail = function(name){
+    $state.go('tab.custom-detail',{
+      'CustomName':name
+    });
+  };
+
+  $scope.goNewCustom = function () {
+    $state.go('tab.new-custom');
+  };
+})
+
+.controller('DistributionCustomCtrl', function($scope, $ionicHistory, $state, Customs, $stateParams) {
+  $scope.distributed = $stateParams.Distributed;
+
+  if($scope.distributed)
+    $scope.title = 'Distributed Custom';
+  else
+    $scope.title = 'Undistributed Custom';
+  $scope.customs = Customs.getAll();
+
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+
+  $scope.showTool = [false, false];
+
+  $scope.show = function(index){
+    if($scope.showTool[index]){
+      $scope.showTool[index] = false;
+    } else {
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+      if(!$scope.showTool[index]){
+        $scope.showTool[index] = true;
+      }
+    }
+  };
+
+  $scope.close = function() {
+    if($scope.showTool[0] || $scope.showTool[1]){
+      $scope.showTool[0] = false;
+      $scope.showTool[1] = false;
+    }
+  };
+
+  $scope.goCustomDetail = function(name){
+    $state.go('tab.custom-detail',{
+      'CustomName':name
+    });
+  };
+
+
+  $scope.goNewCustom = function () {
+    $state.go('tab.new-custom');
+  };
+
+})
+
+.controller('CustomDetailCtrl', function($scope, $ionicHistory, $state, Customs, $stateParams) {
+  $scope.custom = Customs.getByName($stateParams.CustomName);
+
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+
+  $scope.goNewCustom = function () {
+    $state.go('tab.new-custom');
+  }
+})
+
+.controller('CustomDistributionCtrl', function($scope, $ionicHistory, $state) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
+  $scope.goDistributionCustom = function(distributed){
+    $state.go('tab.distribution-custom',{
+      'Distributed':distributed
+    })
+  };
+
+})
+
+.controller('NewCustomCtrl', function($scope, $ionicHistory, $state) {
+  $scope.back = function(){
+    $ionicHistory.goBack();
+  };
 })
 
 .controller('WorkCtrl', function($scope) {

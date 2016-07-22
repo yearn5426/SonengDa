@@ -1,13 +1,10 @@
-<ion-view view-title="Contacts" class="contacts">
+<ion-view view-title="Niche-list" class="niche-list">
   <ion-header-bar align-title="center" class="head-bar" >
     <button class="button icon" ng-click="back()">
       <i class="icon ion-ios-arrow-left"></i>
     </button>
-    <h1 class="title">Contacts</h1>
-    <button class="button icon" ng-click="goSearch()">
-      <i class="icon ion-ios-search right"></i>
-    </button>
-    <button class="button icon" ng-click="goNewContact()">
+    <h1 class="title">Niche List</h1>
+    <button class="button icon" ng-click="goNewNiche()">
       <i class="icon ion-ios-plus-empty right"></i>
     </button>
   </ion-header-bar>
@@ -19,10 +16,10 @@
       <div class="function no-border">
         <button ng-click="show(1)"><i class="icon ion-ios-infinite-outline"></i>筛选</button>
       </div>
-      <div ng-show="showTool[0]"  ng-click="close()">
+      <div ng-show="showTool[0]" class="popup" ng-click="close()">
         <p>创建时间</p>
       </div>
-      <div ng-show="showTool[1]">
+      <div ng-show="showTool[1]" class="popup">
         <div>
           <label>客户类型</label><input type="checkbox">潜在客户<input type="checkbox">新客户
         </div>
@@ -31,14 +28,11 @@
         </div>
       </div>
     </div>
-    <div class="common">
-      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>马云 <i class="icon ion-ios-arrow-right right"></i></p>
-    </div>
-    <div class="common">
-      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>陈彦宏 <i class="icon ion-ios-arrow-right right"></i></p>
-    </div>
-    <div class="common">
-      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>Lisa <i class="icon ion-ios-arrow-right right"></i></p>
+    <div ng-repeat="niche in niches" class="common">
+      <p ng-click="goNicheDetail(niche.name)">
+        <i class="icon ion-ios-briefcase-outline"></i>{{niche.name}} <i class="icon ion-ios-arrow-right right"></i><br>
+        <span class="custom">客户</span><span>{{niche.custom}} </span>
+      </p>
     </div>
   </ion-content>
 </ion-view>

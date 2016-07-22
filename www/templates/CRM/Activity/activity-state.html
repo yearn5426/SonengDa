@@ -1,0 +1,25 @@
+<ion-view view-title="Activity-state" class="activity-state">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Activity State</h1>
+    <button class="button icon" ng-click="save()">
+      Save
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="state" ng-click="select(0)">
+      <p>已计划</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="state[0]" ></i></div>
+    <div class="state" ng-click="select(1)">
+      <p>进行中</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="state[1]" ></i></div>
+    <div class="state" ng-click="select(2)">
+      <p>已结束</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="state[2]" ></i></div>
+    <div class="state" ng-click="select(3)">
+      <p>中止</p>
+      <i class="icon ion-ios-checkmark-outline" ng-show="state[3]" ></i></div>
+  </ion-content>
+</ion-view>

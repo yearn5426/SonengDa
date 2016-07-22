@@ -1,13 +1,13 @@
-<ion-view view-title="Contacts" class="contacts">
+<ion-view view-title="Distribution-custom" class="distribution-custom">
   <ion-header-bar align-title="center" class="head-bar" >
     <button class="button icon" ng-click="back()">
       <i class="icon ion-ios-arrow-left"></i>
     </button>
-    <h1 class="title">Contacts</h1>
-    <button class="button icon" ng-click="goSearch()">
+    <h1 class="title" ng-bind="title"></h1>
+    <button class="button icon" ng-click="">
       <i class="icon ion-ios-search right"></i>
     </button>
-    <button class="button icon" ng-click="goNewContact()">
+    <button class="button icon" ng-click="goNewCustom()">
       <i class="icon ion-ios-plus-empty right"></i>
     </button>
   </ion-header-bar>
@@ -19,10 +19,10 @@
       <div class="function no-border">
         <button ng-click="show(1)"><i class="icon ion-ios-infinite-outline"></i>筛选</button>
       </div>
-      <div ng-show="showTool[0]"  ng-click="close()">
+      <div ng-show="showTool[0]" class="popup" ng-click="close()">
         <p>创建时间</p>
       </div>
-      <div ng-show="showTool[1]">
+      <div ng-show="showTool[1]" class="popup">
         <div>
           <label>客户类型</label><input type="checkbox">潜在客户<input type="checkbox">新客户
         </div>
@@ -31,14 +31,15 @@
         </div>
       </div>
     </div>
-    <div class="common">
-      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>马云 <i class="icon ion-ios-arrow-right right"></i></p>
-    </div>
-    <div class="common">
-      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>陈彦宏 <i class="icon ion-ios-arrow-right right"></i></p>
-    </div>
-    <div class="common">
-      <p ng-click="goContactDetail()"><i class="icon ion-ios-person-outline circle"></i>Lisa <i class="icon ion-ios-arrow-right right"></i></p>
-    </div>
+    <ion-list>
+      <ion-item class="repeat-go-item" ng-repeat="custom in customs" type="item-text-wrap"
+                ng-click="goCustomDetail(custom.name)" ng-show="custom.distributed == distributed">
+        <div class="common">
+          <p>
+            <i class="icon ion-ios-briefcase-outline"></i>{{custom.name}} <i class="icon ion-ios-arrow-right right"></i><br>
+          </p>
+        </div>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
