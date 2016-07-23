@@ -1,0 +1,26 @@
+<ion-view view-title="Product-Detail" class="product-detail">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Product Detail</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="head row">
+      <p ng-click="" class="col-50">3<br>报价</p>
+      <p ng-click="" class="col-50">1<br>订单</p>
+    </div>
+    <p class="split">基本信息</p>
+    <div class="detail">
+      <p class="row"><span class="col-25"><img src="{{product.image}}"></span><span>{{product.name}}</span></p>
+      <p class="row"><span class="col-25">产品ID</span><span>{{product.productId}}</span></p>
+      <p class="row"><span class="col-25">单位</span><span>{{product.unit}}</span></p>
+      <p class="row"><span class="col-25">单价</span><span>{{product.price}}</span></p>
+      <p class="row"><span class="col-25">货币</span><span>{{product.currency}}</span></p>
+      <p class="row"><span class="col-25">产品属性</span><span>{{product.attribute}}</span></p>
+      <p class="row"><span class="col-25">有效期自</span><span>{{product.expiryDate}}</span></p>
+      <p class="row"><span class="col-25">有效期至</span><span>{{product.endDate}}</span></p>
+      <p class="row"><span class="col-25">说明</span><span>{{product.explanation}}</span></p>
+    </div>
+  </ion-content>
+</ion-view>

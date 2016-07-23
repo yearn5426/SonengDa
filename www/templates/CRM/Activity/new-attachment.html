@@ -1,0 +1,24 @@
+<ion-view view-title="New-attachment" class="new-attachment">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">New Attachment</h1>
+    <button class="button icon" ng-click="back()">
+      Save
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <p class="split">说明</p>
+    <div class="detail">
+      <textarea class="explanation" placeholder="请填写名称、说明@"></textarea>
+      <div class="popup" ng-click="show()"><span>+</span></div>
+    </div>
+  </ion-content>
+  <div class="tool" ng-show="showTool" ng-click="close()">
+    <p class="photo">拍照</p>
+    <p class="album">相册</p>
+    <p class="system">系统文件</p>
+    <p class="cancel">取消</p>
+  </div>
+</ion-view>

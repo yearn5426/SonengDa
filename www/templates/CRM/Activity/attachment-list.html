@@ -4,11 +4,30 @@
       <i class="icon ion-ios-arrow-left"></i>
     </button>
     <h1 class="title">Attachment List</h1>
-    <button class="button icon" ng-click="">
+    <button class="button icon" ng-click="goNewAttachment()">
       <i class="icon ion-ios-plus-empty right"></i>
     </button>
   </ion-header-bar>
   <ion-content>
+    <div class="sort-and-sift">
+      <div class="function">
+        <button ng-click="show(0)"><i class="icon ion-ios-settings"></i>排序</button>
+      </div>
+      <div class="function no-border">
+        <button ng-click="show(1)"><i class="icon ion-ios-infinite-outline"></i>筛选</button>
+      </div>
+      <div ng-show="showTool[0]" class="popup" ng-click="close()">
+        <p>创建时间</p>
+      </div>
+      <div ng-show="showTool[1]" class="popup">
+        <div>
+          <label>客户类型</label><input type="checkbox">潜在客户<input type="checkbox">新客户
+        </div>
+        <div>
+          <label>客户阶段</label><input type="checkbox">潜在客户<input type="checkbox">新客户
+        </div>
+      </div>
+    </div>
     <div ng-repeat="attachment in attachments" class="attachment" ng-click="goAttachmentDetail(attachment.name)">
       <img src="{{attachment.image}}">
       <p>{{attachment.name}}</p><br>

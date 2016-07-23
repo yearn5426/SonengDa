@@ -289,8 +289,53 @@ ion-content.new.scroll-content{
   margin-right:15px;
   font-size: 1.2em;
 }
-/* 新建界面样式end */
+  /* 新建界面样式end */
 
+  /* 聊天消息发送栏样式 */
+form.send *{
+  padding:0;
+  margin:0;
+  color: rgb(7,156,246);
+}
+form.send{
+  background-color: white;
+  position: absolute;
+  flex-flow:row;
+  width: 100%;
+  bottom:0;
+  height: 3em;
+  margin-bottom:50px;
+  padding-top:2px;
+  border-top:1px solid #cccccc;
+}
+form.send button {
+  display: inline-block;
+  width: 10%;
+  font-size:1.5em;
+  height: 2em;
+  padding:0;
+  color: #444;
+  vertical-align: middle;
+  border:0;
+  background-color: white;
+}
+form.send button i{
+  display: inline-block;
+  vertical-align: bottom;
+}
+form.send .msg{
+  display: inline-block;
+  width: 66%;
+  border:0;
+  border-bottom:2px solid #ccc;
+  padding:1px 0;
+  vertical-align: middle;
+  color: #000;
+}
+form.send .msg:focus{
+  border-color: #387ef5;
+}
+  /* 聊天消息发送栏样式end */
 /* 常用样式end */
 
 
@@ -557,7 +602,7 @@ ion-content.new.scroll-content{
 }
 /* expense-claim界面样式 end*/
 
-/* expense-clain-detail界面样式 */
+/* expense-claim-detail界面样式 */
 .expense-claim-detail p {
   margin:5px auto;
   font-size: 1.1em;
@@ -656,7 +701,7 @@ ion-content.new.scroll-content{
 .expense-claim-detail .examine button.activated{
   font-weight: bolder;
 }
-/* expense-clain-detail界面样式end */
+/* expense-claim-detail界面样式end */
 
 /* dashboard-aggregate界面样式 */
 .dashboard-aggregate ion-content.scroll-content{
@@ -900,7 +945,7 @@ ion-content.new.scroll-content{
   bottom:15px;
   font-size: 2em;
 }
-/* message界面样式end */
+/* message以及Search-Result界面样式end */
 
 /* message-detail样式 */
 .message-detail .item{
@@ -939,49 +984,6 @@ ion-content.new.scroll-content{
   font-size: 0;
   line-height: 0;
   z-index: 999;
-}
-.message-detail form *{
-  padding:0;
-  margin:0;
-  color: rgb(7,156,246);
-}
-.message-detail form{
-  background-color: white;
-  position: absolute;
-  flex-flow:row;
-  width: 100%;
-  bottom:0;
-  height: 3em;
-  margin-bottom:50px;
-  padding-top:2px;
-  border-top:1px solid #cccccc;
-}
-.message-detail form button {
-  display: inline-block;
-  width: 10%;
-  font-size:1.5em;
-  height: 2em;
-  padding:0;
-  color: #444;
-  vertical-align: middle;
-  border:0;
-  background-color: white;
-}
-.message-detail form button i{
-  display: inline-block;
-  vertical-align: bottom;
-}
-.message-detail form .msg{
-  display: inline-block;
-  width: 66%;
-  border:0;
-  border-bottom:2px solid #ccc;
-  padding:1px 0;
-  vertical-align: middle;
-  color: #000;
-}
-.message-detail form .msg:focus{
-  border-color: #387ef5;
 }
 /* message-detail样式end */
 
@@ -1077,7 +1079,7 @@ ion-content.new.scroll-content{
 }
 /* search-result界面样式end */
 
-/*!* contacts界面样式 *!*/
+/* contacts界面样式 */
 .contacts .common i.ion-ios-person-outline:before{
   border:1px solid rgb(7,156,246);
   height: 0.8em;
@@ -1235,37 +1237,6 @@ ion-content.new.scroll-content{
   color: rgb(7,156,246);
   font-size: 1.5em;
 }
-.activity-record .tool{
-  width:100%;
-  background-color: white;
-  margin-bottom: 20px;
-}
-.activity-record .tool div{
-  display: inline-block;
-  position: relative;
-  width: 49%;
-  text-align: center;
-  border-right:1px solid #a0a0a0;
-}
-.activity-record .tool div:last-child{
-  border:0;
-}
-.activity-record .tool div button{
-  background-color: white;
-  height: 3em;
-  border:0;
-  margin-bottom: 5px;
-  padding:0 20px;
-}
-.activity-record .tool div button:after{
-  content: '';
-  display: inline-block;
-  position: absolute;
-  top:18px;
-  right: 10px;
-  border:5px solid transparent;
-  border-top:10px solid #a0a0a0;
-}
 /* activity-record界面样式end */
 
 /* search界面样式 */
@@ -1273,7 +1244,6 @@ ion-content.new.scroll-content{
   height: 45px;
   background-color: rgb(7,156,246);
   line-height: 45px;
-
 }
 .search .search-nav div{
   display: inline-block;
@@ -1461,8 +1431,8 @@ ion-content.new.scroll-content{
 }
 /* activity-state界面样式end */
 
-/* attachment-list界面样式 */
-.attachment-list .attachment{
+/* attachment-list及product-list界面样式 */
+.attachment-list .attachment, .product-list .attachment{
   position: relative;
   margin-top: 30px;
   background: #fff;
@@ -1470,26 +1440,26 @@ ion-content.new.scroll-content{
   padding:15px;
   padding-left: 90px;
 }
-.attachment-list img{
+.attachment-list img, .product-list img{
   position: absolute;
   left:15px;
   width: 60px;
   height: 60px;
 }
-.attachment-list .attachment p{
+.attachment-list .attachment p, .product-list .attachment p{
   display: inline-block;
 }
-.attachment-list .attachment span{
+.attachment-list .attachment span, .product-list .attachment span{
   font-size: 0.9em;
   color: #808080;
 }
-.attachment-list .attachment i{
+.attachment-list .attachment i, .product-list .attachment i{
   position: absolute;
   font-size: 2em;
   top: 10px;
   right:20px;
 }
-/* attachment-list界面样式end */
+/* attachment-list及product-list界面界面样式end */
 
 /* custom-record和distribution-custom界面样式 */
 ion-item.repeat-go-item{
@@ -1507,7 +1477,7 @@ ion-item.repeat-go-item.activated{
 .repeat-go-item .common p i{
   left:0;
 }
-/* custom-record界面样式end */
+/* custom-record和distribution-custom界面样式end */
 
 /* niche-detail界面样式 */
 .niche-detail .head{
@@ -1600,3 +1570,306 @@ ion-item.repeat-go-item.activated{
   float: right;
 }
 /* attachment-detail界面样式end */
+
+/* new-attachment界面样式 */
+.new-attachment .split{
+  font-weight: bold;
+  padding:5px;
+  font-size:1.2em;
+  margin:0;
+}
+.new-attachment .detail{
+  background-color: white;
+  min-height: 220px;
+}
+.new-attachment .explanation{
+  font-size: 0.9em;
+  background-color: white;
+  width:100%;
+  min-height:150px;
+  resize: none;
+}
+.new-attachment .detail .popup{
+  display: inline-block;
+  margin:5px 10px;
+  font-size:5em;
+  line-height: 0.5em;
+  height: 1em;
+  width: 1em;
+  color: #a0a0a0;
+  font-weight: 100;
+  border:1px solid;
+  text-align: center;
+}
+.new-attachment .detail .popup span{
+  display: inline-block;
+  line-height: 0;
+  height:0;
+  vertical-align: middle;
+}
+.new-attachment .tool {
+  position: absolute;
+  bottom: 50px;
+  width:100%;
+  background-color: transparent;
+}
+.new-attachment .tool p{
+  background-color: white;
+  margin:0;
+  width:100%;
+  text-align: center;
+  padding:10px 0;
+}
+.new-attachment .tool p.photo{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.new-attachment .tool p.album{
+  border-top:1px solid #c0c0c0;
+  border-bottom:1px solid #c0c0c0;
+}
+.new-attachment .tool p.system{
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.new-attachment .tool p.cancel{
+  margin-top:8px;
+  text-align: center;
+  color: red;
+  border-radius: 15px;
+}
+/* new-attachment界面样式end */
+
+/* product-detail界面样式 */
+.product-detail .head{
+  background-color: white;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+.product-detail .head p{
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  margin:0;
+}
+.product-detail .split{
+  width:100%;
+  padding:5px 0 5px 5%;
+  margin:0;
+  font-weight: bold;
+}
+.product-detail .detail{
+  background-color: white;
+  margin-bottom:20px;
+}
+.product-detail .detail img{
+  display: inline-block;
+  width:2em;
+  vertical-align: middle;
+}
+.product-detail .detail p{
+  border-bottom:1px solid #f0f0f0;
+  width:100%;
+  padding:0;
+  padding-left:5%;
+  height: 2.7em;
+  line-height: 2.7em;
+  margin:0;
+}
+.product-detail .detail span{
+  margin-right: 2%;
+}
+.product-detail .detail span.col-25{
+  margin-right: 0;
+}
+/* product-detail界面样式end */
+
+/* activity-message界面样式 */
+.activity-message .activity-info{
+  position:relative;
+  background-color: white;
+  width:100%;
+  margin:0 auto;
+  padding:10px 20px 5px 20px;
+  border-bottom: 1px solid #a0a0a0;
+}
+.activity-message .activity-info p.name{
+  padding-left: 30px;
+  margin:0;
+  line-height: 3em;
+}
+.activity-message .activity-info p.name i{
+  font-size: 2.5em;
+  position: absolute;
+  left:20px;
+  color: rgb(7,156,246);
+}
+.activity-message .activity-info p.name i.right{
+  font-size: 2em;
+  position: static;
+  float: right;
+  color: black;
+  margin-right: 10px;
+}
+.activity-message .activity-info span{
+  display: block;
+  font-size: 0.8em;
+  margin-bottom:20px;
+  color: #808080;
+}
+.activity-message .activity-info .record{
+  padding-top:5px;
+  padding-bottom: 35px;
+  margin:0;
+  line-height:1em;
+  width:90%;
+}
+.activity-message .activity-info textarea.record{
+  border:1px solid #a0a0a0;
+  resize:none;
+}
+.activity-message .activity-info span.address{
+  margin-bottom:0;
+}
+.activity-message .activity-info span.address i{
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+.activity-message .activity-info p.address{
+  position: relative;
+  margin-top: 5px;
+  height: 70px;
+  padding-top: 5px;
+  padding-left:60px;
+  line-height: 25px;
+  font-size: 0.9em;
+  border:1px solid #a0a0a0;
+  box-shadow: 5px 5px 5px #a0a0a0;
+  margin-bottom:5px;
+}
+.activity-message .activity-info .address img{
+  position: absolute;
+  left:0;
+  width:50px;
+  height:50px;
+  border-radius: 10px;
+  margin:5px;
+  padding:0;
+  vertical-align: top;
+}
+.activity-message .activity-info>i{
+  margin-top:5px;
+  color: #000;
+  float: right;
+  font-size: 1.2em;
+}
+.activity-message .activity-info>i:before{
+  color: rgb(7,156,246);
+  font-size: 1.5em;
+}
+.activity-message .activity-info .common{
+  margin-bottom: 0;
+}
+.activity-message .common-detail{
+  width: 100%;
+  padding:0;
+  background-color: white;
+  overflow: hidden;
+}
+.activity-message .common-detail > div {
+  border-bottom: 1px solid #a0a0a0;
+  padding:0 20px;
+}
+.activity-message .common-detail div div{
+  position: relative;
+  padding-left:2.8em;
+}
+.activity-message .common-detail span{
+  color: #808080;
+}
+.activity-message .common-detail i{
+  font-size: 2.5em;
+  color: rgb(7,156,246);
+  position: absolute;
+  left:3px;
+}
+.activity-message .common-detail i:before{
+  border:1px solid;
+  height: 0.8em;
+  width:0.8em;
+  text-align: center;
+  border-radius:30px;
+  overflow: hidden;
+  line-height: 0.8em;
+}
+.activity-message .common-detail div > p{
+  margin-top:5px;
+}
+.activity-message .common-detail p span{
+  color: rgb(7,156,246);
+}
+/* activity-message界面样式end */
+
+/* quote-list及order-list界面样式 */
+.quote-list .common p, .order-list .common p{
+  border:0;
+  padding-left:8%;
+}
+.quote-list .common p i, .order-list .common p i{
+  font-size:3em;
+  left:-0.1em;
+
+}
+.quote-list .common span, .order-list .common span{
+  margin-left: 13%;
+  color: #808080;
+  font-size:0.8em;
+}
+/* quote-list及order-list界面界面样式end */
+
+/* quote-detail及order-detail界面样式 */
+.quote-detail .head, .order-detail .head{
+  background-color: white;
+  width:100%;
+  margin:0;
+  padding:0;
+}
+.quote-detail .head p, .order-detail .head p{
+  text-decoration: none;
+  text-align: center;
+  color: black;
+  margin:0;
+}
+.quote-detail .split, .order-detail .split{
+  width:100%;
+  padding:5px 0 5px 5%;
+  margin:0;
+  font-weight: bold;
+}
+.quote-detail .detail, .order-detail .detail{
+  background-color: white;
+  margin-bottom:20px;
+}
+.quote-detail .detail p, .order-detail .detail p{
+  border-bottom:1px solid #f0f0f0;
+  width:100%;
+  padding:0;
+  padding-left:5%;
+  height: 2.7em;
+  line-height: 2.7em;
+  margin:0;
+}
+.quote-detail .detail p span i, .order-detail .detail p span i{
+  float: none;
+  margin-left:0;
+  font-size: 2.5em;
+  color: rgb(7,156,246);
+}
+.quote-detail .detail span, .order-detail .detail span{
+  margin-right: 2%;
+}
+.quote-detail .detail span.col-25 ,.order-detail .detail span.col-25{
+  margin-right: 0;
+}
+/* quote-detail及order-detail界面样式 */

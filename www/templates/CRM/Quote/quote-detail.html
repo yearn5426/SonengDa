@@ -1,0 +1,22 @@
+<ion-view view-title="Quote-Detail" class="quote-detail">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Quote Detail</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="head row">
+      <p ng-click="" class="col-25">3<br>商机</p><p ng-click="" class="col-25">1<br>产品</p><p ng-click="" class="col-25">2<br>订单</p><p ng-click="" class="col-25">2<br>附件</p>
+    </div>
+    <p class="split">基本信息</p>
+    <div class="detail">
+      <p class="row"><span class="col-25"><i class="icon ion-ios-copy-outline"></i></span><span>{{quote.name}}</span></p>
+      <p class="row"><span class="col-25">编码</span><span>{{quote.coding}}</span></p>
+      <p class="row"><span class="col-25">客户</span><span>{{quote.custom}}</span></p>
+      <p class="row"><span class="col-25">货币</span><span>{{quote.currency}}</span></p>
+      <p class="row"><span class="col-25">价目表</span><span>{{quote.tariff}}</span></p>
+      <p class="row"><span class="col-25">总金额</span><span>{{quote.totalSum}}</span></p>
+    </div>
+  </ion-content>
+</ion-view>

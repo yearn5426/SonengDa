@@ -1,0 +1,46 @@
+<ion-view view-title="Activity-message" class="activity-message">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Activity Message</h1>
+    <button class="button icon" ng-click="save()" ng-show="editable">
+      Save
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="activity-info">
+      <p class="name"><i class="icon ion-ios-cart-outline"></i>{{activity.content}} <i class="icon ion-android-create right" ng-click="edit()" ng-show="!editable"></i><i class="icon ion-android-close right" ng-show="!editable"></i></p>
+      <span>{{activity.endDate}} 客户 {{activity.custom}} {{activity.state}}</span>
+      <p ng-show="!editable" class="record">{{activity.explanation}}</p>
+      <textarea class="record" ng-show="editable" >{{activity.explanation}}</textarea>
+      <span class="address"><i class="icon ion-ios-location-outline"></i>{{activity.address}}</span>
+      <p class="address">
+        <img src="img/map.png">{{activity.address}}
+      </p>
+      <span class="common">评论：2</span>
+    </div>
+    <div class="common-detail">
+      <div>
+        <div>
+          <i class="icon ion-ios-person-outline circle"></i><p>Tony</p><span>2015-11-11 10:20</span>
+        </div>
+        <p><span>@Andy</span> 下次地点在哪里</p>
+      </div>
+      <div>
+        <div>
+          <i class="icon ion-ios-person-outline circle"></i><p>Andy</p><span>2015-11-11 10:20</span>
+        </div>
+        <p>就不告诉你</p>
+      </div>
+    </div>
+  </ion-content>
+  <div>
+    <form class="send">
+      <button class="toolBtn"><i class="icon ion-ios-plus-outline"></i></button>
+      <input name="msg" type="text" class="msg" placeholder="输入评论内容"/>
+      <button class="expressionBtn"><i class="icon ion-happy-outline"></i></button>
+      <button class="sendBtn" ng-click=""><i class="icon ion-ios-redo"></i></button>
+    </form>
+  </div>
+</ion-view>

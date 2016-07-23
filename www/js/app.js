@@ -50,7 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       },
       params: {
-        'ActivityIndex':''
+        'ActivityId':''
       }
     })
 
@@ -76,7 +76,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       },
       params: {
-        'ActivityIndex':''
+        'ActivityId':''
       }
     })
 
@@ -87,6 +87,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           templateUrl: 'templates/CRM/activity-record.html',
           controller: 'ActivityRecordCtrl'
         }
+      }
+    })
+
+    .state('tab.activity-message', {
+      url: '/crm/activity-message',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Activity/activity-message.html',
+          controller: 'ActivityMessageCtrl'
+        }
+      },
+      params: {
+        'ActivityId':''
       }
     })
 
@@ -345,6 +358,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.new-attachment',{
+      url: '/crm/new-attachment',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Activity/new-attachment.html',
+          controller: 'NewAttachmentCtrl'
+        }
+      }
+    })
+
     .state('tab.niche-list', {
       url: '/crm/niche-list',
       views: {
@@ -381,6 +404,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.order-list', {
+      url: '/crm/order-list',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/order-list.html',
+          controller: 'OrderListCtrl'
+        }
+      }
+    })
+
+    .state('tab.order-detail', {
+      url: '/crm/order-detail',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Order/order-detail.html',
+          controller: 'OrderDetailCtrl'
+        }
+      },
+      params:{
+        'OrderName':''
+      }
+    })
+
     .state('tab.performance-ranking', {
       url: '/crm/dashboard/performance-ranking',
       views: {
@@ -388,6 +434,52 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           templateUrl: 'templates/CRM/Dashboard/performance-ranking.html',
           controller: 'PerformanceRankingCtrl'
         }
+      }
+    })
+
+    .state('tab.product-list', {
+      url: '/crm/product-list',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/product-list.html',
+          controller: 'ProductListCtrl'
+        }
+      }
+    })
+
+    .state('tab.product-detail', {
+      url: '/crm/product-detail',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Product/product-detail.html',
+          controller: 'ProductDetailCtrl'
+        }
+      },
+      params:{
+        'ProductName':''
+      }
+    })
+
+    .state('tab.quote-list', {
+      url: '/crm/quote-list',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/quote-list.html',
+          controller: 'QuoteListCtrl'
+        }
+      }
+    })
+
+    .state('tab.quote-detail', {
+      url: '/crm/quote-detail',
+      views: {
+        'tab-crm': {
+          templateUrl: 'templates/CRM/Quote/quote-detail.html',
+          controller: 'QuoteDetailCtrl'
+        }
+      },
+      params:{
+        'QuoteName':''
       }
     })
 

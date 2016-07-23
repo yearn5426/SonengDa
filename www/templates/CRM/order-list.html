@@ -1,11 +1,11 @@
-<ion-view view-title="Activity-record" class="activity-record">
+<ion-view view-title="Order-list" class="order-list">
   <ion-header-bar align-title="center" class="head-bar" >
     <button class="button icon" ng-click="back()">
       <i class="icon ion-ios-arrow-left"></i>
     </button>
-    <h1 class="title">Activity Record</h1>
-    <button class="button icon" ng-click="goNewActivity()">
-      <i class="icon ion-ios-plus-empty right"></i>
+    <h1 class="title">Order List</h1>
+    <button class="button icon" ng-click="">
+      <i class="icon ion-ios-search right"></i>
     </button>
   </ion-header-bar>
   <ion-content>
@@ -16,7 +16,7 @@
       <div class="function no-border">
         <button ng-click="show(1)"><i class="icon ion-ios-infinite-outline"></i>筛选</button>
       </div>
-      <div ng-show="showTool[0]"  ng-click="close()" class="popup">
+      <div ng-show="showTool[0]" class="popup" ng-click="close()">
         <p>创建时间</p>
       </div>
       <div ng-show="showTool[1]" class="popup">
@@ -28,15 +28,11 @@
         </div>
       </div>
     </div>
-    <div ng-repeat="activity in activities" class="activity-info" >
-      <p class="name" ng-click="goActivityDetail(activity.activityId)"><i class="icon ion-ios-cart-outline"></i>{{activity.content}} <i class="icon ion-ios-arrow-right right"></i></p>
-      <span>{{activity.endDate}} 客户 {{activity.custom}} {{activity.state}}</span>
-      <p class="record">{{activity.explanation}}</p>
-      <p class="address">
-        <img src="img/map.png"> {{activity.address}}
+    <div ng-repeat="order in orders" class="common">
+      <p ng-click="goOrderDetail(order.name)">
+        <i class="icon ion-ios-copy-outline"></i>{{order.name}} <i class="icon ion-ios-arrow-right right"></i><br>
       </p>
-      <i class="icon ion-ios-chatbubble-outline" ng-click="goActivityMessage(activity.activityId)">2</i>
+      <span>客户 {{order.custom}}</span><br><span>总金额 {{order.totalSum}}</span>
     </div>
-
   </ion-content>
 </ion-view>

@@ -5,9 +5,8 @@ angular.module('starter.services', [])
 .factory('Activities', function() {
   //存储活动数据
   var activities = [{
-    date: 1,
-    concreteActivities: [{
-      activityId:'1',
+      date: 1,
+      activityId:1,
       time: '08:00 - 10:00',
       content: '拜访张总',
       completed: true,
@@ -22,9 +21,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 08:00',
       endDate:'2015-11-11 10:00',
       priority:'高',
-      explanation:'去看一看'
+      explanation:'去看一看',
+      address:'浙江省杭州市滨江区长河路99号阿里巴巴科技公司'
     },{
-      activityId:'2',
+      date: 1,
+      activityId:2,
       time: '11:00 - 12:00',
       content: '新产品展览',
       completed: true,
@@ -39,9 +40,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 11:00',
       endDate:'2015-11-11 12:00',
       priority:'高',
-      explanation:'针对15年冬季新产品免费展示'
+      explanation:'针对15年冬季新产品免费展示',
+      address:'浙江省杭州市滨江区长河路99号阿里巴巴科技公司'
     },{
-      activityId:'3',
+      date: 1,
+      activityId:3,
       time: '15:00 - 16:00',
       content: '总结大会',
       completed: false,
@@ -56,12 +59,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 15:00',
       endDate:'2015-11-11 16:00',
       priority:'高',
-      explanation:'总结经验'
-    }]
+      explanation:'总结经验',
+      address:'浙江省杭州市滨江区长河路99号阿里巴巴科技公司'
   },{
-    date: 3,
-    concreteActivities: [{
-      activityId:'1',
+      date: 3,
+      activityId:4,
       time: '08:00 - 10:00',
       content: 'Coding',
       completed: true,
@@ -76,9 +78,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 8:00',
       endDate:'2015-11-11 10:00',
       priority:'高',
-      explanation:'学习!!!!最重要!!!'
+      explanation:'学习!!!!最重要!!!',
+      address:'上海汉得工业园'
     },{
-      activityId:'2',
+      date: 3,
+      activityId:5,
       time: '11:00 - 12:00',
       content: '吃饭',
       completed: true,
@@ -93,9 +97,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 11:00',
       endDate:'2015-11-11 12:00',
       priority:'高',
-      explanation:'日常任务'
+      explanation:'日常任务',
+      address:'上海汉得工业园'
     },{
-      activityId:'3',
+      date: 3,
+      activityId:6,
       time: '15:00 - 16:00',
       content: 'Coding',
       completed: false,
@@ -110,12 +116,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 15:00',
       endDate:'2015-11-11 16:00',
       priority:'高',
-      explanation:'学习学习'
-    }]
+      explanation:'学习学习',
+      address:'允惠人才公寓'
   },{
-    date: 5,
-    concreteActivities: [{
-      activityId:'1',
+      date: 5,
+      activityId:7,
       time: '08:00 - 10:00',
       content: '起床?',
       completed: true,
@@ -130,9 +135,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 8:00',
       endDate:'2015-11-11 10:00',
       priority:'高',
-      explanation:'睡懒觉了'
+      explanation:'睡懒觉了',
+      address:'床上?'
     },{
-      activityId:'2',
+      date: 5,
+      activityId:8,
       time: '11:00 - 12:00',
       content: '出去玩?',
       completed: true,
@@ -147,9 +154,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 11:00',
       endDate:'2015-11-11 12:00',
       priority:'高',
-      explanation:'放假了额'
+      explanation:'放假了额',
+      address:'杭州西湖'
     },{
-      activityId:'3',
+      date: 5,
+      activityId:9,
       time: '15:00 - 16:00',
       content: '吃东西',
       completed: false,
@@ -164,12 +173,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 15:00',
       endDate:'2015-11-11 16:00',
       priority:'高',
-      explanation:'吃好吃的'
-    }]
+      explanation:'吃好吃的',
+      address:'上海汉得工业园'
   },{
-    date: 12,
-    concreteActivities: [{
-      activityId:'1',
+      date: 12,
+      activityId:10,
       time: '08:00 - 10:00',
       content: '出去玩',
       completed: true,
@@ -184,9 +192,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 18:00',
       endDate:'2015-11-11 10:00',
       priority:'高',
-      explanation:'为什么不玩OW?'
+      explanation:'为什么不玩OW?',
+      address:'努巴尼'
     },{
-      activityId:'2',
+      date: 12,
+      activityId:11,
       time: '11:00 - 12:00',
       content: '吃大餐',
       completed: true,
@@ -201,9 +211,11 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 11:00',
       endDate:'2015-11-11 12:00',
       priority:'高',
-      explanation:'吃豪华午餐'
+      explanation:'吃豪华午餐',
+      address:'上海市和平饭店'
     },{
-      activityId:'3',
+      date: 12,
+      activityId:12,
       time: '15:00 - 16:00',
       content: '玩',
       completed: false,
@@ -218,19 +230,28 @@ angular.module('starter.services', [])
       startDate:'2015-11-11 15:00',
       endDate:'2015-11-11 16:00',
       priority:'高',
-      explanation:'正在前往漓江塔'
-    }]
+      explanation:'正在前往漓江塔',
+      address:'漓江塔'
   }];
   return {
     get: function(date){
+      var concreteActivities = [];
       for (var i = 0; i < activities.length; i++){
         if (activities[i].date == date){
-          return activities[i].concreteActivities;
+          concreteActivities.push(activities[i]);
+        }
+      }
+      return concreteActivities;
+    },
+    getById:function(id){
+      for (var i = 0; i < activities.length; i++){
+        if (activities[i].activityId == id){
+          return activities[i];
         }
       }
       return null;
     },
-    all: function(){
+    getAll: function(){
       return activities;
     }
   }
@@ -650,6 +671,149 @@ angular.module('starter.services', [])
       for(var i = 0; i < attachments.length; i++){
         if(attachments[i].name == name)
           return attachments[i];
+      }
+      return null;
+    }
+  }
+})
+
+.factory('Products',function() {
+  var products = [{
+    name:'守望先锋 ',
+    productId:'23333333',
+    unit:'OW',
+    price:'328',
+    currency:'CNY',
+    image:'img/attachment.png',
+    attribute:'PY',
+    expiryDate:'2016-05-27',
+    endDate:'2222-12-22',
+    explanation:'有重度成瘾症状'
+  }, {
+    name:'西门子双开开关 ',
+    productId:'46567687',
+    unit:'EA',
+    price:'328',
+    currency:'CNY',
+    image:'img/attachment2.png',
+    attribute:'无',
+    expiryDate:'2015-11-27',
+    endDate:'2016-11-22',
+    explanation:'西门子开关插座面板 远景系列 雅白色 带荧光二开双开弹孔开关'
+  }, {
+    name:'施耐德三位开关 ',
+    productId:'46567687',
+    unit:'EA',
+    price:'328',
+    currency:'CNY',
+    image:'img/attachment3.png',
+    attribute:'无',
+    expiryDate:'2015-11-27',
+    endDate:'2016-11-22',
+    explanation:'C86系列10A 250V单控大按板开关C230/1W 白色'
+  }, {
+    name:'小米手机 ',
+    productId:'46567687',
+    unit:'EA',
+    price:'2699',
+    currency:'CNY',
+    image:'img/attachment4.png',
+    attribute:'无',
+    expiryDate:'2015-11-27',
+    endDate:'2016-11-22',
+    explanation:'陶瓷后盖 128G内存'
+  }];
+  return {
+    getAll: function(){
+      return products;
+    },
+    getByName: function(name){
+      for(var i = 0; i < products.length; i++){
+        if(products[i].name == name)
+          return products[i];
+      }
+      return null;
+    }
+  }
+})
+
+.factory('Quotes',function() {
+  var quotes = [{
+    name:'阿里巴巴报价单 ',
+    coding:'23333333',
+    custom:'阿里巴巴科技公司',
+    currency:'CNY',
+    tariff:'2015服务器新产品价目表',
+    totalSum:'10,000'
+  }, {
+    name:'腾讯报价单 ',
+    coding:'23333333',
+    custom:'腾讯科技公司',
+    currency:'CNY',
+    tariff:'2016服务器新产品价目表',
+    totalSum:'20,000'
+  }, {
+    name:'网易报价单 ',
+    coding:'23333333',
+    custom:'网易',
+    currency:'CNY',
+    tariff:'2017服务器新产品价目表',
+    totalSum:'33,000'
+  }];
+  return {
+    getAll: function(){
+      return quotes;
+    },
+    getByName: function(name){
+      for(var i = 0; i < quotes.length; i++){
+        if(quotes[i].name == name)
+          return quotes[i];
+      }
+      return null;
+    }
+  }
+})
+
+.factory('Orders',function() {
+  var orders = [{
+    name:'阿里巴巴订单 ',
+    coding:'23333333',
+    custom:'阿里巴巴科技公司',
+    address:'杭州滨江区233号',
+    currency:'CNY',
+    totalSum:'10,000',
+    deliveryDate:'2015-11-11',
+    deliveryMethod:'DHL',
+    explanation:'无'
+  }, {
+    name:'腾讯订单 ',
+    coding:'23333333',
+    custom:'腾讯公司',
+    address:'深圳233号',
+    currency:'CNY',
+    totalSum:'10,0000',
+    deliveryDate:'2015-11-11',
+    deliveryMethod:'DHL',
+    explanation:'无'
+  }, {
+    name:'守望先锋订单 ',
+    coding:'666666',
+    custom:'暴雪',
+    address:'洛杉矶',
+    currency:'CNY',
+    totalSum:'10,000000',
+    deliveryDate:'2015-11-11',
+    deliveryMethod:'DHL',
+    explanation:'PY?'
+  }];
+  return {
+    getAll: function(){
+      return orders;
+    },
+    getByName: function(name){
+      for(var i = 0; i < orders.length; i++){
+        if(orders[i].name == name)
+          return orders[i];
       }
       return null;
     }
