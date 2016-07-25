@@ -3,9 +3,9 @@
     <button class="button icon" ng-click="back()">
       <i class="icon ion-ios-arrow-left"></i>
     </button>
-    <h1 class="title">{{chat.people}}</h1>
+    <h1 class="title">{{chat.chatName}}</h1>
 
-    <button class="button icon" ng-click="" style="float: right;">
+    <button class="button icon" ng-click="goChatSetting()">
       <i class="icon ion-ios-gear-outline right"></i>
     </button>
     <button class="button icon" ng-click="" >
@@ -17,12 +17,11 @@
       <ion-item ng-repeat="message in chat.message track by $index"
       type="item-text-wrap" >
         <div class="receive">
-          <img ng-src="{{chat.face}}" >
-          <span ng-bind="message"></span>
+          <img ng-src="{{chat.people[message.peopleId].face}}" >
+          <span ng-bind="message.content"></span>
         </div>
       </ion-item>
     </ion-list>
-
   </ion-content>
   <div>
     <form class="send">

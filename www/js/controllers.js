@@ -335,6 +335,19 @@ angular.module('starter.controllers', [])
     };
   })
 
+  .controller('ChatSettingCtrl', function($scope, $ionicHistory, $stateParams, Chats) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+    $scope.chat = Chats.getByChatName($stateParams.ChatName);
+  })
+
+  .controller('CollectionCtrl', function($scope, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+  })
+
   .controller('DashboardCtrl', function($scope, $ionicHistory, $state) {
     $scope.back = function(){
       $ionicHistory.goBack();
@@ -565,6 +578,135 @@ angular.module('starter.controllers', [])
     };
   })
 
+  .controller('ExpenseShorthandCtrl', function($scope, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+  })
+
+  .controller('ExpenseQueryCtrl', function($scope, $ionicHistory, $state) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+
+    // $scope.build = function () {
+    //   $state.go('tab.submit-expense-claim');
+    // };
+    $scope.showTool = [false, false];
+
+    $scope.show = function(index){
+      if($scope.showTool[index]){
+        $scope.showTool[index] = false;
+      } else {
+        $scope.showTool[0] = false;
+        $scope.showTool[1] = false;
+        if(!$scope.showTool[index]){
+          $scope.showTool[index] = true;
+        }
+      }
+    };
+
+    $scope.close = function() {
+      if($scope.showTool[0] || $scope.showTool[1]){
+        $scope.showTool[0] = false;
+        $scope.showTool[1] = false;
+      }
+    };
+
+    $scope.goExpenseClaimShow = function(){
+      $state.go('tab.expense-claim-show')
+    };
+    $scope.goNewExpense = function () {
+      $state.go('tab.new-expense');
+    };
+  })
+
+  .controller('ExpenseChartCtrl', function($scope, $ionicHistory, $state) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+
+    // $scope.build = function () {
+    //   $state.go('tab.submit-expense-claim');
+    // };
+    $scope.showTool = [false, false];
+
+    $scope.show = function(index){
+      if($scope.showTool[index]){
+        $scope.showTool[index] = false;
+      } else {
+        $scope.showTool[0] = false;
+        $scope.showTool[1] = false;
+        if(!$scope.showTool[index]){
+          $scope.showTool[index] = true;
+        }
+      }
+    };
+
+    $scope.close = function() {
+      if($scope.showTool[0] || $scope.showTool[1]){
+        $scope.showTool[0] = false;
+        $scope.showTool[1] = false;
+      }
+    };
+
+    var departmentExpenseChart = echarts.init(document.getElementsByClassName('department-expense')[0]);
+    var departmentExpenseOption = {
+      legend: {
+        x : 'center',
+        y : 'bottom',
+        data:['华东区','华北区','华中区','华南区']
+      },
+      calculable : true,
+      series : [
+        {
+          name:'面积模式',
+          type:'pie',
+          radius : [30, 100],
+          roseType : 'area',
+          data:[
+            {value:10, name:'华东区'},
+            {value:5, name:'华北区'},
+            {value:15, name:'华中区'},
+            {value:25, name:'华南区'}
+          ]
+        }
+      ]
+    };
+    departmentExpenseChart.setOption(departmentExpenseOption);
+
+    var expenseTypeChart = echarts.init(document.getElementsByClassName('expense-type')[0]);
+    var expenseTypeOption = {
+      legend: {
+        x : 'center',
+        y : 'bottom',
+        data:['差旅费','日常管理','行政采购','杂项']
+      },
+      calculable : true,
+      series : [
+        {
+          name:'面积模式',
+          type:'pie',
+          radius : [30, 100],
+          roseType : 'area',
+          data:[
+            {value:10, name:'差旅费'},
+            {value:12, name:'日常管理'},
+            {value:15, name:'行政采购'},
+            {value:30, name:'杂项'}
+          ]
+        }
+      ]
+    };
+    expenseTypeChart.setOption(expenseTypeOption);
+  })
+
+  .controller('ExpenseClaimShowCtrl', function($scope, $ionicHistory, $state) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+  })
+
   .controller('GoalAchievementCtrl', function($scope, $ionicHistory) {
     $scope.back = function(){
       $ionicHistory.goBack();
@@ -776,10 +918,17 @@ angular.module('starter.controllers', [])
     chart.setOption(option);
   })
 
-  .controller('MeCtrl', function($scope) {
-    $scope.settings = {
-      enableFriends: true
-    }
+  .controller('MeCtrl', function($scope, $state, Me) {
+    $scope.me = Me.get();
+    $scope.goMyInformation = function(){
+      $state.go('tab.my-information');
+    };
+    $scope.goPasswordSetting = function(){
+      $state.go('tab.password-setting');
+    };
+    $scope.goCollection = function(){
+      $state.go('tab.collection');
+    };
   })
 
   .controller('MessageCtrl', function($scope, Chats, $ionicHistory, $state) {
@@ -787,9 +936,9 @@ angular.module('starter.controllers', [])
     $scope.back = function(){
       $ionicHistory.goBack();
     };
-    $scope.goMessageDetail = function(people){
+    $scope.goMessageDetail = function(chatName){
       $state.go('tab.message-detail',{
-        'People':people
+        'ChatName':chatName
       })
     };
     $scope.goSearch = function(){
@@ -797,10 +946,31 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('MessageDetailCtrl', function($scope, Chats, $stateParams, $ionicHistory) {
-    $scope.chat = Chats.getByPeople($stateParams.People);
+  .controller('MessageDetailCtrl', function($scope, Chats, $stateParams, $ionicHistory, $state) {
+    $scope.chat = Chats.getByChatName($stateParams.ChatName);
     $scope.back = function(){
       $ionicHistory.goBack();
+    };
+    $scope.goChatSetting = function(){
+      $state.go('tab.chat-setting', {
+        'ChatName':$stateParams.ChatName
+      });
+    };
+  })
+
+  .controller('MyInformationCtrl', function($scope, Chats, $ionicHistory, Me) {
+    $scope.me = Me.get();
+
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+    $scope.showTool = false;
+
+    $scope.show = function () {
+      $scope.showTool=!$scope.showTool?true:true;
+    };
+    $scope.close = function () {
+      $scope.showTool=$scope.showTool?false:false;
     };
   })
 
@@ -840,7 +1010,38 @@ angular.module('starter.controllers', [])
     };
     $scope.close = function () {
       $scope.showTool=$scope.showTool?false:false;
+    };
+  })
+
+  .controller('NewExpenseCtrl', function($scope, $ionicHistory, $state) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+    $scope.goNewExpenseDetail = function(){
+      $state.go('tab.new-expense-detail');
+    };
+  })
+
+  .controller('NewExpenseDetailCtrl', function($scope, $ionicHistory, $state) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+    $scope.save = function () {
+      $state.go('tab.new-expense-claim');
+    };
+    $scope.again = function () {
+      $state.go('tab.new-expense-detail');
     }
+  })
+
+  .controller('NewExpenseClaimCtrl', function($scope, $ionicHistory, $state) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+
+    $scope.build = function () {
+      $state.go('tab.submit-expense-claim');
+    };
   })
 
   .controller('NicheListCtrl', function($scope, $ionicHistory, $state, Niches) {
@@ -1115,6 +1316,12 @@ angular.module('starter.controllers', [])
     $scope.product = Products.getByName($stateParams.ProductName);
   })
 
+  .controller('PasswordSettingCtrl', function($scope, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+  })
+
   .controller('QuoteListCtrl', function($scope, $ionicHistory, $state, Quotes) {
     $scope.quotes = Quotes.getAll();
 
@@ -1255,7 +1462,18 @@ angular.module('starter.controllers', [])
     chart.setOption(option);
   })
 
-  .controller('TeamCtrl', function($scope) {
+  .controller('SubmitExpenseClaimCtrl', function($scope, $ionicHistory, $state) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+
+    $scope.submit = function () {
+      $state.go('tab.expense-query');
+    };
+
+  })
+
+  .controller('SynergyCtrl', function($scope) {
     $scope.settings = {
       enableFriends: true
     }
@@ -1433,10 +1651,25 @@ angular.module('starter.controllers', [])
     chart.setOption(option);
   })
 
-  .controller('WorkCtrl', function($scope) {
-    $scope.settings = {
-      enableFriends: true
-    }
+  .controller('WorkCtrl', function($scope, $state) {
+    $scope.goExpenseShort = function () {
+      $state.go('tab.expense-shorthand')
+    };
+    $scope.goNewExpense = function () {
+      $state.go('tab.new-expense')
+    };
+    $scope.goExpenseQuery = function () {
+      $state.go('tab.expense-query');
+    };
+    $scope.goNewExpense = function () {
+      $state.go('tab.new-expense');
+    };
+    $scope.goExpenseClaim = function(){
+      $state.go('tab.expense-claim');
+    };
+    $scope.goExpenseChart = function(){
+      $state.go('tab.expense-chart');
+    };
   })
 
   .controller('WorkCircleCtrl', function($scope) {

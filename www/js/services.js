@@ -406,56 +406,126 @@ angular.module('starter.services', [])
 })
 
 .factory('Chats',function(){
-    var chats = [{
-      people:'张冉',
+    var chats = [ {
+      chatName:'张冉',
       messageNum:'1',
       date:'2015-11-11',
-      time:'16:00',
+      time:'19:00',
       face:'img/mike.png',
-      message:[
-        'Hey'
-      ]
+      people:[{
+        name:'袁梦',
+        face:'img/me.jpg'
+      },{
+        name:'张冉',
+        face:'img/mike.png'
+      }],
+      message:[{
+        peopleId:1,
+        content: '好多要做啊',
+        type:'receive'
+      }]
     }, {
-      people:'陈东',
+      chatName:'豆豆 ',
       messageNum:'2',
-      date:'2015-11-12',
-      time:'17:00',
-      face:'img/max.png',
-      message:[
-        'Hey',
-        '玩得开心'
-      ]
-    }, {
-      people:'讨论组',
-      messageNum:'3',
-      date:'2015-11-12',
-      time:'18:00',
-      face:'img/perry.png',
-      message:[
-        '我的天',
-        '还有讨论组',
-        '这个我不写了,太麻烦了,太麻烦了,太麻烦了'
-      ]
-    }, {
-      people:'销售管理组',
-      messageNum:'4',
       date:'2015-11-11',
       time:'19:00',
       face:'img/ben.png',
-      message:[
-        '好多要做啊',
-        '怎么这么多页面',
-        '谁能告诉我',
-        '好多啊!!!!'
-      ]
+      people:[{
+        name:'袁梦',
+        face:'img/me.jpg'
+      },{
+        name:'豆豆',
+        face:'img/ben.png'
+      }],
+      message:[{
+        peopleId:1,
+        content: '对啊!',
+        type:'receive'
+      }, {
+        peopleId:1,
+        content: '要做好久!!',
+        type:'receive'
+      }]
+    }, {
+      chatName:'移动技术部',
+      messageNum:'3',
+      date:'2015-11-11',
+      time:'19:00',
+      face:'img/ionic.png',
+      people:[{
+        name:'袁梦',
+        face:'img/me.jpg'
+      },{
+        name:'张冉',
+        face:'img/mike.png'
+      }, {
+        name:'豆豆',
+        face:'img/ben.png'
+      }, {
+        name:'陈宇朝',
+        face:'img/perry.png'
+      }],
+      message:[{
+        peopleId:1,
+        content: 'Hey, everybody!',
+        type:'receive'
+      },{
+        peopleId:2,
+        content: 'Hey!!',
+        type:'receive'
+      },{
+        peopleId:3,
+        content: 'ZZ~',
+        type:'receive'
+      }]
+    }, {
+      chatName:'销售管理组',
+      messageNum:'4',
+      date:'2015-11-11',
+      time:'19:00',
+      face:'img/attachment.png',
+      people:[{
+        name:'袁梦',
+        face:'img/me.jpg'
+      },{
+        name:'张冉',
+        face:'img/mike.png'
+      },{
+        name:'豆豆',
+        face:'img/ben.png'
+      },{
+        name:'陈宇朝',
+        face:'img/adam.jpg'
+      },{
+        name:'刘佳行',
+        face: 'img/perry.png'
+      }],
+      message:[{
+        peopleId:1,
+        content: '好多要做啊',
+        type:'receive'
+      },{
+        peopleId:2,
+        content: '对啊!',
+        face:'img/ben.png',
+        type:'receive'
+      },{
+        peopleId:3,
+        content: '加油吧大家',
+        type:'receive'
+      }, {
+        peopleId:4,
+        content: '收到!',
+        type:'receive'
+      }]
     }];
     return {
       getAll: function(){
         return chats;
       },
-      getByPeople: function(people){
+      getByChatName: function(chatName){
         for(var i = 0; i < chats.length; i++){
-          if(chats[i].people == people)
+          if(chats[i].chatName == chatName)
             return chats[i];
         }
         return null;
@@ -816,6 +886,25 @@ angular.module('starter.services', [])
           return orders[i];
       }
       return null;
+    }
+  }
+})
+
+.factory('Me',function() {
+  var me = {
+    name:'袁梦 ',
+    face:'img/me.jpg',
+    number:'1000',
+    email:'MengYuan@hand-china.com',
+    telephone:'14603415678',
+    phone:'021-3573095',
+    sex:'男',
+    address:'上海 青浦',
+    explanation:'Do Myself!'
+  };
+  return {
+    get: function(){
+      return me;
     }
   }
 })

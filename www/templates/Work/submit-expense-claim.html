@@ -1,0 +1,36 @@
+<ion-view view-title="New-expense-claim" class="submit-expense-claim">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Submit Expense Claim</h1>
+    <button class="button icon" ng-click="goNewExpenseDetail()">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="date">
+      <p>您提交的报销单已经创建成功!</p>
+      <span>费用明细</span>
+    </div>
+    <div class="expense">
+      <div class="row">
+        <span class="col-55">2015-11-01 至 2015-11-01</span><span class="col-33">浙江省杭州市<i class="icon ion-ios-location-outline"></i></span><br>
+      </div>
+      <div class="row">
+        <span class="col-55">差旅 > 交通费</span><span class="col-25">100</span><span>未提交</span><i class="icon ion-ios-arrow-right"></i>
+      </div>
+    </div>
+    <div class="expense">
+      <div class="row">
+        <span class="col-55">2015-11-01 至 2015-11-01</span><span class="col-33">浙江省杭州市<i class="icon ion-ios-location-outline"></i></span><br>
+      </div>
+      <div class="row">
+        <span class="col-55">差旅 > 餐费</span><span class="col-25">30</span><span>未提交</span><i class="icon ion-ios-arrow-right"></i>
+      </div>
+    </div>
+  </ion-content>
+  <div class="submit">
+    <button ng-click="submit()">Submit</button>
+  </div>
+</ion-view>

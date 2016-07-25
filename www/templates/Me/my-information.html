@@ -1,0 +1,47 @@
+<ion-view view-title="My-information" class="my-information">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">My Information</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="information">
+      <div class="image">
+        <label>头像</label><img src="{{me.face}}"><i class="icon ion-ios-arrow-right" ng-click="show()"></i>
+      </div>
+      <div>
+        <label>名字</label><input type="text" value="{{me.name}}" readonly="readonly">
+      </div>
+      <div>
+        <label>工号</label><input type="text" value="{{me.number}}" readonly="readonly">
+      </div>
+      <div>
+        <label>邮箱</label><input type="text" value="{{me.email}}">
+      </div>
+      <div>
+        <label>手机</label><input type="text" value="{{me.telephone}}">
+      </div>
+      <div>
+        <label>座机</label><input type="text" value="{{me.phone}}">
+      </div>
+    </div>
+    <p class="split"></p>
+    <div class="information">
+      <div>
+        <label>性别</label><span>{{me.sex}}</span><i class="icon ion-ios-arrow-right"></i>
+      </div>
+      <div>
+        <label>地区</label><span>{{me.address}}</span><i class="icon ion-ios-arrow-right"></i>
+      </div>
+      <div>
+        <label>个性签名</label><input type="text" value="{{me.explanation}}"><i class="icon ion-ios-arrow-right"></i>
+      </div>
+    </div>
+  </ion-content>
+  <div class="tool" ng-show="showTool" ng-click="close()">
+    <p class="photo">拍照</p>
+    <p class="album">相册</p>
+    <p class="cancel">取消</p>
+  </div>
+</ion-view>

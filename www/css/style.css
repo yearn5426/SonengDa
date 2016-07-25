@@ -34,16 +34,17 @@ ion-content div.common i.right{
   float: right;
   color: black;
 }
-  /* work页面和team页面分隔p样式 */
+  /* 分隔p样式 */
 .work ion-content div div, .team ion-content div div, .search-result ion-content div div{
   margin-top:0;
 }
-.work ion-content p.split, .team ion-content p.split, .search-result ion-content p.split{
+p.split{
+  width:100%;
+  padding:5px 0 5px 2%;
   margin:0;
-  font-weight: bolder;
-  margin-top:10px;
+  font-weight: bold;
 }
-  /* work页面和team页面分隔p样式end */
+  /* 分隔p样式end */
   /* 消息数量span样式 */
 .home .has-msg-span span, .team span{
   float:right;
@@ -172,10 +173,6 @@ ion-content.new.scroll-content{
   background-color: white;
 }
 .new .split{
-  width:100%;
-  padding:5px 0 5px 5%;
-  margin:0;
-  font-weight: bold;
   background-color: #f0f0f0;
 }
 .new .scan-card{
@@ -257,9 +254,8 @@ ion-content.new.scroll-content{
   border:1px solid #a0a0a0;
   height:25px;
   vertical-align: baseline;
-  padding-right:20px;
   font-size: 0.9em;
-  width: 55%;
+  width: 60%;
 }
 .new .info input[type="radio"]{
   font-size: 1.2em;
@@ -269,10 +265,13 @@ ion-content.new.scroll-content{
   font-size: 1.5em;
   color:rgb(7,156, 246);
 }
+.new .info .icon input{
+  padding-right:20px;
+}
 .new .info .icon i{
   position: absolute;
   top:10px;
-  left:76%;
+  left:81%;
   font-size: 1.3em;
   line-height: 0.5em;
   color:rgb(7,156,246);
@@ -282,7 +281,7 @@ ion-content.new.scroll-content{
   height:25px;
   vertical-align: baseline;
   font-size: 0.9em;
-  width: 55%;
+  width: 60%;
 }
 .new .info .sex i{
   margin-left: 5px;
@@ -806,9 +805,12 @@ form.send .msg:focus{
   margin:0;
   font-size: 1.2em;
 }
+.work-circle .dynamic p{
+  display: block;
+  max-width:95%;
+}
 .work-circle .dynamic div img{
-  width:60px;
-  height:60px;
+  width:20%;
   margin-right: 5%;
 }
 .work-circle .dynamic div span{
@@ -835,12 +837,6 @@ form.send .msg:focus{
   text-align: center;
   color: black;
   margin:0;
-}
-.activity-detail .split{
-  width:100%;
-  padding:5px 0 5px 5%;
-  margin:0;
-  font-weight: bold;
 }
 .activity-detail .detail{
   background-color: white;
@@ -1102,12 +1098,6 @@ form.send .msg:focus{
   text-align: center;
   margin:0;
 }
-.contact-detail .split{
-  width:100%;
-  padding:5px 0 5px 5%;
-  margin:0;
-  font-weight: bold;
-}
 .contact-detail .detail{
   background-color: white;
   margin:0;
@@ -1355,12 +1345,6 @@ form.send .msg:focus{
   text-align: center;
   margin:0;
 }
-.custom-detail .split{
-  width:100%;
-  padding:5px 0 5px 5%;
-  margin:0;
-  font-weight: bold;
-}
 .custom-detail .detail{
   background-color: white;
   margin:0;
@@ -1490,12 +1474,6 @@ ion-item.repeat-go-item.activated{
   text-align: center;
   margin:0;
 }
-.niche-detail .split{
-  width:100%;
-  padding:5px 0 5px 5%;
-  margin:0;
-  font-weight: bold;
-}
 .niche-detail .detail{
   background-color: white;
   margin:0;
@@ -1572,12 +1550,6 @@ ion-item.repeat-go-item.activated{
 /* attachment-detail界面样式end */
 
 /* new-attachment界面样式 */
-.new-attachment .split{
-  font-weight: bold;
-  padding:5px;
-  font-size:1.2em;
-  margin:0;
-}
 .new-attachment .detail{
   background-color: white;
   min-height: 220px;
@@ -1629,14 +1601,14 @@ ion-item.repeat-go-item.activated{
   border-bottom:1px solid #c0c0c0;
 }
 .new-attachment .tool p.system{
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 .new-attachment .tool p.cancel{
   margin-top:8px;
   text-align: center;
   color: red;
-  border-radius: 15px;
+  border-radius: 10px;
 }
 /* new-attachment界面样式end */
 
@@ -1652,12 +1624,6 @@ ion-item.repeat-go-item.activated{
   text-align: center;
   color: black;
   margin:0;
-}
-.product-detail .split{
-  width:100%;
-  padding:5px 0 5px 5%;
-  margin:0;
-  font-weight: bold;
 }
 .product-detail .detail{
   background-color: white;
@@ -1841,12 +1807,6 @@ ion-item.repeat-go-item.activated{
   color: black;
   margin:0;
 }
-.quote-detail .split, .order-detail .split{
-  width:100%;
-  padding:5px 0 5px 5%;
-  margin:0;
-  font-weight: bold;
-}
 .quote-detail .detail, .order-detail .detail{
   background-color: white;
   margin-bottom:20px;
@@ -1873,3 +1833,520 @@ ion-item.repeat-go-item.activated{
   margin-right: 0;
 }
 /* quote-detail及order-detail界面样式 */
+
+/* expense-shorthand及new-expense-detail界面样式 */
+.expense-shorthand .invoice, .new-expense-detail .invoice{
+  width: 100%;
+  background-color: white;
+  padding:10px 5%;
+  line-height: 1em;
+}
+.expense-shorthand .invoice img, .new-expense-detail .invoice img{
+  width:50px;
+  margin-right:5px;
+}
+.expense-shorthand .invoice i, .new-expense-detail .invoice i{
+  font-size:2.5em;
+  float: right;
+}
+.expense-shorthand .info textarea, .new-expense-detail .info textarea{
+  display: inline-block;
+  width:60%;
+  resize: none;
+  min-height:60px;
+  border:1px solid;
+}
+.expense-shorthand .info textarea:focus, .new-expense-detail .info textarea:focus{
+  border:2px solid rgb(7,156,246);
+  border-radius: 3px;
+}
+.expense-shorthand .save-again, .new-expense-detail .save-again{
+  background-color: white;
+  width:100%;
+  padding:10px 5%;
+  margin-bottom:50px;
+  position: absolute;
+  bottom:0;
+  border-top:1px solid #cccccc;
+}
+.expense-shorthand .save-again button, .new-expense-detail .save-again button{
+  border:none;
+  background-color: white;
+  color: rgb(7,156,246);
+}
+.expense-shorthand .save-again .left, .new-expense-detail .save-again .left{
+  float: left;
+}
+.expense-shorthand .save-again .right, .new-expense-detail .save-again .right{
+  float: right;
+}
+/* expense-shorthand及new-expense-detail界面样式 */
+
+/* new-expense界面样式 */
+.new-expense .detail{
+  background-color: white;
+  width:100%;
+}
+.new-expense .detail div {
+  position: relative;
+  padding:5px 15% 5px 5%;
+  height:3em;
+  line-height: 3em;
+  border-bottom: 1px solid #f0f0f0;
+}
+.new-expense .detail div span{
+  float: right;
+}
+.new-expense .detail input{
+  padding:0;
+  position: absolute;
+  top:7px;
+  right:15%;
+  width: 60%;
+  border: 1px solid;
+  height: 2em;
+}
+.new-expense .detail textarea{
+  padding:0;
+  position: absolute;
+  top:7px;
+  right:15%;
+  width: 60%;
+  border: 1px solid;
+  resize: none;
+  height: 4em;
+}
+/* new-expense界面样式end */
+
+/* new-expense-claim界面样式 */
+.new-expense-claim ion-content .date{
+  width: 100%;
+  padding:5px 5%;
+}
+.new-expense-claim ion-content .date span{
+  display:inline-block;
+  width:25vw;
+  margin-right:50vw;
+}
+.new-expense-claim .expense {
+  font-size: 0.9em;
+  padding:10px 5%;
+  background-color: white;
+  position:relative;
+  border-bottom:1px solid #f0f0f0;
+}
+.new-expense-claim .expense input{
+  position:absolute;
+  left:80vw;
+}
+.new-expense-claim .expense .col-55{
+  width:55%;
+}
+.new-expense-claim .expense .col-33{
+  width:33%;
+  text-align: center;
+}
+.new-expense-claim .expense i{
+  color: rgb(7,156,246);
+}
+.new-expense-claim .build{
+  background-color: white;
+  width:100%;
+  padding:10px 5%;
+  margin-bottom:50px;
+  position: absolute;
+  bottom:0;
+  border-top:1px solid #cccccc;
+  text-align: center;
+}
+.new-expense-claim .build button{
+  background-color: white;
+  border:0;
+  color: rgb(7,156,246);
+}
+/* new-expense-claim界面样式end */
+
+/* submit-expense-claim界面样式 */
+.submit-expense-claim ion-content .date{
+  width: 100%;
+  padding:5px 5%;
+}
+.submit-expense-claim ion-content .date span{
+  display:inline-block;
+  width:25vw;
+  margin-right:50vw;
+}
+.submit-expense-claim .expense {
+  font-size: 0.9em;
+  padding:10px 5%;
+  background-color: white;
+  position:relative;
+  border-bottom:1px solid #f0f0f0;
+}
+.submit-expense-claim .expense input{
+  position:absolute;
+  left:80vw;
+}
+.submit-expense-claim .expense .col-55{
+  width:55%;
+}
+.submit-expense-claim .expense .col-25{
+  text-align: center;
+}
+.submit-expense-claim .expense span i{
+  color: rgb(7,156,246);
+}
+.submit-expense-claim .expense .ion-ios-arrow-right{
+  font-size: 2.5em;
+  position: absolute;
+  color: #000;
+  top:0.7em;
+  right:7%;
+}
+.submit-expense-claim .submit{
+  background-color: white;
+  width:100%;
+  padding:10px 5%;
+  margin-bottom:50px;
+  position: absolute;
+  bottom:0;
+  border-top:1px solid #cccccc;
+  text-align: center;
+}
+.submit-expense-claim .submit button{
+  background-color: white;
+  border:0;
+  color: rgb(7,156,246);
+}
+/* submit-expense-claim界面样式end */
+
+/* expense-claim-show界面样式 */
+.expense-claim-show .invoice{
+  width: 100%;
+  background-color: white;
+  padding:10px 5%;
+  line-height: 1em;
+}
+.expense-claim-show .invoice img{
+  width:50px;
+  margin-right:5px;
+}
+.expense-claim-show .invoice i{
+  font-size:2.5em;
+  float: right;
+}
+.expense-claim-show .info textarea{
+  display: inline-block;
+  width:55%;
+  resize: none;
+  min-height:60px;
+  border:1px solid;
+}
+.expense-claim-show .info textarea:focus{
+  border:2px solid rgb(7,156,246);
+  border-radius: 3px;
+}
+.expense-claim-show .info .date div{
+  width: 60%;
+  display: inline-block;
+  border:0;
+  margin:0;
+  padding:0;
+  text-align: center;
+  position: relative;
+}
+.expense-claim-show .info .date input{
+  width:48%;
+}
+.expense-claim-show .info .date input.left{
+  float: left;
+  margin-top:7px;
+}
+.expense-claim-show .info .date input.right{
+  float: right;
+  margin-top:7px;
+}
+.expense-claim-show .info .date i{
+  position: absolute;
+  font-size:1.5em;
+  line-height: 0.5em;
+  color: rgb(7,156,246);
+}
+.expense-claim-show .info .date i.left{
+  top:10px;
+  left:38%;
+}
+.expense-claim-show .info .date i.right{
+  top:10px;
+  right:2.5%;
+}
+/* expense-claim-show界面样式end */
+
+/* expense-query界面样式 */
+.expense-query .expense, .expense-query .shorthand {
+  font-size: 0.9em;
+  padding:10px 5%;
+  background-color: white;
+  position:relative;
+  border-bottom:1px solid #f0f0f0;
+}
+.expense-query .expense .col-55, .expense-query .shorthand .col-55{
+  width:55%;
+}
+.expense-query .expense .col-25, .expense-query .shorthand .col-25{
+  text-align: center;
+}
+.expense-query .expense span i, .expense-query .shorthand span i{
+  color: rgb(7,156,246);
+}
+.expense-query .expense .ion-ios-arrow-right, .expense-query .shorthand .ion-ios-arrow-right{
+  font-size: 2.5em;
+  position: absolute;
+  color: #000;
+  top:0.7em;
+  right:7%;
+}
+/* expense-query界面样式end */
+
+/* expense-chart界面样式 */
+.department-expense {
+  width:100%;
+  height:350px;
+}
+.expense-type {
+  width:100%;
+  height:350px;
+}
+/* expense-chart界面样式end */
+
+/* chat-setting界面样式 */
+.chat-setting .member{
+  padding: 5px 5%;
+  background-color: white;
+}
+.chat-setting .member div{
+  display: inline-block;
+  margin-right:10px;
+}
+.chat-setting .member img{
+  width: 40px;
+  display: block;
+  margin:0 auto;
+  margin-bottom:5px;
+}
+.chat-setting .member i{
+  width: 40px;
+  text-align: center;
+  margin:0 auto;
+  margin-bottom:5px;
+  border:1px solid;
+  border-radius: 20px;
+  display: block;
+  font-size: 3em;
+  color: rgb(7,156,246);
+}
+.chat-setting .member i:before{
+  height: 40px;
+  line-height: 40px;
+  vertical-align: top;
+}
+.chat-setting .common-setting, .chat-setting .group-setting{
+  margin-top:20px;
+}
+.chat-setting .common-setting p, .chat-setting .group-setting p{
+  position: relative;
+  height:54px;
+  background-color: #fff;
+  padding:16px;
+  font-size: 16px;
+  margin:0;
+}
+.chat-setting .common-setting p i, .chat-setting .group-setting p i{
+  right:5%;
+  top:10px;
+  position: absolute;
+  font-size:2em;
+  vertical-align: text-bottom;
+}
+.chat-setting .tool{
+  position: absolute;
+  bottom:50px;
+  width:100%;
+}
+.chat-setting .tool p{
+  width:100%;
+  text-align: center;
+  background-color: white;
+  color: red;
+  padding:10px 0;
+  border-radius:10px;
+  margin:0;
+}
+/* chat-setting界面样式end */
+
+/* my-information界面样式 */
+.my-information .information{
+  width: 100%;
+  background-color: white;
+}
+.my-information .information div{
+  width: 100%;
+  padding:10px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  line-height: 30px;
+  height: 50px;
+  position: relative;
+}
+.my-information .information div.image{
+  line-height: 50px;
+  height: 70px;
+}
+.my-information .information img{
+  width: 50px;
+  display: inline-block;
+  float: right;
+  margin-right:10%;
+}
+.my-information .information div label{
+  display: inline-block;
+  width: 30%;
+}
+.my-information .information div span{
+  display: inline-block;
+  width: 60%;
+  text-align: right;
+}
+.my-information .information div input{
+  border: 1px solid;
+  display: inline-block;
+  vertical-align: text-bottom;
+  height: 2em;
+  line-height: 2em;
+  width: 60%;
+}
+.my-information .information div i{
+  position: absolute;
+  top:6px;
+  right: 8%;
+  font-size: 2.5em;
+}
+.my-information .tool {
+  position: absolute;
+  bottom: 50px;
+  width:100%;
+  background-color: transparent;
+}
+.my-information .tool p{
+  background-color: white;
+  margin:0;
+  width:100%;
+  text-align: center;
+  padding:10px 0;
+}
+.my-information .tool p.photo{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.my-information .tool p.album{
+  border-top:1px solid #c0c0c0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.my-information .tool p.cancel{
+  margin-top:8px;
+  text-align: center;
+  color: red;
+  border-radius: 10px;
+}
+/* my-information界面样式end */
+
+/* password-setting界面样式 */
+.password-setting .tool {
+  position: absolute;
+  bottom: 50px;
+  width:100%;
+  background-color: transparent;
+}
+.password-setting .tool p{
+  background-color: white;
+  margin:0;
+  width:100%;
+  text-align: center;
+  padding:10px 0;
+}
+.password-setting .tool p.submit{
+  border-radius: 10px;
+}
+.password-setting .tool p.cancel{
+  margin-top:8px;
+  color: red;
+  border-radius: 10px;
+}
+.password-setting .password{
+  margin-top:15px;
+  width: 100%;
+  background-color: white;
+}
+.password-setting .password div{
+  width: 100%;
+  padding:0 5%;
+  border-bottom:1px solid #f0f0f0;
+  height: 2.5em;
+  line-height: 2.5em;
+}
+.password-setting .password div label{
+  display: inline-block;
+  width:25%;
+}
+.password-setting .password input{
+  display: inline-block;
+  width: 60%;
+  border: 1px solid;
+  height: 2em;
+  vertical-align: baseline;
+}
+/* password-setting界面样式end */
+
+/* collection界面样式 */
+.collection ion-content.scroll-content{
+  background-color: white;
+}
+.collection .dynamic{
+  position: relative;
+  width: 90%;
+  margin:0 auto;
+  margin-top: 20px;
+  margin-left:65px;
+}
+.collection .dynamic .head{
+  position: absolute;
+  width: 50px;
+  left:-60px;
+  height: 50px;
+  box-shadow: 2px 2px 2px #808080;
+  display: inline-block;
+}
+.collection .dynamic .name{
+  margin:0;
+  font-size: 1.2em;
+}
+.collection .dynamic p{
+  display: block;
+  max-width:85%;
+}
+.collection .dynamic div img{
+  width:20%;
+  margin-right: 5%;
+}
+.collection .dynamic div span{
+  font-size: 0.8em;
+  color: #808080;
+}
+.collection .delete{
+  display: block;
+  margin:0 2%;
+  padding:3px 10px;
+  color: #808080;
+  border-bottom: 1px solid #f0f0f0;
+}
+/* collection界面样式end */

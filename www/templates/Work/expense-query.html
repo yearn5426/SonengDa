@@ -1,0 +1,69 @@
+<ion-view view-title="Expense-query" class="expense-query">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Expense Query</h1>
+    <button class="button icon" ng-click="">
+      <i class="icon ion-ios-search right"></i>
+    </button>
+    <button class="button icon" ng-click="">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="sort-and-sift">
+      <div class="function">
+        <button ng-click="show(0)"><i class="icon ion-ios-settings"></i>排序</button>
+      </div>
+      <div class="function no-border">
+        <button ng-click="show(1)"><i class="icon ion-ios-infinite-outline"></i>筛选</button>
+      </div>
+      <div ng-show="showTool[0]" class="popup" ng-click="close()">
+        <p>创建时间</p>
+      </div>
+      <div ng-show="showTool[1]" class="popup">
+        <div>
+          <label>客户类型</label><input type="checkbox">潜在客户<input type="checkbox">新客户
+        </div>
+        <div>
+          <label>客户阶段</label><input type="checkbox">潜在客户<input type="checkbox">新客户
+        </div>
+      </div>
+    </div>
+    <p class="split">快速记草稿</p>
+    <div class="shorthand">
+      <div class="row">
+        <span class="col-55">2015-11-01 至 2015-11-01</span><span class="col-33">浙江省杭州市<i class="icon ion-ios-location-outline"></i></span><br>
+      </div>
+      <div class="row">
+        <span class="col-55">差旅 > 交通费</span><span class="col-25">100</span><i class="icon ion-ios-arrow-right " ng-click="goNewExpense()"></i>
+      </div>
+    </div>
+    <div class="shorthand">
+      <div class="row">
+        <span class="col-55">2015-11-01 至 2015-11-01</span><span class="col-33">浙江省杭州市<i class="icon ion-ios-location-outline"></i></span><br>
+      </div>
+      <div class="row">
+        <span class="col-55">差旅 > 交通费</span><span class="col-25">100</span><i class="icon ion-ios-arrow-right" ng-click="goNewExpense()"></i>
+      </div>
+    </div>
+    <p class="split">报销单</p>
+    <div class="expense">
+      <div class="row">
+        <span class="col-55">2015-11-01 至 2015-11-01</span><span class="col-33">浙江省杭州市<i class="icon ion-ios-location-outline"></i></span><br>
+      </div>
+      <div class="row">
+        <span class="col-55">差旅 > 交通费</span><span class="col-25">100</span><span>未提交</span><i ng-click="goExpenseClaimShow()" class="icon ion-ios-arrow-right"></i>
+      </div>
+    </div>
+    <div class="expense">
+      <div class="row">
+        <span class="col-55">2015-11-01 至 2015-11-01</span><span class="col-33">浙江省杭州市<i class="icon ion-ios-location-outline"></i></span><br>
+      </div>
+      <div class="row">
+        <span class="col-55">差旅 > 交通费</span><span class="col-25">100</span><span>未提交</span><i ng-click="goExpenseClaimShow()" class="icon ion-ios-arrow-right"></i>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

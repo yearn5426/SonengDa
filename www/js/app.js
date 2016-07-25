@@ -199,6 +199,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.chat-setting', {
+      url: '/synergy/chat-setting',
+      views: {
+        'tab-synergy': {
+          templateUrl: 'templates/synergy/chat-setting.html',
+          controller: 'ChatSettingCtrl'
+        }
+      },
+      params:{
+        'ChatName':''
+      }
+    })
+
+    .state('tab.collection', {
+      url: '/me/collection',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/Me/collection.html',
+          controller: 'CollectionCtrl'
+        }
+      }
+    })
+
     .state('tab.dashboard-aggregate', {
       url: '/home/dashboard-aggregate',
       views: {
@@ -255,6 +278,46 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.expense-shorthand', {
+      url: '/work/expense-shorthand',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/expense-shorthand.html',
+          controller: 'ExpenseShorthandCtrl'
+        }
+      }
+    })
+
+    .state('tab.expense-query', {
+      url: '/work/expense-query',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/expense-query.html',
+          controller: 'ExpenseQueryCtrl'
+        }
+      }
+    })
+
+    .state('tab.expense-claim-show', {
+      url: '/work/expense-claim-show',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/expense-claim-show.html',
+          controller: 'ExpenseClaimShowCtrl'
+        }
+      }
+    })
+
+    .state('tab.expense-chart', {
+      url: '/work/expense-chart',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/expense-chart.html',
+          controller: 'ExpenseChartCtrl'
+        }
+      }
+    })
+
     .state('tab.goal-achievement', {
       url: '/crm/dashboard/goal-achievement',
       views: {
@@ -304,7 +367,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         }
       },
       params: {
-        'People':''
+        'ChatName':''
+      }
+    })
+
+    .state('tab.my-information', {
+      url: '/me/my-information',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/Me/my-information.html',
+          controller: 'MyInformationCtrl'
+        }
       }
     })
 
@@ -364,6 +437,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         'tab-crm': {
           templateUrl: 'templates/CRM/Activity/new-attachment.html',
           controller: 'NewAttachmentCtrl'
+        }
+      }
+    })
+
+    .state('tab.new-expense',{
+      url: '/work/new-expense',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/new-expense.html',
+          controller: 'NewExpenseCtrl'
+        }
+      }
+    })
+
+    .state('tab.new-expense-detail',{
+      url: '/work/new-expense-detail',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/new-expense-detail.html',
+          controller: 'NewExpenseDetailCtrl'
+        }
+      }
+    })
+
+    .state('tab.new-expense-claim',{
+      url: '/work/new-expense-claim',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/new-expense-claim.html',
+          controller: 'NewExpenseClaimCtrl'
         }
       }
     })
@@ -460,6 +563,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.password-setting', {
+      url: '/me/password-setting',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/Me/password-setting.html',
+          controller: 'PasswordSettingCtrl'
+        }
+      }
+    })
+
     .state('tab.quote-list', {
       url: '/crm/quote-list',
       views: {
@@ -549,6 +662,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.submit-expense-claim', {
+      url: '/work/submit-expense-claim',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/submit-expense-claim.html',
+          controller: 'SubmitExpenseClaimCtrl'
+        }
+      }
+    })
+
     .state('tab.top-niche', {
       url: '/crm/dashboard/top-niche',
       views: {
@@ -569,12 +692,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-    .state('tab.team', {
-      url: '/team',
+    .state('tab.synergy', {
+      url: '/synergy',
       views: {
-        'tab-team': {
-          templateUrl: 'templates/tab-team.html',
-          controller: 'TeamCtrl'
+        'tab-synergy': {
+          templateUrl: 'templates/tab-synergy.html',
+          controller: 'SynergyCtrl'
         }
       }
     })

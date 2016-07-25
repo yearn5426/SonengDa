@@ -1,0 +1,35 @@
+<ion-view view-title="New-expense-claim" class="new-expense-claim">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">New Expense Claim</h1>
+    <button class="button icon" ng-click="goNewExpenseDetail()">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="date">
+      <span>2015-11-01</span><input type="checkbox">全选
+    </div>
+    <div class="expense">
+      <div class="row">
+        <span class="col-55">2015-11-01 至 2015-11-01</span><span class="col-33">浙江省杭州市<i class="icon ion-ios-location-outline"></i></span><br>
+      </div>
+      <div class="row">
+        <span class="col-55">差旅 > 交通费</span><span class="col-33">100</span><input type="checkbox">
+      </div>
+    </div>
+    <div class="expense">
+      <div class="row">
+        <span class="col-55">2015-11-01 至 2015-11-01</span><span class="col-33">浙江省杭州市<i class="icon ion-ios-location-outline"></i></span><br>
+      </div>
+      <div class="row">
+        <span class="col-55">差旅 > 餐费</span><span class="col-33">30</span><input type="checkbox">
+      </div>
+    </div>
+  </ion-content>
+  <div class="build">
+    <button ng-click="build()">Build a Expense Claim</button>
+  </div>
+</ion-view>

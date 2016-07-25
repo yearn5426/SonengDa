@@ -7,23 +7,23 @@
       <div>
         <img src="img/me.jpg">
         <div>
-          <p>袁梦</p>
-          <label>工号:</label><span>1004</span>
+          <p>{{me.name}}</p>
+          <label>工号:</label><span>{{me.number}}</span>
         </div>
         <div>
           <span>个人签名:</span><br>
-          <span>Do myself!</span>
+          <span>{{me.explanation}}</span>
         </div>
-        <i class="icon ion-ios-arrow-right right"></i>
+        <i class="icon ion-ios-arrow-right right" ng-click="goMyInformation()"></i>
       </div>
     </div>
     <div class="common">
-      <p><i class="icon ion-ios-heart-outline"></i>收藏 <i class="icon ion-ios-arrow-right right"></i></p>
+      <p ng-click="goCollection()"><i class="icon ion-ios-heart-outline"></i>收藏 <i class="icon ion-ios-arrow-right right"></i></p>
       <p><i class="icon ion-ios-compose-outline"></i>发邮件 <i class="icon ion-ios-arrow-right right"></i></p>
       <p><i class="icon ion-ios-paper-outline"></i>通讯录 <i class="icon ion-ios-arrow-right right"></i></p>
     </div>
     <div class="common">
-      <p><i class="icon ion-ios-gear-outline"></i>密码设置 <i class="icon ion-ios-arrow-right right"></i></p>
+      <p ng-click="goPasswordSetting()"><i class="icon ion-ios-gear-outline"></i>密码设置 <i class="icon ion-ios-arrow-right right"></i></p>
     </div>
   </ion-content>
 </ion-view>

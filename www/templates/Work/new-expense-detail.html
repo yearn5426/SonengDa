@@ -1,0 +1,56 @@
+<ion-view view-title="New-expense-detail" class="new-expense-detail">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">New Expense Detail</h1>
+    <button class="button icon" ng-click="">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content class="new">
+    <p class="split">发票</p>
+    <div class="invoice">
+      <img src="img/invoice.png"><img src="img/invoice.png"><i class="icon ion-ios-arrow-right"></i>
+    </div>
+    <p class="split">费用信息</p>
+    <div class="info">
+      <div>
+        <label>类别</label><select name="type"><option selected="selected" value="0">差旅</option><option value="1">日常管理</option></select>
+      </div>
+      <div>
+        <label>类型</label><select name="type"><option selected="selected" value="0">差旅 > 交通费</option><option value="1">差旅 > 酒店住宿费</option><option value="1">差旅 > 餐饮费</option></select>
+      </div>
+      <div>
+        <label>数量</label><input type="text" value="1">
+      </div>
+      <div>
+        <label>单价</label><input type="text" value="1">
+      </div>
+      <div>
+        <label>总额</label><input type="text" value="100">
+      </div>
+      <div>
+        <label>币种</label><select name="type"><option selected="selected" value="0">CNY-人民币</option><option value="1">USD-美元</option><option value="1">JPY-日元</option></select>
+      </div>
+      <div>
+        <label>汇率</label><input type="text" value="1.0000">
+      </div>
+      <div class="icon">
+        <label>地点</label><input type="text" value="浙江省杭州市"><i class="icon ion-ios-location-outline"></i>
+      </div>
+      <div class="icon">
+        <label>日期从</label><input type="text"  value="2015-11-01"><i class="icon ion-ios-calendar-outline"></i>
+      </div>
+      <div class="icon">
+        <label>日期至</label><input type="text"  value="2015-11-01"><i class="icon ion-ios-calendar-outline"></i>
+      </div>
+      <div>
+        <label>说明</label><textarea ></textarea>
+      </div>
+    </div>
+  </ion-content>
+  <div class="save-again">
+    <button class="left" ng-click="save()">Save</button><Button class="right" ng-click="again()">Again</Button>
+  </div>
+</ion-view>

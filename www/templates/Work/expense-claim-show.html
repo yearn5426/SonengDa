@@ -1,0 +1,62 @@
+<ion-view view-title="Expense-claim-show" class="expense-claim-show">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Expense Claim Show</h1>
+    <button class="button icon" ng-click="">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content class="new">
+    <p class="split">发票</p>
+    <div class="invoice">
+      <img src="img/invoice.png"><img src="img/invoice.png"><i class="icon ion-ios-arrow-right"></i>
+    </div>
+    <p class="split">报销单:未提交</p>
+    <div class="info">
+      <div>
+        <label>类别</label><select name="type"><option selected="selected" value="0">差旅</option><option value="1">日常管理</option></select>
+      </div>
+      <div>
+        <label>类型</label><select name="type"><option selected="selected" value="0">差旅 > 交通费</option><option value="1">差旅 > 酒店住宿费</option><option value="1">差旅 > 餐饮费</option></select>
+      </div>
+      <div>
+        <label>数量</label><input type="text" value="1">
+      </div>
+      <div>
+        <label>单价</label><input type="text" value="1">
+      </div>
+      <div>
+        <label>总额</label><input type="text" value="100">
+      </div>
+      <div>
+        <label>币种</label><select name="type"><option selected="selected" value="0">CNY-人民币</option><option value="1">USD-美元</option><option value="1">JPY-日元</option></select>
+      </div>
+      <div>
+        <label>汇率</label><input type="text" value="1.0000">
+      </div>
+      <div class="date">
+        <label>日期</label><div><input type="text" value="2015-11-01" class="left"><i class="icon ion-ios-calendar-outline left"></i>-<input type="text" value="2015-11-01" class="right"><i class="icon ion-ios-calendar-outline right"></i></div>
+      </div>
+      <div class="icon">
+        <label>地点</label><input type="text" value="浙江杭州"><i class="icon ion-ios-location-outline"></i>
+      </div>
+      <div>
+        <label>主题</label><input type="text" value="1.0000">
+      </div>
+      <div class="icon">
+        <label>活动</label><input type="text" value="访问施耐德电器"><i class="icon ion-ios-calendar-outline"></i>
+      </div>
+      <div class="icon">
+        <label>客户</label><input type="text" value="施耐德电器"><i class="icon ion-ios-calendar-outline"></i>
+      </div>
+      <div class="icon">
+        <label>商机</label><input type="text" value="新产品展示"><i class="icon ion-ios-calendar-outline"></i>
+      </div>
+    </div>
+  </ion-content>
+  <div class="save-again">
+    <button class="left" ng-click="save()">Save</button><Button class="right" ng-click="again()">Again</Button>
+  </div>
+</ion-view>

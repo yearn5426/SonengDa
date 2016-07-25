@@ -1,0 +1,44 @@
+<ion-view view-title="Expense-shorthand" class="expense-shorthand">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Expense Shorthand</h1>
+    <button class="button icon" ng-click="">
+      <i class="icon ion-ios-plus-empty right"></i>
+    </button>
+  </ion-header-bar>
+  <ion-content class="new">
+    <p class="split">发票</p>
+    <div class="invoice">
+      <img src="img/invoice.png"><img src="img/invoice.png"><i class="icon ion-ios-arrow-right"></i>
+    </div>
+    <p class="split">费用信息</p>
+    <div class="info">
+      <div>
+        <label>金额</label><input type="text" value="2000">
+      </div>
+      <div class="icon">
+        <label>地点</label><input type="text" value="浙江省杭州市"><i class="icon ion-ios-location-outline"></i>
+      </div>
+      <div class="icon">
+        <label>日期</label><input type="text"  value="2016-11-01"><i class="icon ion-ios-calendar-outline"></i>
+      </div>
+      <div>
+        <label>说明</label><textarea ></textarea>
+      </div>
+      <div>
+        <label>类别</label><select name="type"><option selected="selected" value="0">差旅</option><option value="1">日常管理</option></select>
+      </div>
+      <div>
+        <label>类型</label><select name="type"><option selected="selected" value="0">差旅 > 交通费</option><option value="1">差旅 > 酒店住宿费</option><option value="1">差旅 > 餐饮费</option></select>
+      </div>
+      <div>
+        <label>数量</label><input type="text" value="1">
+      </div>
+    </div>
+  </ion-content>
+  <div class="save-again">
+    <button class="left">Save</button><Button class="right">Again</Button>
+  </div>
+</ion-view>
