@@ -908,4 +908,90 @@ angular.module('starter.services', [])
     }
   }
 })
+
+.factory('Contacts', function () {
+  var contacts = [{
+    name: '张冉',
+    face:'img/mike.png',
+    telephone:'136-1567-1234',
+    phone:'021-98761234',
+    email:'ranzhang@hand-china.com',
+    note:'CEO'
+  }, {
+    name: '师宗',
+    face:'img/ionic.png',
+    telephone:'136-1227-1234',
+    phone:'021-98761334',
+    email:'zongshi@hand-china.com',
+    note:'Boss'
+  }, {
+    name: '盘旭',
+    face:'img/ionic.png',
+    telephone:'136-1227-1234',
+    phone:'021-98761334',
+    email:'xupan@hand-china.com',
+    note:'XX部门经理'
+  }, {
+    name: '刘佳航',
+    face:'img/perry.png',
+    telephone:'181-1567-1309',
+    phone:'021-11234123',
+    email:'jiahangliu@hand-china.com',
+    note:'XX项目项目经理'
+  }, {
+    name: '楚葱',
+    face:'img/attachment.png',
+    telephone:'139-7407-1234',
+    phone:'021-98071242',
+    email:'congchu@hand-china.com',
+    note:'XX项目项目组长'
+  }, {
+    name: '毛一环',
+    face:'img/ben.png',
+    telephone:'136-1211-1234',
+    phone:'021-53432314',
+    email:'yihuanmao@hand-china.com',
+    note:'XXX项目项目经理'
+  }, {
+    name: '师洋楠',
+    face:'img/max.png',
+    telephone:'189-1567-1234',
+    phone:'021-12442323',
+    email:'yangnanshi@hand-china.com',
+    note:'XXX项目项目组长'
+  }, {
+    name: '张斌斌',
+    face:'img/perry.png',
+    telephone:'150-7490-2314',
+    phone:'021-53212134',
+    email:'binbinzhang@hand-china.com',
+    note:'XXX部门经理'
+  }, {
+    name: '陈宇朝',
+    face:'img/adam.jpg',
+    telephone:'151-2415-4361',
+    phone:'021-84931252',
+    email:'yuchaochen@hand-china.com',
+    note:'Boss'
+  }, {
+    name: '袁梦',
+    face:'img/me.jpg',
+    telephone:'151-2203-2730',
+    phone:'021-84972213',
+    email:'mengyuan@hand-china.com',
+    note:'coder'
+  }];
+  return {
+    getAll: function(){
+      return contacts;
+    },
+    getByName:function(name){
+      for(var i = 0; i < contacts.length; i++){
+        if(contacts[i].name == name)
+          return contacts[i];
+      }
+      return null;
+    }
+  }
+})
 ;

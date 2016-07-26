@@ -166,6 +166,76 @@ angular.module('starter.controllers', [])
     };
   })
 
+  .controller('AddressListCtrl', function($scope, $state, Contacts, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+
+    // $scope.character = [];
+    // for(var i = 0; i < 26; i++)
+    //   $scope.character[i] = false;
+
+    $scope.character;
+
+    $scope.contacts = Contacts.getAll().sort(function(a, b){
+      return pinyin.getCamelChars(a.name)>pinyin.getCamelChars(b.name)? 1: -1;
+    });
+    $scope.goAddressDetail = function(name){
+      $state.go('tab.address-detail',{
+        'Name':name
+      });
+    };
+    $scope.toChar = function (name) {
+      return pinyin.getCamelChars(name)[0];
+    };
+
+    $scope.showSplit = function(name){
+      // console.log(1);
+      var char = pinyin.getCamelChars(name)[0];
+      if(!$scope.character){
+        $scope.character = char;
+        return true;
+      } else if($scope.character == char){
+        return false;
+      } else if($scope.character != char){
+        $scope.character = char;
+        return true;
+      }
+      // return true;
+      // var i = parseInt(char.charCodeAt() - 65);
+      // if($scope.character[i] === false){
+      //   $scope.character[i] = index;
+      //   return true;
+      // } else if( $scope.character[i] == index){
+      //   return true;
+      // } else{
+      //   return false;
+      // }
+    };
+  })
+
+  .controller('AddressDetailCtrl', function($scope, $state, Contacts, $stateParams, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+    $scope.contact = Contacts.getByName($stateParams.Name);
+
+    // var pinyin = require('pinyin');
+    //
+    // $scope.contacts.sort(function(a, b){
+    //   return pinyin(a.name, {
+    //       style:pinyin.STYLE_FIRST_LETTER
+    //     }) -  pinyin(b.name, {
+    //       style:pinyin.STYLE_FIRST_LETTER
+    //     });
+    // });
+    $scope.goSendMessage = function(){
+      $state.go('tab.send-message',{
+        'Name':$stateParams.Name
+      })
+    }
+  })
+
   .controller('CrmCtrl', function($scope, $state) {
     $scope.goDashboard = function(){
       $state.go('tab.dashboard');
@@ -578,10 +648,19 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('ExpenseShorthandCtrl', function($scope, $ionicHistory) {
+  .controller('ExpenseShorthandCtrl', function($scope, $ionicHistory, $state, $rootScope) {
     $scope.back = function(){
       $ionicHistory.goBack();
     };
+    $scope.goMap = function () {
+      $state.go('tab.map');
+    };
+    $scope.address = {
+      address:''
+    };
+    $rootScope.$on('SAVE_POSITION', function(e, param){
+      $scope.address.address = param.position;
+    });
   })
 
   .controller('ExpenseQueryCtrl', function($scope, $ionicHistory, $state) {
@@ -621,7 +700,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('ExpenseChartCtrl', function($scope, $ionicHistory, $state) {
+  .controller('ExpenseChartCtrl', function($scope, $ionicHistory) {
     $scope.back = function(){
       $ionicHistory.goBack();
     };
@@ -701,7 +780,7 @@ angular.module('starter.controllers', [])
     expenseTypeChart.setOption(expenseTypeOption);
   })
 
-  .controller('ExpenseClaimShowCtrl', function($scope, $ionicHistory, $state) {
+  .controller('ExpenseClaimShowCtrl', function($scope, $ionicHistory) {
     $scope.back = function(){
       $ionicHistory.goBack();
     };
@@ -804,11 +883,11 @@ angular.module('starter.controllers', [])
     };
 
     $scope.goExpenseClaim = function(){
-      $state.go('tab.expense-claim');
+      $state.go('tab.expense-claim-home');
     };
 
     $scope.goMessage = function(){
-      $state.go('tab.message');
+      $state.go('tab.message-home');
     };
 
     $scope.goActivityDetail = function(activityId){
@@ -822,11 +901,11 @@ angular.module('starter.controllers', [])
     };
 
     $scope.goContacts = function(){
-      $state.go('tab.contacts');
+      $state.go('tab.contacts-home');
     };
 
     $scope.goScan = function(){
-      $state.go('tab.scan')
+      $state.go('tab.scan-home')
     };
   })
 
@@ -929,9 +1008,98 @@ angular.module('starter.controllers', [])
     $scope.goCollection = function(){
       $state.go('tab.collection');
     };
+    $scope.goAddressList = function () {
+      $state.go('tab.address-list');
+    };
+    $scope.goSendEmail = function () {
+      $state.go('tab.send-email');
+    }
   })
 
-  .controller('MessageCtrl', function($scope, Chats, $ionicHistory, $state) {
+  .controller('MapCtrl', function($scope, $state, $ionicHistory, $rootScope) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+
+    $scope.position = {
+      there:''
+    };
+
+    // var options= {
+    //   enableHighAccuracy:true
+    // };
+    // window.navigator.geolocation.getCurrentPosition(function(position){
+    //   alert(1)
+    //   var lng = position.coords.longitude;
+    //   var lat = position.coords.latitude;
+    //   var map = new AMap.Map('container', {
+    //     zoom:10,
+    //     center:[lng,lat]
+    //   });
+    //   var marker = new AMap.Marker({
+    //     position: [lng, lat],
+    //     map:map
+    //   });
+    // }, function () {
+    //   alert(2)
+    // },options);
+
+    var map = new AMap.Map('container', {
+      zoom:10,
+      center:[116.39,39.9]
+    });
+    var marker = new AMap.Marker({
+      position: [116.480983, 39.989628],
+      map:map
+    });
+
+    AMap.plugin(['AMap.ToolBar','AMap.Scale'],function(){
+
+      var toolBar = new AMap.ToolBar({
+        autoPosition:true
+      });
+      map.addControl(toolBar);
+    });
+
+    AMap.service('AMap.Geocoder',function(){//回调函数
+      //实例化Geocoder
+      geocoder = new AMap.Geocoder({
+        city: "010"//城市，默认：“全国”
+      });
+    });
+    map.on('click', function(e){
+      var lnglatXY=[e.lnglat.getLng(), e.lnglat.getLat()];//地图上所标点的坐标
+      geocoder.getAddress(lnglatXY, function(status, result) {
+        if (status === 'complete' && result.info === 'OK') {
+          $scope.position.there = result.regeocode.formattedAddress;
+          marker.setPosition(lnglatXY);
+          $scope.$apply();
+        }else{
+          console.log('获取地址失败');
+        }
+      });
+    });
+    $scope.savePosition = function(){
+      var param = {
+        position: $scope.position.there
+      };
+      $rootScope.$broadcast("SAVE_POSITION",param);
+      $ionicHistory.goBack();
+    }
+  })
+
+  .controller('MessageCtrl', function($scope, Chats, $ionicHistory, $state, $stateParams) {
+    $scope.select = $stateParams.Select;
+    $scope.personOrGroup = function(peopleNum){
+      if($scope.select == 0){
+        return true;
+      } else if($scope.select == 1 && peopleNum == 2){
+        return true;
+      } else if($scope.select == 2 && peopleNum > 2){
+        return true;
+      } else
+        return false;
+    };
     $scope.chats = Chats.getAll();
     $scope.back = function(){
       $ionicHistory.goBack();
@@ -1022,7 +1190,10 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('NewExpenseDetailCtrl', function($scope, $ionicHistory, $state) {
+  .controller('NewExpenseDetailCtrl', function($scope, $ionicHistory, $state, $rootScope) {
+    $scope.address={
+      address:''
+    };
     $scope.back = function(){
       $ionicHistory.goBack();
     };
@@ -1031,7 +1202,13 @@ angular.module('starter.controllers', [])
     };
     $scope.again = function () {
       $state.go('tab.new-expense-detail');
-    }
+    };
+    $rootScope.$on('SAVE_POSITION', function(e, param){
+      $scope.address.address = param.position;
+    });
+    $scope.goMap = function () {
+      $state.go('tab.map');
+    };
   })
 
   .controller('NewExpenseClaimCtrl', function($scope, $ionicHistory, $state) {
@@ -1473,26 +1650,43 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('SynergyCtrl', function($scope) {
-    $scope.settings = {
-      enableFriends: true
-    }
+  .controller('SynergyCtrl', function($scope, $state) {
+    $scope.goWorkCircle = function(){
+      $state.go('tab.work-circle');
+    };
+    $scope.goChat = function(select){
+      $state.go('tab.message', {
+        'Select':select
+      });
+    };
+  })
+
+  .controller('SendEmailCtrl', function($scope, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+  })
+
+  .controller('SendMessageCtrl', function($scope, $ionicHistory, $stateParams) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+    $scope.name = $stateParams.Name;
   })
 
   .controller('TabCtrl', function($scope, $state) {
-  // $scope.$on('$ionicView.beforeEnter', function(){
-  //   var currentViewName = $state.current.name;
-  //   if(currentViewName != 'tab.home' && currentViewName != 'tab.crm' && currentViewName != 'tab.work' && currentViewName != 'tab.team' && currentViewName != 'tab.me'){
-  //     $scope.hideTabs = true;
-  //   }
-  // });
-  // $scope.$on('$ionicView.afterEnter', function () {
-  //   var currentViewName = $state.current.name;
-  //   if(currentViewName == 'tab.home' || currentViewName != 'tab.crm' || currentViewName == 'tab.work' || currentViewName == 'tab.team' || currentViewName == 'tab.me'){
-  //     $scope.hideTabs = false;
-  //   }
-  // })
-  //
+  $scope.$on('$ionicView.beforeEnter', function(){
+    var currentViewName = $state.current.name;
+    if(currentViewName != 'tab.home' && currentViewName != 'tab.crm' && currentViewName != 'tab.work' && currentViewName != 'tab.synergy' && currentViewName != 'tab.me'){
+      $scope.hideTabs = true;
+    }
+  });
+  $scope.$on('$ionicView.afterEnter', function () {
+    var currentViewName = $state.current.name;
+    if(currentViewName == 'tab.home' || currentViewName == 'tab.crm' || currentViewName == 'tab.work' || currentViewName == 'tab.synergy' || currentViewName == 'tab.me'){
+      $scope.hideTabs = false;
+    }
+  });
 })
 
   .controller('TopNicheCtrl', function($scope, $ionicHistory) {
@@ -1672,8 +1866,10 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('WorkCircleCtrl', function($scope) {
-
+  .controller('WorkCircleCtrl', function($scope, $ionicHistory) {
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
   })
 
 ;

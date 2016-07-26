@@ -2,19 +2,16 @@
   <ion-header-bar align-title="center" class="head-bar" >
     <h1 class="title">Synergy</h1>
   </ion-header-bar>
-  <style>
-
-  </style>
   <ion-content>
     <p class="split">沟通交流</p>
     <div class="common">
-      <p><i class="icon ion-ios-cloud-outline"></i>工作圈 <i class="icon ion-ios-arrow-right right"></i><span>1</span></p>
-      <p><i class="icon ion-ios-chatbubble-outline"></i>私聊 <i class="icon ion-ios-arrow-right right"></i><span>2</span></p>
-      <p><i class="icon ion-ios-chatboxes-outline"></i>群聊 <i class="icon ion-ios-arrow-right right"></i><span>3</span></p>
+      <p ng-click="goWorkCircle()"><i class="icon ion-ios-cloud-outline"></i>工作圈 <i class="icon ion-ios-arrow-right right"></i><span>1</span></p>
+      <p ng-click="goChat(1)"><i class="icon ion-ios-chatbubble-outline"></i>私聊 <i class="icon ion-ios-arrow-right right"></i><span>2</span></p>
+      <p ng-click="goChat(2)"><i class="icon ion-ios-chatboxes-outline"></i>群聊 <i class="icon ion-ios-arrow-right right"></i><span>3</span></p>
     </div>
     <p class="split">知识管理</p>
     <div class="common">
-      <p><i class="icon ion-ios-glasses-outline"></i>查其他人活动 <i class="icon ion-ios-arrow-right right"></i></p>
+      <p><i class="icon ion-ios-glasses-outline"></i>查看其他人活动 <i class="icon ion-ios-arrow-right right"></i></p>
     </div>
   </ion-content>
 </ion-view>

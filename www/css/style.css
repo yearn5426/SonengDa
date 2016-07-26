@@ -80,14 +80,16 @@ ion-header-bar.head-bar{
 }
 ion-header-bar.head-bar .title{
   color: #fff;
+  margin:0;
 }
 ion-header-bar.head-bar {
   background-size:0 ;
 }
-ion-header-bar.head-bar button{
+ion-header-bar.head-bar button.button.icon{
   background: transparent;
   color: #fff;
   border:0;
+  padding:0;
 }
 ion-header-bar.head-bar button.activated{
   border:0;
@@ -303,7 +305,6 @@ form.send{
   width: 100%;
   bottom:0;
   height: 3em;
-  margin-bottom:50px;
   padding-top:2px;
   border-top:1px solid #cccccc;
 }
@@ -1864,7 +1865,6 @@ ion-item.repeat-go-item.activated{
   background-color: white;
   width:100%;
   padding:10px 5%;
-  margin-bottom:50px;
   position: absolute;
   bottom:0;
   border-top:1px solid #cccccc;
@@ -1953,7 +1953,6 @@ ion-item.repeat-go-item.activated{
   background-color: white;
   width:100%;
   padding:10px 5%;
-  margin-bottom:50px;
   position: absolute;
   bottom:0;
   border-top:1px solid #cccccc;
@@ -2007,7 +2006,6 @@ ion-item.repeat-go-item.activated{
   background-color: white;
   width:100%;
   padding:10px 5%;
-  margin-bottom:50px;
   position: absolute;
   bottom:0;
   border-top:1px solid #cccccc;
@@ -2170,7 +2168,6 @@ ion-item.repeat-go-item.activated{
 }
 .chat-setting .tool{
   position: absolute;
-  bottom:50px;
   width:100%;
 }
 .chat-setting .tool p{
@@ -2204,6 +2201,7 @@ ion-item.repeat-go-item.activated{
 .my-information .information img{
   width: 50px;
   display: inline-block;
+  border-radius:25px;
   float: right;
   margin-right:10%;
 }
@@ -2350,3 +2348,157 @@ ion-item.repeat-go-item.activated{
   border-bottom: 1px solid #f0f0f0;
 }
 /* collection界面样式end */
+
+/* address-list界面样式 */
+.address-list ion-content.scroll-content{
+  background-color: white;
+}
+.address-list .contacts .split{
+  background-color: #f0f0f0;
+  padding:0 0 0 3%;
+}
+.address-list .contacts div{
+  width:100%;
+  padding:10px 6%;
+  border-bottom: 1px solid #f0f0f0;
+}
+.address-list .contacts img{
+  width:15%;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right:15px ;
+}
+/* address-list界面样式end */
+
+/* address-detail界面样式 */
+.address-detail .info{
+  background-color: white;
+  width:100%;
+  border-bottom: 1px solid #f0f0f0;
+  padding:5px 5%;
+  position: relative;
+}
+.address-detail .info:first-child{
+  margin-top:20px;
+}
+.address-detail .name{
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.address-detail .info p{
+  margin:0;
+  padding:5px 3%;
+}
+.address-detail .info label{
+  font-size: 0.9em;
+  color: rgb(7,156,246);
+  margin-left:3%;
+}
+.address-detail .info i{
+  position: absolute;
+  font-size: 2.5em;
+  right:5%;
+  color: rgb(7,156,246);
+  top: 10px;
+}
+.address-detail .info.note p{
+  min-height: 4em;
+}
+.address-detail .tool {
+  position: absolute;
+  bottom: 0;
+  width:100%;
+  background-color: transparent;
+}
+.address-detail .tool p{
+  background-color: white;
+  margin:0;
+  width:100%;
+  text-align: center;
+  padding:10px 0;
+}
+.address-detail .tool p.send{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.address-detail .tool p.save{
+  border-top:1px solid #f0f0f0;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.address-detail .tool p.delete{
+  margin-top:8px;
+  text-align: center;
+  color: red;
+  border-radius: 10px;
+}
+/* address-detail界面样式end */
+
+/* send-email界面样式 */
+.send-email ion-content.scroll-content, .send-message ion-content.scroll-content{
+  background-color: white;
+}
+.send-email .head, .send-message .head{
+  width:90%;
+  margin:0 auto;
+}
+.send-email .head div, .send-message .head div{
+  width: 100%;
+  border-bottom: 1px solid #f0f0f0;
+}
+.send-email .head div label, .send-message .head div label{
+  width:20%;
+  display: inline-block;
+}
+.send-email .head div input, .send-message .head div input{
+  display: inline-block;
+  width: 70%;
+  vertical-align: baseline;
+}
+.send-email .head div textarea, .send-message .head div textarea {
+  display: inline-block;
+  width: 70%;
+  border:1px solid #a0a0a0;
+  resize: none;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  height: 60px;
+}
+/* send-email界面样式end */
+
+/* map界面样式 */
+.map div.scroll{
+  height: 100%!important;
+}
+.map #container{
+  width: 100%;
+  height: 100%;
+}
+.map .input{
+  position: absolute;
+  width: 90vw;
+  top:50px;
+  margin-left:5vw;
+  z-index: 999;
+}
+.map .input input{
+  height: 3em;
+  width: 70vw;
+  border: 1px solid #a0a0a0;
+  border-radius: 1.5em;
+  display: inline-block;
+  margin-right: 2vw;
+  vertical-align: bottom;
+  padding:0 2vw;
+}
+.map .input button{
+  display: inline-block;
+  height: 3em;
+  width: 18vw;
+  background-color: rgb(7,156,246);
+  color: white;
+  border-radius: 10px;
+  border:1px solid #a0a0a0;
+  vertical-align: bottom;
+}
+/* map界面样式end */

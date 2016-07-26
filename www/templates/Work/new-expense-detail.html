@@ -5,7 +5,7 @@
     </button>
     <h1 class="title">New Expense Detail</h1>
     <button class="button icon" ng-click="">
-      <i class="icon ion-ios-plus-empty right"></i>
+      Add Invoice
     </button>
   </ion-header-bar>
   <ion-content class="new">
@@ -37,7 +37,7 @@
         <label>汇率</label><input type="text" value="1.0000">
       </div>
       <div class="icon">
-        <label>地点</label><input type="text" value="浙江省杭州市"><i class="icon ion-ios-location-outline"></i>
+        <label>地点</label><input type="text" ng-model="address.address"><i ng-click="goMap()" class="icon ion-ios-location-outline"></i>
       </div>
       <div class="icon">
         <label>日期从</label><input type="text"  value="2015-11-01"><i class="icon ion-ios-calendar-outline"></i>

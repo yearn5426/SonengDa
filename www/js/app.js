@@ -23,8 +23,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+  $ionicConfigProvider.platform.ios.tabs.position('bottom');
+  $ionicConfigProvider.platform.android.tabs.position('bottom');
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -126,6 +127,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.address-list',{
+      url: '/me/address-list',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/Me/address-list.html',
+          controller: 'AddressListCtrl'
+        }
+      }
+    })
+
+    .state('tab.address-detail',{
+      url: '/me/address-detail',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/Me/address-detail.html',
+          controller: 'AddressDetailCtrl'
+        }
+      },
+      params:{
+        'Name':''
+      }
+    })
+
     .state('tab.crm', {
       url: '/crm',
       views: {
@@ -140,6 +164,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/crm/contacts',
       views: {
         'tab-crm': {
+          templateUrl: 'templates/CRM/contacts.html',
+          controller: 'ContactsCtrl'
+        }
+      }
+    })
+
+    .state('tab.contacts-home', {
+      url: '/home/contacts',
+      views: {
+        'tab-home': {
           templateUrl: 'templates/CRM/contacts.html',
           controller: 'ContactsCtrl'
         }
@@ -256,10 +290,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.expense-claim', {
+      url: '/work/expense-claim',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/Work/expense-claim.html',
+          controller: 'ExpenseClaimCtrl'
+        }
+      }
+    })
+
+    .state('tab.expense-claim-home', {
       url: '/home/expense-claim',
       views: {
         'tab-home': {
-          templateUrl: 'templates/expense-claim.html',
+          templateUrl: 'templates/Work/expense-claim.html',
           controller: 'ExpenseClaimCtrl'
         }
       }
@@ -268,8 +312,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab.expense-claim-detail', {
       url: '/home/expense-claim-detail',
       views: {
-        'tab-home': {
-          templateUrl: 'templates/expense-claim-detail.html',
+        'tab-work': {
+          templateUrl: 'templates/Work/expense-claim-detail.html',
           controller: 'ExpenseClaimDetailCtrl'
         }
       },
@@ -349,20 +393,36 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.message', {
+      url: '/synergy/message',
+      views: {
+        'tab-synergy': {
+          templateUrl: 'templates/Synergy/message.html',
+          controller: 'MessageCtrl'
+        }
+      },
+      params:{
+        'Select':''
+      }
+    })
+
+    .state('tab.message-home', {
       url: '/home/message',
       views: {
         'tab-home': {
-          templateUrl: 'templates/message.html',
+          templateUrl: 'templates/Synergy/message.html',
           controller: 'MessageCtrl'
         }
+      },
+      params:{
+        'Select':''
       }
     })
 
     .state('tab.message-detail', {
-      url: '/home/message-detail',
+      url: '/synergy/message-detail',
       views: {
-        'tab-home': {
-          templateUrl: 'templates/message-detail.html',
+        'tab-synergy': {
+          templateUrl: 'templates/Synergy/message-detail.html',
           controller: 'MessageDetailCtrl'
         }
       },
@@ -387,6 +447,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         'tab-me': {
           templateUrl: 'templates/tab-me.html',
           controller: 'MeCtrl'
+        }
+      }
+    })
+
+    .state('tab.map', {
+      url: '/work/map',
+      views: {
+        'tab-work': {
+          templateUrl: 'templates/map.html',
+          controller: 'MapCtrl'
         }
       }
     })
@@ -662,6 +732,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
+    .state('tab.scan-home', {
+      url: '/home/scan',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/CRM/scan.html',
+          controller: 'ScanCtrl'
+        }
+      }
+    })
+
     .state('tab.submit-expense-claim', {
       url: '/work/submit-expense-claim',
       views: {
@@ -669,6 +749,39 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
           templateUrl: 'templates/Work/submit-expense-claim.html',
           controller: 'SubmitExpenseClaimCtrl'
         }
+      }
+    })
+
+    .state('tab.synergy', {
+      url: '/synergy',
+      views: {
+        'tab-synergy': {
+          templateUrl: 'templates/tab-synergy.html',
+          controller: 'SynergyCtrl'
+        }
+      }
+    })
+
+    .state('tab.send-email',{
+      url: '/me/send-email',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/Me/send-email.html',
+          controller: 'SendEmailCtrl'
+        }
+      }
+    })
+
+    .state('tab.send-message',{
+      url: '/me/send-message',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/Me/send-message.html',
+          controller: 'SendMessageCtrl'
+        }
+      },
+      params:{
+        'Name':''
       }
     })
 
@@ -692,16 +805,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-    .state('tab.synergy', {
-      url: '/synergy',
-      views: {
-        'tab-synergy': {
-          templateUrl: 'templates/tab-synergy.html',
-          controller: 'SynergyCtrl'
-        }
-      }
-    })
-
     .state('tab.work', {
       url: '/work',
       views: {
@@ -713,10 +816,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     })
 
     .state('tab.work-circle', {
-    url: '/work-circle',
+    url: '/synergy/work-circle',
     views: {
-     'tab-work-circle': {
-        templateUrl: 'templates/work-circle.html',
+     'tab-synergy': {
+        templateUrl: 'templates/Synergy/work-circle.html',
         controller: 'WorkCircleCtrl'
      }
     }

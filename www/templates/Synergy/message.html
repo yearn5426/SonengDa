@@ -11,7 +11,7 @@
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="chat in chats track by $index"
-      type="item-text-wrap" ng-click="goMessageDetail(chat.chatName)">
+      type="item-text-wrap" ng-click="goMessageDetail(chat.chatName)" ng-show="personOrGroup(chat.people.length)">
         <img ng-src="{{chat.face}}"><span class="messageNum">{{chat.messageNum}}</span>
         <p class="name">{{chat.chatName}}</p><p class="time"><span>{{chat.date}}</span><br><span>{{chat.time}}</span></p><br>
         <p class="text">{{chat.message[chat.message.length - 1].content}}</p>

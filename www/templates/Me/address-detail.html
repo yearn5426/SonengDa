@@ -1,0 +1,37 @@
+<ion-view view-title="Address-detail" class="address-detail">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Address Detail</h1>
+    <button class="button icon" ng-click="">
+      Edit
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="name info">
+      <p>{{contact.name}}</p>
+    </div>
+    <div class="info">
+      <label>手机</label>
+      <p>{{contact.telephone}}</p><i class="icon ion-ios-telephone-outline"></i>
+    </div>
+    <div class="info">
+      <label>座机</label>
+      <p>{{contact.phone}}</p><i class="icon ion-ios-telephone-outline"></i>
+    </div>
+    <div class="info">
+      <label>邮箱</label>
+      <p>{{contact.email}}</p><i class="icon ion-ios-email-outline"></i>
+    </div>
+    <div class="info note">
+      <label>备注</label>
+      <p>{{contact.note}}</p>
+    </div>
+  </ion-content>
+  <div class="tool">
+    <p class="send" ng-click="goSendMessage()">发送消息</p>
+    <p class="save">保存到手机通讯录</p>
+    <p class="delete">删除联系人</p>
+  </div>
+</ion-view>

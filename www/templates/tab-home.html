@@ -1,12 +1,12 @@
-<ion-slide-box>
+<ion-slide-box show-pager="false">
   <ion-slide>
     <ion-view view-title="Home" class="home">
       <ion-header-bar align-title="center" class="head-bar" >
-        <button class="button" ng-click="goScan()">
+        <button class="button icon" ng-click="goScan()">
           Scan
         </button>
         <h1 class="title">Home</h1>
-        <button class="button" ng-click="goContacts()">
+        <button class="button icon" ng-click="goContacts()">
           Contacts
         </button>
       </ion-header-bar>
@@ -75,7 +75,7 @@
     </div>
   </ion-slide>
   <ion-slide >
-    <div ng-include="'templates/work-circle.html'">
+    <div ng-include="'templates/Synergy/work-circle.html'">
     </div>
   </ion-slide>
 </ion-slide-box>
