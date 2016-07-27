@@ -4,31 +4,37 @@
       <i class="icon ion-ios-arrow-left"></i>
     </button>
     <h1 class="title">{{chat.chatName}}</h1>
-
-    <button class="button icon" ng-click="goChatSetting()">
+    <button class="button icon third-button" ng-click="goChatSetting()">
       <i class="icon ion-ios-gear-outline right"></i>
     </button>
     <button class="button icon" ng-click="" >
     <i class="icon ion-ios-telephone-outline right"></i>
     </button>
   </ion-header-bar>
+  <style>
+
+  </style>
   <ion-content class="padding">
-    <ion-list>
+    <ion-list class="message-list">
       <ion-item ng-repeat="message in chat.message track by $index"
       type="item-text-wrap" >
         <div class="receive">
-          <img ng-src="{{chat.people[message.peopleId].face}}" >
-          <span ng-bind="message.content"></span>
+          <img ng-src="{{chat.people[message.peopleId].face}}" ><span ng-bind="message.content"></span>
         </div>
       </ion-item>
     </ion-list>
   </ion-content>
   <div>
     <form class="send">
+      <div class="expression" ng-class="{true:'',false:'hide'}[showExpression]">
+        <div ng-repeat="expression in expressions">
+          <img ng-src="{{expression.src}}" ng-click="addExpression(expression.name)">
+        </div>
+      </div>
       <button class="toolBtn"><i class="icon ion-ios-plus-outline"></i></button>
-      <input name="msg" type="text" class="msg" placeholder="请输入消息"/>
-      <button class="expressionBtn"><i class="icon ion-happy-outline"></i></button>
-      <button class="sendBtn" ng-click=""><i class="icon ion-ios-redo"></i></button>
+      <input name="msg" type="text" class="msg" placeholder="请输入消息" ng-model="msg.msg"/>
+      <button ng-click="openExpression()" class="expressionBtn"><i class="icon ion-happy-outline"></i></button>
+      <button class="sendBtn" ng-click="send()"><i class="icon ion-ios-redo"></i></button>
     </form>
   </div>
 </ion-view>

@@ -421,8 +421,7 @@ angular.module('starter.services', [])
       }],
       message:[{
         peopleId:1,
-        content: '好多要做啊',
-        type:'receive'
+        content: '好多要做啊'
       }]
     }, {
       chatName:'豆豆 ',
@@ -439,12 +438,10 @@ angular.module('starter.services', [])
       }],
       message:[{
         peopleId:1,
-        content: '对啊!',
-        type:'receive'
+        content: '对啊!'
       }, {
         peopleId:1,
-        content: '要做好久!!',
-        type:'receive'
+        content: '要做好久!!'
       }]
     }, {
       chatName:'移动技术部',
@@ -467,16 +464,13 @@ angular.module('starter.services', [])
       }],
       message:[{
         peopleId:1,
-        content: 'Hey, everybody!',
-        type:'receive'
+        content: 'Hey, everybody!'
       },{
         peopleId:2,
-        content: 'Hey!!',
-        type:'receive'
+        content: 'Hey!!'
       },{
         peopleId:3,
-        content: 'ZZ~',
-        type:'receive'
+        content: 'ZZ~'
       }]
     }, {
       chatName:'销售管理组',
@@ -502,21 +496,17 @@ angular.module('starter.services', [])
       }],
       message:[{
         peopleId:1,
-        content: '好多要做啊',
-        type:'receive'
+        content: '好多要做啊'
       },{
         peopleId:2,
         content: '对啊!',
-        face:'img/ben.png',
-        type:'receive'
+        face:'img/ben.png'
       },{
         peopleId:3,
-        content: '加油吧大家',
-        type:'receive'
+        content: '加油吧大家'
       }, {
         peopleId:4,
-        content: '收到!',
-        type:'receive'
+        content: '收到!'
       }]
     }];
     return {
@@ -991,6 +981,127 @@ angular.module('starter.services', [])
           return contacts[i];
       }
       return null;
+    }
+  }
+})
+
+.factory('Dynamics', function () {
+    var dynamics = [{
+      name:'张冉',
+      face:'img/mike.png',
+      content:'When I was young, I’d listen to the radio. Waiting for my favorite songs. When they played I’d sing along, It made me smile. Those were such happy times. And not so long ago. How I wondered where they’d gone. ',
+      image:['img/ionic.png', 'img/me.jpg', 'img/max.png'],
+      like:true,
+      collected:true,
+      comment:[{
+        people:'盘旭',
+        content:'..what?....!'
+      }],
+      edit:false
+    },{
+      name:'豆豆',
+      face:'img/ionic.png',
+      content:'沉迷学习不可自拔，日渐消瘦萎靡不振',
+      image:['img/ionic.png','img/max.png'],
+      like:true,
+      collected:false,
+      comment:[{
+        people:'刘佳航',
+        content:'啊,学习好有意思'
+      }],
+      edit:false
+    },{
+      name:'楚葱',
+      face:'img/attachment.png',
+      content:'我的头像是现在最好的学习工具。没有之一！ ',
+      image:['img/attachment.png', 'img/adam.jpg', 'img/max.png'],
+      like:false,
+      collected:false,
+      comment:[],
+      edit:false
+    }];
+    return {
+      getAll: function(){
+        return dynamics;
+      },
+      getByName:function(name){
+        for(var i = 0; i < dynamics.length; i++){
+          if(dynamics[i].name == name)
+            return dynamics[i];
+        }
+        return null;
+      }
+    }
+  })
+
+.factory('Expressions', function () {
+  var expressions = [{
+    src:'img/expression/.bs.png',
+    name:'.bs'
+  }, {
+    src:'img/expression/.dk.png',
+    name:'.dk'
+  }, {
+    src:'img/expression/.dx.png',
+    name:'.dx'
+  }, {
+    src:'img/expression/.fh.png',
+    name:'.fh'
+  }, {
+    src:'img/expression/.gz.png',
+    name:'.gz'
+  }, {
+    src:'img/expression/.jk.png',
+    name:'.jk'
+  }, {
+    src:'img/expression/.jy.png',
+    name:'.jy'
+  }, {
+    src:'img/expression/.kb.png',
+    name:'.kb'
+  }, {
+    src:'img/expression/.ku.png',
+    name:'.ku'
+  }, {
+    src:'img/expression/.lh.png',
+    name:'.lh'
+  }, {
+    src:'img/expression/.pz.png',
+    name:'.pz'
+  }, {
+    src:'img/expression/.qq.png',
+    name:'.qq'
+  }, {
+    src:'img/expression/.se.png',
+    name:'.se'
+  }, {
+    src:'img/expression/.shuai.png',
+    name:'.shuai'
+  }, {
+    src:'img/expression/.tx.png',
+    name:'.tx'
+  }, {
+    src:'img/expression/.wq.png',
+    name:'.wq'
+  }, {
+    src:'img/expression/.wx.png',
+    name:'.wx'
+  },{
+    src:'img/expression/.yun.png',
+    name:'.yun'
+  },{
+    src:'img/expression/.yw.png',
+    name:'.yw'
+  }, {
+    src:'img/expression/.zj.png',
+    name:'.zj'
+  }, {
+    src:'img/expression/.zk.png',
+    name:'.zk'
+  }];
+  return {
+    getAll: function(){
+      return expressions;
     }
   }
 })

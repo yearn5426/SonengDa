@@ -8,20 +8,56 @@
       <i class="icon ion-ios-camera-outline right"></i>
     </button>
   </ion-header-bar>
+  <style>
+    .work-circle .dynamic .comment{
+      margin-top: 10px;
+      padding:0;
+    }
+    .work-circle .dynamic .comment span{
+      font-size: 1em;
+      color: rgb(7,156,246);
+    }
+    .work-circle .dynamic .comment p{
+      margin:0;
+      padding:0;
+      font-size: 1em;
+      color: #000;
+    }
+    .work-circle .dynamic .comment input{
+      display: inline-block;
+      width:70%;
+      border:1px solid  #a0a0a0;
+      height: 2em;
+    }
+    .work-circle .dynamic .comment button{
+      margin-left: 5%;
+      border: 0;
+      background-color: rgb(7,156,246);
+      color: #fff;
+      height: 2em;
+      vertical-align: bottom;
+    }
+  </style>
   <ion-content class="padding">
     <div class="background-img">
       <span>袁  梦</span>
       <img src="img/me.jpg">
     </div>
-    <div class="dynamic">
-      <img src="img/mike.png" class="head">
-      <p class="name">张冉</p>
-      <p>When I was young, I’d listen to the radio. Waiting for my favorite songs. When they played I’d sing along, It made me smile. Those were such happy times. And not so long ago. How I wondered where they’d gone. </p>
-      <div>
-        <img src="img/ionic.png"><img src="img/me.jpg"><img src="img/max.png">
-      </div>
-      <div>
-        <span>1小时前</span><i class="icon ion-ios-book-outline"></i><i class="icon ion-ios-compose"></i><i class="icon ion-ios-heart"></i>
+    <div class="dynamic-container">
+      <div class="dynamic" ng-repeat="dynamic in dynamics">
+        <img ng-src="{{dynamic.face}}" class="head">
+        <p class="name"></p>
+        <p>{{dynamic.content}}</p>
+        <div>
+          <img ng-src="{{img}}" ng-repeat="img in dynamic.image"><img ng-src="{{img}}"><img ng-src="{{img}}">
+        </div>
+        <div>
+          <span>1小时前</span><i ng-click="collect(dynamic)" class="icon" ng-class="{true:'ion-ios-book',false:'ion-ios-book-outline'}[dynamic.collected]"></i><i ng-click="edit(dynamic)" class="icon " ng-class="{true:'ion-ios-compose',false:'ion-ios-compose-outline'}[dynamic.edit]"></i><i ng-click="like(dynamic)" class="icon " ng-class="{true:'ion-ios-heart',false:'ion-ios-heart-outline'}[dynamic.like]"></i>
+        </div>
+        <div class="comment" ng-show="dynamic.edit">
+          <p ng-repeat="comment in dynamic.comment"><span>{{comment.people}}：</span>{{comment.content}}</p>
+          <input type="text" placeholder="评论" ng-model="comment.comment"><button ng-click="send(dynamic)">Send</button>
+        </div>
       </div>
     </div>
   </ion-content>

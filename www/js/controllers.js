@@ -406,15 +406,35 @@ angular.module('starter.controllers', [])
   })
 
   .controller('ChatSettingCtrl', function($scope, $ionicHistory, $stateParams, Chats) {
+    $scope.addOrBuild = '';
+    $scope.settings = {
+      top:false ,
+      notDisturb: false,
+      showNickname:true
+    };
+    $scope.chat = Chats.getByChatName($stateParams.ChatName);
+    if($scope.chat.people.length > 2)
+      $scope.addOrBuild = '添加成员';
+    else
+      $scope.addOrBuild = '创建群聊';
+
     $scope.back = function(){
       $ionicHistory.goBack();
     };
-    $scope.chat = Chats.getByChatName($stateParams.ChatName);
+
+    $scope.delete = function(){
+      Chats.getAll().pop($scope.chat);
+      $ionicHistory.goBack(-2);
+    }
   })
 
-  .controller('CollectionCtrl', function($scope, $ionicHistory) {
+  .controller('CollectionCtrl', function($scope, $ionicHistory, Dynamics) {
+    $scope.dynamics = Dynamics.getAll();
     $scope.back = function(){
       $ionicHistory.goBack();
+    };
+    $scope.delete = function(dynamic){
+      dynamic.collected = false;
     };
   })
 
@@ -591,10 +611,8 @@ angular.module('starter.controllers', [])
     };
 
     $scope.isExamine = false;
-
     $scope.allClaim = ExpenseClaim.getAll();
     $scope.nowClaim = [];
-
 
     $scope.refresh();
 
@@ -611,7 +629,6 @@ angular.module('starter.controllers', [])
 
 
     $scope.goDetail = function(expenseClaimHead){
-
       $state.go('tab.expense-claim-detail',{
         'ExpenseClaimHead':expenseClaimHead
       });
@@ -627,8 +644,6 @@ angular.module('starter.controllers', [])
       $scope.isExamine = !$scope.isExamine;
       $scope.refresh();
     });
-
-
   })
 
   .controller('ExpenseClaimDetailCtrl', function($scope, ExpenseClaim, $ionicHistory, $stateParams, $rootScope) {
@@ -648,29 +663,43 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('ExpenseShorthandCtrl', function($scope, $ionicHistory, $state, $rootScope) {
+  .controller('ExpenseShorthandCtrl', function($scope, $ionicHistory, $state, $rootScope, ionicDatePicker) {
     $scope.back = function(){
       $ionicHistory.goBack();
     };
     $scope.goMap = function () {
       $state.go('tab.map');
     };
-    $scope.address = {
-      address:''
+    $scope.data = {
+      address:'',
+      date:''
     };
     $rootScope.$on('SAVE_POSITION', function(e, param){
-      $scope.address.address = param.position;
+      $scope.data.address = param.position;
     });
+
+    var calendar = {
+      callback: function (val) {  //Mandatory
+        var date = new Date(val);
+        $scope.data.date = date.getFullYear() + '-' + date.getMonth() + '-'+ date.getDate();
+      },
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2016, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openDatePicker = function(){
+      ionicDatePicker.openDatePicker(calendar);
+    };
   })
 
   .controller('ExpenseQueryCtrl', function($scope, $ionicHistory, $state) {
     $scope.back = function(){
-      $ionicHistory.goBack();
+      $state.go('tab.work');
     };
 
-    // $scope.build = function () {
-    //   $state.go('tab.submit-expense-claim');
-    // };
     $scope.showTool = [false, false];
 
     $scope.show = function(index){
@@ -861,7 +890,7 @@ angular.module('starter.controllers', [])
     chart.setOption(option);
   })
 
-  .controller('HomeCtrl', function($scope, Activities, $state) {
+  .controller('HomeCtrl', function($scope, Activities, $state, Chats, $rootScope, ExpenseClaim, $timeout) {
 
     $scope.date = 1;
     $scope.activities = Activities.get(1);
@@ -869,6 +898,19 @@ angular.module('starter.controllers', [])
     $scope.selected = [false, true, false, false, false, false, false,
       false, false, false, false, false, false, false];
     $scope.search ='';
+    $scope.chats = Chats.getAll();
+    $scope.messageNum = 0;
+    $scope.claimNum = 0;
+    $scope.expenseClaim = ExpenseClaim.getAll();
+
+    for(var i = 0; i < $scope.chats.length; i++){
+      $scope.messageNum += parseInt($scope.chats[i].messageNum);
+    }
+
+    for(i = 0; i < $scope.expenseClaim.length; i++){
+      if($scope.expenseClaim[i].examine == false)
+        $scope.claimNum++;
+    }
 
     $scope.chooseDate= function(date){
       $scope.activities = Activities.get(date);
@@ -907,6 +949,23 @@ angular.module('starter.controllers', [])
     $scope.goScan = function(){
       $state.go('tab.scan-home')
     };
+
+    $rootScope.$on('CHANGE_MESSAGE_NUM', function(){
+      $scope.messageNum = 0;
+      for(var i = 0; i < $scope.chats.length; i++){
+        $scope.messageNum += parseInt($scope.chats[i].messageNum);
+      }
+    })
+
+    $rootScope.$on('DONE_EXAMINE', function(){
+      $timeout(function(){
+        $scope.claimNum = 0;
+        for( var i = 0; i < $scope.expenseClaim.length; i++){
+          if($scope.expenseClaim[i].examine == false)
+            $scope.claimNum++;
+        }
+      },1000);
+    })
   })
 
   .controller('KeyNicheCtrl', function($scope, $ionicHistory) {
@@ -1025,25 +1084,6 @@ angular.module('starter.controllers', [])
       there:''
     };
 
-    // var options= {
-    //   enableHighAccuracy:true
-    // };
-    // window.navigator.geolocation.getCurrentPosition(function(position){
-    //   alert(1)
-    //   var lng = position.coords.longitude;
-    //   var lat = position.coords.latitude;
-    //   var map = new AMap.Map('container', {
-    //     zoom:10,
-    //     center:[lng,lat]
-    //   });
-    //   var marker = new AMap.Marker({
-    //     position: [lng, lat],
-    //     map:map
-    //   });
-    // }, function () {
-    //   alert(2)
-    // },options);
-
     var map = new AMap.Map('container', {
       zoom:10,
       center:[116.39,39.9]
@@ -1088,7 +1128,7 @@ angular.module('starter.controllers', [])
     }
   })
 
-  .controller('MessageCtrl', function($scope, Chats, $ionicHistory, $state, $stateParams) {
+  .controller('MessageCtrl', function($scope, Chats, $ionicHistory, $state, $stateParams, $rootScope) {
     $scope.select = $stateParams.Select;
     $scope.personOrGroup = function(peopleNum){
       if($scope.select == 0){
@@ -1103,6 +1143,7 @@ angular.module('starter.controllers', [])
     $scope.chats = Chats.getAll();
     $scope.back = function(){
       $ionicHistory.goBack();
+      $rootScope.$broadcast('CHANGE_MESSAGE_NUM');
     };
     $scope.goMessageDetail = function(chatName){
       $state.go('tab.message-detail',{
@@ -1114,16 +1155,49 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('MessageDetailCtrl', function($scope, Chats, $stateParams, $ionicHistory, $state) {
+  .controller('MessageDetailCtrl', function($scope, Chats, $stateParams, $ionicHistory, $state, Expressions) {
     $scope.chat = Chats.getByChatName($stateParams.ChatName);
+    $scope.expressions = Expressions.getAll();
+    $scope.showExpression = false;
     $scope.back = function(){
       $ionicHistory.goBack();
+      $scope.chat.messageNum = 0;
     };
+    $scope.msg = {
+      msg:''
+    };
+
+    var pattern= /\.bs|\.dk|\.dx|\.fh|\.gz|\.jk|\.jy|\.kb|\.ku|\.lh|\.pz|\.qq|\.se|\.shuai|\.tx|\.wq|\.wx|\.yun|\.yw|\.zj|\.zk/g;
+    var regExp  = new RegExp(pattern);
     $scope.goChatSetting = function(){
       $state.go('tab.chat-setting', {
         'ChatName':$stateParams.ChatName
       });
     };
+    $scope.send = function(){
+      var newmsg = $scope.msg.msg.replace(regExp,"<img class='content-expression' src='img/expression/$&.png'>");
+      var ionList = document.getElementsByClassName('message-list')[0];
+      var list = ionList.childNodes[0];
+      var ionItem = document.createElement('ion-item');
+      ionItem.setAttribute('class', 'item');
+      var div = document.createElement('div');
+      div.setAttribute('class', 'send');
+      var img = document.createElement('img');
+      img.setAttribute('src', 'img/me.jpg');
+      var span = document.createElement('span');
+      span.innerHTML = newmsg;
+      div.appendChild(img);
+      div.appendChild(span);
+      ionItem.appendChild(div);
+      list.appendChild(ionItem);
+      $scope.msg.msg = '';
+    };
+    $scope.addExpression = function(name) {
+      $scope.msg.msg += name;
+    };
+    $scope.openExpression = function(){
+      $scope.showExpression = !$scope.showExpression;
+    }
   })
 
   .controller('MyInformationCtrl', function($scope, Chats, $ionicHistory, Me) {
@@ -1190,9 +1264,11 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('NewExpenseDetailCtrl', function($scope, $ionicHistory, $state, $rootScope) {
-    $scope.address={
-      address:''
+  .controller('NewExpenseDetailCtrl', function($scope, $ionicHistory, $state, $rootScope, ionicDatePicker) {
+    $scope.data={
+      address:'',
+      startDate:'',
+      endDate:''
     };
     $scope.back = function(){
       $ionicHistory.goBack();
@@ -1208,6 +1284,37 @@ angular.module('starter.controllers', [])
     });
     $scope.goMap = function () {
       $state.go('tab.map');
+    };
+
+    var startCalendar = {
+      callback: function (val) {  //Mandatory
+        var date = new Date(val);
+        $scope.data.startDate = date.getFullYear() + '-' + date.getMonth() + '-'+ date.getDate();
+      },
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2016, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openStartCalendar = function(){
+      ionicDatePicker.openDatePicker(startCalendar);
+    };
+    var endCalendar = {
+      callback: function (val) {  //Mandatory
+        var date = new Date(val);
+        $scope.data.endDate = date.getFullYear() + '-' + date.getMonth() + '-'+ date.getDate();
+      },
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2016, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openEndCalendar = function(){
+      ionicDatePicker.openDatePicker(endCalendar);
     };
   })
 
@@ -1571,11 +1678,6 @@ angular.module('starter.controllers', [])
     $scope.back = function(){
       $ionicHistory.goBack();
     };
-    // $scope.onHover = [false, false];
-    //
-    // $scope.click = function(selected){
-    //   $scope.onHover[selected] = true;
-    // }
   })
 
   .controller('SaleFunnelCtrl', function($scope, $ionicHistory) {
@@ -1650,7 +1752,7 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('SynergyCtrl', function($scope, $state) {
+  .controller('SynergyCtrl', function($scope, $state, Chats, $rootScope) {
     $scope.goWorkCircle = function(){
       $state.go('tab.work-circle');
     };
@@ -1659,6 +1761,26 @@ angular.module('starter.controllers', [])
         'Select':select
       });
     };
+    $scope.chats = Chats.getAll();
+    $scope.privateMessageNum = 0;
+    $scope.groupMessageNum = 0;
+
+    for(var i = 0; i < $scope.chats.length; i++){
+      if($scope.chats[i].people.length > 2)
+        $scope.groupMessageNum += parseInt($scope.chats[i].messageNum);
+      else
+        $scope.privateMessageNum += parseInt($scope.chats[i].messageNum)
+    }
+    $rootScope.$on('CHANGE_MESSAGE_NUM', function(){
+      $scope.privateMessageNum = 0;
+      $scope.groupMessageNum = 0;
+      for(var i = 0; i < $scope.chats.length; i++){
+        if($scope.chats[i].people.length > 2)
+          $scope.groupMessageNum += parseInt($scope.chats[i].messageNum);
+        else
+          $scope.privateMessageNum += parseInt($scope.chats[i].messageNum)
+      }
+    })
   })
 
   .controller('SendEmailCtrl', function($scope, $ionicHistory) {
@@ -1866,10 +1988,31 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('WorkCircleCtrl', function($scope, $ionicHistory) {
+  .controller('WorkCircleCtrl', function($scope, $ionicHistory, Dynamics) {
+    $scope.dynamics = Dynamics.getAll();
     $scope.back = function(){
       $ionicHistory.goBack();
     };
+    $scope.collect = function(dynamic){
+      dynamic.collected = !dynamic.collected;
+    };
+    $scope.edit = function(dynamic){
+      dynamic.edit = !dynamic.edit;
+    };
+    $scope.like = function(dynamic){
+      dynamic.like = !dynamic.like;
+    };
+    $scope.comment = {
+      comment:''
+    };
+    $scope.send = function(dynamic){
+      var comment = {
+        people:'我',
+        content: $scope.comment.comment
+      };
+      dynamic.comment.push(comment);
+      $scope.comment.comment = '';
+    }
   })
 
 ;

@@ -61,10 +61,10 @@
           <p ng-show="noActivities">无</p>
         </div>
         <div class="has-msg-span common" >
-          <p ng-click="goExpenseClaim()"><i class="icon ion-ios-checkmark-outline"></i>报销单审批 <i class="icon ion-ios-arrow-right right"></i><span>2</span></p>
+          <p ng-click="goExpenseClaim()"><i class="icon ion-ios-checkmark-outline"></i>报销单审批 <i class="icon ion-ios-arrow-right right"></i><span ng-show="claimNum">{{claimNum}}</span></p>
         </div>
         <div class="has-msg-span common">
-          <p ng-click="goMessage()"><i class="icon ion-ios-paperplane-outline"></i>消息 <i class="icon ion-ios-arrow-right right"></i><span>10</span></p>
+          <p ng-click="goMessage()"><i class="icon ion-ios-paperplane-outline"></i>消息 <i class="icon ion-ios-arrow-right right"></i><span ng-show="messageNum">{{messageNum}}</span></p>
         </div>
       </ion-content>
     </ion-view>

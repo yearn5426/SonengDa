@@ -43,9 +43,8 @@
         </ion-item>
       </ion-list>
     </div>
-    <div class="examine" ng-if="!expenseClaim.examine">
-      <button ng-click="doExamine(false)">拒    绝</button>
-      <button ng-click="doExamine(true)">批    准</button>
-    </div>
   </ion-content>
+  <div class="examine" ng-if="!expenseClaim.examine">
+    <button class="left" ng-click="doExamine(false)">Refused</button><Button class="right" ng-click="doExamine(true)">Approve</Button>
+  </div>
 </ion-view>

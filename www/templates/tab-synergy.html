@@ -6,8 +6,8 @@
     <p class="split">沟通交流</p>
     <div class="common">
       <p ng-click="goWorkCircle()"><i class="icon ion-ios-cloud-outline"></i>工作圈 <i class="icon ion-ios-arrow-right right"></i><span>1</span></p>
-      <p ng-click="goChat(1)"><i class="icon ion-ios-chatbubble-outline"></i>私聊 <i class="icon ion-ios-arrow-right right"></i><span>2</span></p>
-      <p ng-click="goChat(2)"><i class="icon ion-ios-chatboxes-outline"></i>群聊 <i class="icon ion-ios-arrow-right right"></i><span>3</span></p>
+      <p ng-click="goChat(1)"><i class="icon ion-ios-chatbubble-outline"></i>私聊 <i class="icon ion-ios-arrow-right right"></i><span ng-show="privateMessageNum">{{privateMessageNum}}</span></p>
+      <p ng-click="goChat(2)"><i class="icon ion-ios-chatboxes-outline"></i>群聊 <i class="icon ion-ios-arrow-right right"></i><span ng-show="groupMessageNum">{{groupMessageNum}}</span></p>
     </div>
     <p class="split">知识管理</p>
     <div class="common">

@@ -6,14 +6,14 @@
     <h1 class="title">Collection</h1>
   </ion-header-bar>
   <ion-content>
-    <div class="dynamic">
-      <img src="img/mike.png" class="head">
-      <p class="name">张冉</p>
-      <p>When I was young, I’d listen to the radio. Waiting for my favorite songs. When they played I’d sing along, It made me smile. Those were such happy times. And not so long ago. How I wondered where they’d gone. </p>
+    <div class="dynamic" ng-repeat="dynamic in dynamics" ng-show="dynamic.collected">
+      <img ng-src="{{dynamic.face}}" class="head">
+      <p class="name"></p>
+      <p>{{dynamic.content}}</p>
       <div>
-        <img src="img/ionic.png"><img src="img/me.jpg"><img src="img/max.png">
+        <img ng-src="{{img}}" ng-repeat="img in dynamic.image"><img ng-src="{{img}}"><img ng-src="{{img}}">
       </div>
+      <span class="delete" ng-click="delete(dynamic)">delete</span>
     </div>
-    <span class="delete">delete</span>
   </ion-content>
 </ion-view>

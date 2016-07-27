@@ -104,6 +104,11 @@ ion-header-bar.head-bar button:hover{
 ion-header-bar.head-bar button.icon i.icon:before{
   font-size: 2em;
 }
+ion-header-bar.head-bar button.third-button{
+  position: absolute;
+  top:6px;
+  right:10%;
+}
   /* head-bar样式end */
 
   /* sort和sift工具样式 */
@@ -132,7 +137,6 @@ ion-header-bar.head-bar button.icon i.icon:before{
   margin-bottom: 5px;
   padding:0 20px;
 }
-
 .sort-and-sift .function button i{
   position: absolute;
   font-size: 1.2em;
@@ -146,7 +150,6 @@ ion-header-bar.head-bar button.icon i.icon:before{
   padding-bottom:5px;
   margin:0;
 }
-
 .sort-and-sift div div{
   border-top:1px solid #a0a0a0;
   border-bottom:1px solid #a0a0a0;
@@ -336,6 +339,30 @@ form.send .msg:focus{
   border-color: #387ef5;
 }
   /* 聊天消息发送栏样式end */
+
+  /* 弹出日历样式 */
+.popup .prev_btn_section i, .popup .next_btn_section i{
+  color: rgb(7,156,246);
+}
+.ionic_datepicker_popup .popup .popup-body .selected_date_full{
+  background-color: rgb(7,156,246);
+}
+.ionic_datepicker_popup .popup .popup-body .year_select, .ionic_datepicker_popup .popup .popup-body .month_select{
+  border-bottom:1px solid rgb(7,156,246);
+}
+.ionic_datepicker_popup .popup .popup-body .year_select:after, .ionic_datepicker_popup .popup .popup-body .month_select:after{
+  color: rgb(7,156,246);
+}
+.ionic_datepicker_popup .popup .selected_date{
+  background-color: rgb(7,156,246);
+}
+.ionic_datepicker_popup .popup .today{
+  border:0;
+}
+.ionic_datepicker_popup .popup .popup-buttons button{
+  background-color: rgb(7,156,246);
+}
+  /* 弹出日历样式end */
 /* 常用样式end */
 
 
@@ -683,23 +710,23 @@ form.send .msg:focus{
   text-align: left;
 }
 .expense-claim-detail .examine{
-  width: 90%;
-  margin:0 auto;
-  text-align: center;
+  background-color: white;
+  width:100%;
+  padding:10px 5%;
+  position: absolute;
+  bottom:0;
+  border-top:1px solid #cccccc;
 }
 .expense-claim-detail .examine button{
-  height: 44px;
-  margin:5px 10px;
-  width: 40%;
-  background-color: rgb(7,156,246);
-  color: white;
-  border:0;
-  border-radius: 15px;
-  font-size: 1.2em;
-  white-space: pre;
+  border:none;
+  background-color: white;
+  color: rgb(7,156,246);
 }
-.expense-claim-detail .examine button.activated{
-  font-weight: bolder;
+.expense-claim-detail .examine .left{
+  float: left;
+}
+.expense-claim-detail .examine .right{
+  float: right;
 }
 /* expense-claim-detail界面样式end */
 
@@ -787,12 +814,18 @@ form.send .msg:focus{
   right:10px;
   box-shadow: 2px 2px 2px #808080;
 }
+.work-circle .dynamic-container{
+  width: 100%;
+  padding-top:290px;
+}
 .work-circle .dynamic{
   position: relative;
   width: 90%;
   margin:0 auto;
-  padding-top:290px;
   padding-left:65px;
+  padding-bottom:10px;
+  margin-bottom:30px;
+  border-bottom: 1px solid #f0f0f0;
 }
 .work-circle .dynamic .head{
   position: absolute;
@@ -946,41 +979,92 @@ form.send .msg:focus{
 
 /* message-detail样式 */
 .message-detail .item{
-  width: 70%;
+  width: 95vw;
   background-color: transparent;
   border:0;
-  margin-left:10px;
+  margin:0 auto;
   margin-top:10px;
-  padding:10px;
+  padding:10px 0;
+  position: relative;
 }
-.message-detail .receive img{
+.message-detail img{
   display: inline-block;
-  width:50px;
-  height: 50px;
+  width:15vw;
   border-radius: 10px;
 }
-.message-detail .receive span{
-  position: absolute;
+.message-detail span{
+  position: relative;
   display: inline-block;
-  top:15px;
-  margin-left: 25px;
-  background-color: white;
   line-height: 20px;
   padding:10px 10px;
-  vertical-align: baseline;
+  vertical-align: top;
   border-radius: 13px;
   white-space: normal;
+  margin-top:5px;
+  max-width: 70vw;
+}
+.message-detail .receive span{
+  margin-left: 5vw;
+  background-color: white;
 }
 .message-detail .receive span:before{
   position: absolute;
-  left:-20px;
+  left:-4.5vw;
   content: '';
   border-right: 20px solid white;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   font-size: 0;
   line-height: 0;
-  z-index: 999;
+  top:10px;
+}
+.message-detail .send img{
+  float: right;
+  right:0;
+}
+.message-detail .send span{
+  float: right;
+  margin-right: 5vw;
+  background-color: rgb(7,156,246);
+  color: #fff;
+}
+.message-detail .send span:after{
+  position: absolute;
+  right:-4.5vw;
+  content: '';
+  border-left: 20px solid rgb(7,156,246);
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  font-size: 0;
+  line-height: 0;
+  top:10px;
+}
+.message-detail .send .content-expression{
+  width:24px;
+}
+.message-detail .send .expression{
+  position: absolute;
+  top:-7.3em;
+  width: 100%;
+  padding-top:0.5em;
+  padding-bottom:0.5em;
+  background-color: white;
+  border-top:1px solid #cccccc;
+  border-bottom:1px solid #cccccc;
+}
+.message-detail .send .expression div{
+  display: inline-block;
+  width: 14.2%;
+  text-align: center;
+}
+.message-detail .send .expression img{
+  width:24px;
+  float: none;
+}
+.message-detail .send .expression.hide{
+  border:0;
+  height: 0;
+  padding: 0;
 }
 /* message-detail样式end */
 
@@ -1161,6 +1245,34 @@ form.send .msg:focus{
   left: -0.2em;
 }
 /* niche-list页面样式end */
+
+/* niche-stage界面样式 */
+.niche-stage .stage{
+  margin: 0;
+  background-color: white;
+  padding:10px;
+  border-top: 1px solid #c0c0c0;
+  position: relative;
+}
+.niche-stage .stage:first-child{
+  margin-top: 20px;
+  border:0;
+}
+.niche-stage div p{
+  display: inline-block;
+  margin: 0;
+  margin-left: 5%;
+  width:80%;
+  line-height: 2em;
+  height:2em;
+}
+.niche-stage .stage i{
+  position: absolute;
+  font-size: 2em;
+  vertical-align: middle;
+  color: rgb(7,156,246);
+}
+/* niche-stage界面样式end */
 
 /* activity-record界面样式 */
 .activity-record .activity-info{
@@ -1533,14 +1645,18 @@ ion-item.repeat-go-item.activated{
   margin:50px auto;
 }
 .attachment-detail .tool{
-  width:100%;
-  padding:10px 23%;
-  height:1.6em;
   background-color: white;
-  font-size: 2.5em;
+  width:100%;
+  padding:0 5%;
+  position: absolute;
+  bottom:0;
+  border-top:1px solid #cccccc;
+}
+.attachment-detail .tool button{
+  border:none;
+  background-color: white;
   color: rgb(7,156,246);
-  border-top:1px solid #a0a0a0;
-  border-bottom:1px solid #a0a0a0;
+  font-size: 2em;
 }
 .attachment-detail .tool .left{
   float: left;
@@ -2125,6 +2241,7 @@ ion-item.repeat-go-item.activated{
 .chat-setting .member div{
   display: inline-block;
   margin-right:10px;
+  text-align: center;
 }
 .chat-setting .member img{
   width: 40px;
@@ -2166,9 +2283,14 @@ ion-item.repeat-go-item.activated{
   font-size:2em;
   vertical-align: text-bottom;
 }
+.chat-setting .group-setting p span{
+  float: right;
+  margin-right: 30px;
+}
 .chat-setting .tool{
   position: absolute;
   width:100%;
+  bottom:1px;
 }
 .chat-setting .tool p{
   width:100%;
@@ -2261,7 +2383,7 @@ ion-item.repeat-go-item.activated{
 /* password-setting界面样式 */
 .password-setting .tool {
   position: absolute;
-  bottom: 50px;
+  bottom: 1px;
   width:100%;
   background-color: transparent;
 }
@@ -2313,13 +2435,14 @@ ion-item.repeat-go-item.activated{
   position: relative;
   width: 90%;
   margin:0 auto;
-  margin-top: 20px;
-  margin-left:65px;
+  padding-top: 20px;
+  padding-left:55px;
+  border-bottom: 1px solid #f0f0f0;
 }
 .collection .dynamic .head{
   position: absolute;
   width: 50px;
-  left:-60px;
+  left:-5px;
   height: 50px;
   box-shadow: 2px 2px 2px #808080;
   display: inline-block;
@@ -2330,7 +2453,7 @@ ion-item.repeat-go-item.activated{
 }
 .collection .dynamic p{
   display: block;
-  max-width:85%;
+  max-width:85vw;
 }
 .collection .dynamic div img{
   width:20%;
@@ -2342,10 +2465,12 @@ ion-item.repeat-go-item.activated{
 }
 .collection .delete{
   display: block;
-  margin:0 2%;
-  padding:3px 10px;
+  width: 25%;
+  margin:0;
+  padding:5px 0;
+  position: relative;
+  left:60vw;
   color: #808080;
-  border-bottom: 1px solid #f0f0f0;
 }
 /* collection界面样式end */
 
