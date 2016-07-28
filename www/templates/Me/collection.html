@@ -8,7 +8,7 @@
   <ion-content>
     <div class="dynamic" ng-repeat="dynamic in dynamics" ng-show="dynamic.collected">
       <img ng-src="{{dynamic.face}}" class="head">
-      <p class="name"></p>
+      <p class="name">{{dynamic.name}}</p>
       <p>{{dynamic.content}}</p>
       <div>
         <img ng-src="{{img}}" ng-repeat="img in dynamic.image"><img ng-src="{{img}}"><img ng-src="{{img}}">

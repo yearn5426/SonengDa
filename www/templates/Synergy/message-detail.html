@@ -11,10 +11,7 @@
     <i class="icon ion-ios-telephone-outline right"></i>
     </button>
   </ion-header-bar>
-  <style>
-
-  </style>
-  <ion-content class="padding">
+  <ion-content class="padding" ng-class="{true:'open-expression', false:''}[showExpression]">
     <ion-list class="message-list">
       <ion-item ng-repeat="message in chat.message track by $index"
       type="item-text-wrap" >

@@ -34,6 +34,9 @@ ion-content div.common i.right{
   float: right;
   color: black;
 }
+ion-content.has-header{
+  top:7vh;
+}
   /* 分隔p样式 */
 .work ion-content div div, .team ion-content div div, .search-result ion-content div div{
   margin-top:0;
@@ -77,10 +80,12 @@ div.tab-nav.tabs a span{
   /* head-bar样式 */
 ion-header-bar.head-bar{
   background-color: rgb(7,156,246);
+  height: 7vh;
 }
 ion-header-bar.head-bar .title{
   color: #fff;
   margin:0;
+  vertical-align: middle;
 }
 ion-header-bar.head-bar {
   background-size:0 ;
@@ -371,10 +376,13 @@ form.send .msg:focus{
   /* 搜索区域样式 */
 .home .search {
   display: block;
-  margin-top: 44px;
+  margin:0;
+  margin-top: 7vh;
+  height: 7.5vh;
   width:100%;
   background-color: rgb(7,156,246);
-  padding:5px 20px;
+  padding:0 20px;
+  border:0;
 }
 .home .search input{
   display: inline-block;
@@ -389,7 +397,7 @@ form.send .msg:focus{
 
   /* home页面content样式 */
 .home .padding{
-  margin-top:44px;
+  margin-top:6vh;
 }
     /* home页面日历样式 */
 .home .padding .date{
@@ -786,37 +794,39 @@ form.send .msg:focus{
 /* dashboard-aggregate界面样式end */
 
 /* work-circle界面样式 */
+.work-circle ion-header-bar.head-bar{
+  background: linear-gradient(to bottom, #bbb 0%,transparent 100%);
+  background-color: transparent;
+}
+.work-circle ion-header-bar.head-bar button.button.icon i{
+  font-size: 1.2em;
+}
 .work-circle ion-content.scroll-content{
   background-color: white;
+  top:0;
+}
+.work-circle .background{
+  position: relative;
+  width: 100%;
 }
 .work-circle .background-img{
-  position: absolute;
-  width: 100%;
-  height:783px;
-  overflow: visible;
-  margin-top:-550px;
+  width: 100vw;
+  height:70vw;
+  background-size: cover;
+  -webkit-filter:blur(1px);
   background-image: url('../img/background.jpg');
 }
-.work-circle .background-img span{
-  white-space:pre;
-  font-weight: 600;
-  font-size: 1.2em;
-  color: #fff;
+.work-circle .background img{
+  width: 24vw;
   position: absolute;
-  bottom: 10px;
-  right:100px;
-}
-.work-circle .background-img img{
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  bottom: -10px;
-  right:10px;
-  box-shadow: 2px 2px 2px #808080;
+  bottom: 23vw;
+  right:38vw;
+  border-radius: 12vw;
+  border: 1px solid #b0b0b0;
 }
 .work-circle .dynamic-container{
   width: 100%;
-  padding-top:290px;
+  margin-top:8vw;
 }
 .work-circle .dynamic{
   position: relative;
@@ -856,6 +866,34 @@ form.send .msg:focus{
   float: right;
   font-size: 1.6em;
   margin-right: 8px;
+}
+.work-circle .dynamic .comment{
+  margin-top: 10px;
+  padding:0;
+}
+.work-circle .dynamic .comment span{
+  font-size: 1em;
+  color: rgb(7,156,246);
+}
+.work-circle .dynamic .comment p{
+  margin:0;
+  padding:0;
+  font-size: 1em;
+  color: #000;
+}
+.work-circle .dynamic .comment input{
+  display: inline-block;
+  width:70%;
+  border:1px solid  #a0a0a0;
+  height: 2em;
+}
+.work-circle .dynamic .comment button{
+  margin-left: 5%;
+  border: 0;
+  background-color: rgb(7,156,246);
+  color: #fff;
+  height: 2em;
+  vertical-align: bottom;
 }
 /* work-circle界面样式end */
 
@@ -978,6 +1016,9 @@ form.send .msg:focus{
 /* message以及Search-Result界面样式end */
 
 /* message-detail样式 */
+.message-detail ion-content.scroll-content{
+  bottom:43px;
+}
 .message-detail .item{
   width: 95vw;
   background-color: transparent;
@@ -1018,17 +1059,17 @@ form.send .msg:focus{
   line-height: 0;
   top:10px;
 }
-.message-detail .send img{
+.message-detail div.send img{
   float: right;
   right:0;
 }
-.message-detail .send span{
+.message-detail div.send span{
   float: right;
   margin-right: 5vw;
   background-color: rgb(7,156,246);
   color: #fff;
 }
-.message-detail .send span:after{
+.message-detail div.send span:after{
   position: absolute;
   right:-4.5vw;
   content: '';
@@ -1041,6 +1082,7 @@ form.send .msg:focus{
 }
 .message-detail .send .content-expression{
   width:24px;
+  float: none;
 }
 .message-detail .send .expression{
   position: absolute;
@@ -1054,7 +1096,7 @@ form.send .msg:focus{
 }
 .message-detail .send .expression div{
   display: inline-block;
-  width: 14.2%;
+  width: 10%;
   text-align: center;
 }
 .message-detail .send .expression img{
@@ -2488,7 +2530,7 @@ ion-item.repeat-go-item.activated{
   border-bottom: 1px solid #f0f0f0;
 }
 .address-list .contacts img{
-  width:15%;
+  width:60px;
   display: inline-block;
   vertical-align: middle;
   margin-right:15px ;
@@ -2602,7 +2644,7 @@ ion-item.repeat-go-item.activated{
 .map .input{
   position: absolute;
   width: 90vw;
-  top:50px;
+  top:9vh;
   margin-left:5vw;
   z-index: 999;
 }
@@ -2627,3 +2669,5 @@ ion-item.repeat-go-item.activated{
   vertical-align: bottom;
 }
 /* map界面样式end */
+
+

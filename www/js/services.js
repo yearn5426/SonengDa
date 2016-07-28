@@ -936,6 +936,13 @@ angular.module('starter.services', [])
     email:'congchu@hand-china.com',
     note:'XX项目项目组长'
   }, {
+    name: '丁风',
+    face:'img/dingfeng.jpg',
+    telephone:'139-7554-1234',
+    phone:'021-98071242',
+    email:'fengding@hand-china.com',
+    note:'直接领导'
+  }, {
     name: '毛一环',
     face:'img/ben.png',
     telephone:'136-1211-1234',
@@ -970,6 +977,41 @@ angular.module('starter.services', [])
     phone:'021-84972213',
     email:'mengyuan@hand-china.com',
     note:'coder'
+  }, {
+    name: '顺哥',
+    face:'img/shunge.jpg',
+    telephone:'155-2323-2730',
+    phone:'021-84972213',
+    email:'geshun@hand-china.com',
+    note:'Dalao'
+  }, {
+    name: '黄洁',
+    face:'img/huangjie.jpg',
+    telephone:'151-3214-2730',
+    phone:'021-84972213',
+    email:'jiehuang@hand-china.com',
+    note:'开发组长'
+  }, {
+    name: '刘永佳',
+    face:'img/liuyongjia.jpg',
+    telephone:'151-2203-4312',
+    phone:'021-84972213',
+    email:'yongjialiu@hand-china.com',
+    note:'XXXXX部门经理'
+  }, {
+    name: '卢宇飞',
+    face:'img/luyufei.jpg',
+    telephone:'151-2232-2730',
+    phone:'021-84971113',
+    email:'yufeilu@hand-china.com',
+    note:'XXXX部门经理'
+  }, {
+    name: '谢辰',
+    face:'img/xiechen.jpg',
+    telephone:'151-3213-2730',
+    phone:'021-84971113',
+    email:'chenxie@hand-china.com',
+    note:'XXX顾问'
   }];
   return {
     getAll: function(){
@@ -1039,17 +1081,29 @@ angular.module('starter.services', [])
     src:'img/expression/.bs.png',
     name:'.bs'
   }, {
+    src:'img/expression/.db.png',
+    name:'.db'
+  }, {
     src:'img/expression/.dk.png',
     name:'.dk'
   }, {
     src:'img/expression/.dx.png',
     name:'.dx'
   }, {
+    src:'img/expression/.fd.png',
+    name:'.fd'
+  }, {
     src:'img/expression/.fh.png',
     name:'.fh'
   }, {
     src:'img/expression/.gz.png',
     name:'.gz'
+  }, {
+    src:'img/expression/.hh.png',
+    name:'.hh'
+  }, {
+    src:'img/expression/.hx.png',
+    name:'.hx'
   }, {
     src:'img/expression/.jk.png',
     name:'.jk'
@@ -1060,11 +1114,20 @@ angular.module('starter.services', [])
     src:'img/expression/.kb.png',
     name:'.kb'
   }, {
+    src:'img/expression/.kj.png',
+    name:'.kj'
+  }, {
+    src:'img/expression/.kl.png',
+    name:'.kl'
+  }, {
     src:'img/expression/.ku.png',
     name:'.ku'
   }, {
     src:'img/expression/.lh.png',
     name:'.lh'
+  }, {
+    src:'img/expression/.ng.png',
+    name:'.ng'
   }, {
     src:'img/expression/.pz.png',
     name:'.pz'
@@ -1093,11 +1156,17 @@ angular.module('starter.services', [])
     src:'img/expression/.yw.png',
     name:'.yw'
   }, {
+    src:'img/expression/.yx.png',
+    name:'.yx'
+  }, {
     src:'img/expression/.zj.png',
     name:'.zj'
   }, {
     src:'img/expression/.zk.png',
     name:'.zk'
+  }, {
+    src:'img/expression/.zt.png',
+    name:'.zt'
   }];
   return {
     getAll: function(){

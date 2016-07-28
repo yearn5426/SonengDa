@@ -8,9 +8,84 @@
       <i class="icon ion-ios-search right"></i>
     </button>
   </ion-header-bar>
-  <ion-content>
+  <style>
+    .address-list ul.nav{
+      position: fixed;
+      top: 7vh;
+      bottom:0;
+      right:0.25em;
+      padding:0;
+      display: block;
+      background-color: transparent;
+      z-index: 9;
+      text-align: center;
+      border-radius: 10px;
+      opacity:0.7;
+      width: 1em;
+    }
+    .address-list ul.nav li{
+      display: block;
+      color: #606060;
+      height: 3.3vh;
+      text-align: center;
+      font-weight: 600;
+      z-index: 9;
+    }
+    .address-list .nav-back{
+      display: block;
+      position: fixed;
+      top: 7vh;
+      right:0;
+      z-index:8;
+      width: 1.5em;
+      height: 1.5em;
+      border-radius:1em;
+      background-color: rgb(7,156,246);
+      margin:0;
+      padding:0;
+    }
+
+    @keyframes zoom-out
+    {
+      0% {width: 1.5em;height: 1.5em;right:0;}
+      50% {width:0.7em;height:0.7em;right:0.4em}
+      100% {width: 1.5em;height: 1.5em;right:0;}
+    }
+  </style>
+  <ul class="nav">
+    <li ng-click="scrollGo(0)">↑</li>
+    <li ng-click="scrollGo('A')">A</li>
+    <li ng-click="scrollGo('B')">B</li>
+    <li ng-click="scrollGo('C')">C</li>
+    <li ng-click="scrollGo('D')">D</li>
+    <li ng-click="scrollGo('E')">E</li>
+    <li ng-click="scrollGo('F')">F</li>
+    <li ng-click="scrollGo('G')">G</li>
+    <li ng-click="scrollGo('H')">H</li>
+    <li ng-click="scrollGo('I')">I</li>
+    <li ng-click="scrollGo('J')">J</li>
+    <li ng-click="scrollGo('K')">K</li>
+    <li ng-click="scrollGo('L')">L</li>
+    <li ng-click="scrollGo('M')">M</li>
+    <li ng-click="scrollGo('N')">N</li>
+    <li ng-click="scrollGo('O')">O</li>
+    <li ng-click="scrollGo('P')">P</li>
+    <li ng-click="scrollGo('Q')">Q</li>
+    <li ng-click="scrollGo('R')">R</li>
+    <li ng-click="scrollGo('S')">S</li>
+    <li ng-click="scrollGo('T')">T</li>
+    <li ng-click="scrollGo('U')">U</li>
+    <li ng-click="scrollGo('V')">V</li>
+    <li ng-click="scrollGo('W')">W</li>
+    <li ng-click="scrollGo('X')">X</li>
+    <li ng-click="scrollGo('Y')">Y</li>
+    <li ng-click="scrollGo('Z')">Z</li>
+    <li ng-click="scrollGo(1)">#</li>
+  </ul>
+  <span class="nav-back"></span>
+  <ion-content on-drag="onDrag()">
     <div class="contacts" ng-repeat="contact in contacts track by $index">
-      <p class="split" ng-show="showSplit(contact.name)" ng-bind="toChar(contact.name)"></p>
+      <p class="split" ng-if="showSplit(contact.name)" ng-bind="toChar(contact.name)" id="{{toChar(contact.name)}}"></p>
       <div ng-click="goAddressDetail(contact.name)">
         <img ng-src="{{contact.face}}">
         <span>{{contact.name}}</span>

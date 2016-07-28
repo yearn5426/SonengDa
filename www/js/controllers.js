@@ -166,20 +166,37 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('AddressListCtrl', function($scope, $state, Contacts, $ionicHistory) {
+  .controller('AddressListCtrl', function($scope, $state, Contacts, $ionicHistory, $ionicScrollDelegate,  $timeout) {
     $scope.back = function(){
       $ionicHistory.goBack();
     };
 
-    // $scope.character = [];
-    // for(var i = 0; i < 26; i++)
-    //   $scope.character[i] = false;
-
-    $scope.character;
-
     $scope.contacts = Contacts.getAll().sort(function(a, b){
       return pinyin.getCamelChars(a.name)>pinyin.getCamelChars(b.name)? 1: -1;
     });
+
+    $scope.character;
+
+    $scope.charPosition = new Array(26);
+    for(var i = 0; i < 26; i++){
+      $scope.charPosition[i] = {
+        num:0,
+        position:0
+      }
+    }
+
+    for(i = 0; i < $scope.contacts.length; i++){
+      $scope.charPosition[pinyin.getCamelChars($scope.contacts[i].name)[0].charCodeAt() - 'A'.charCodeAt()].num += 1;
+    }
+    $scope.charPosition[0].position = 0;
+    for(i = 1; i < 26; i++){
+      $scope.charPosition[i].position += $scope.charPosition[i-1].position;
+      if($scope.charPosition[i-1].num != 0){
+        $scope.charPosition[i].position += 20;
+        $scope.charPosition[i].position += $scope.charPosition[i-1].num * 80;
+      }
+    }
+
     $scope.goAddressDetail = function(name){
       $state.go('tab.address-detail',{
         'Name':name
@@ -188,9 +205,7 @@ angular.module('starter.controllers', [])
     $scope.toChar = function (name) {
       return pinyin.getCamelChars(name)[0];
     };
-
     $scope.showSplit = function(name){
-      // console.log(1);
       var char = pinyin.getCamelChars(name)[0];
       if(!$scope.character){
         $scope.character = char;
@@ -201,17 +216,49 @@ angular.module('starter.controllers', [])
         $scope.character = char;
         return true;
       }
-      // return true;
-      // var i = parseInt(char.charCodeAt() - 65);
-      // if($scope.character[i] === false){
-      //   $scope.character[i] = index;
-      //   return true;
-      // } else if( $scope.character[i] == index){
-      //   return true;
-      // } else{
-      //   return false;
-      // }
     };
+
+    var distance;
+    var backSpan = document.getElementsByClassName('nav-back')[0];
+    $scope.scrollGo = function(select){
+      if(select == 0){
+        backSpan.setAttribute('style','transition:all 1s;transform:translateY(0);animation:1s zoom-out;');
+        $ionicScrollDelegate.scrollTop();
+      } else if(select == 1){
+        backSpan.setAttribute('style','transition:all 1s;transform:translateY(89.1vh);animation:1s zoom-out;');
+        $ionicScrollDelegate.scrollBottom();
+      } else {
+        var exist = false;
+        for(var i = 0; i < $scope.contacts.length; i++){
+          if(select == pinyin.getCamelChars($scope.contacts[i].name)[0])
+            exist = true;
+        }
+        if(exist){
+          window.location.hash = '#/tab/me/address-list#' + select;
+          $ionicScrollDelegate.anchorScroll();
+          distance = select.charCodeAt() - 'A'.charCodeAt() + 1;
+          backSpan.setAttribute('style','transition:all 1s;transform:translateY('+ distance*3.3 +'vh);animation:1s zoom-out;');
+          $timeout(function () {
+            backSpan.setAttribute('style','transform:translateY('+ distance*3.3 +'vh);');
+          },1000);
+        }
+      }
+    };
+    $scope.onDrag = function(){
+      for(var i = 0; i < 26; i++){
+        if($ionicScrollDelegate.getScrollPosition().top >= $scope.charPosition[i].position - 40
+          && $ionicScrollDelegate.getScrollPosition().top <= $scope.charPosition[i].position + 40
+          && $scope.charPosition[i].num != 0){
+          if(distance - 1 != i){
+            distance = i +1;
+            backSpan.setAttribute('style','transition:all 1s;transform:translateY('+ distance*3.3 +'vh);animation:1s zoom-out;');
+            $timeout(function () {
+              backSpan.setAttribute('style','transform:translateY('+ distance*3.3 +'vh);');
+            },1000);
+          }
+        }
+      }
+    }
   })
 
   .controller('AddressDetailCtrl', function($scope, $state, Contacts, $stateParams, $ionicHistory) {
@@ -233,7 +280,10 @@ angular.module('starter.controllers', [])
       $state.go('tab.send-message',{
         'Name':$stateParams.Name
       })
-    }
+    };
+    $scope.phone = function (phoneNumber) {
+      window.location.href = 'tel:' + phoneNumber;
+    };
   })
 
   .controller('CrmCtrl', function($scope, $state) {
@@ -1155,7 +1205,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('MessageDetailCtrl', function($scope, Chats, $stateParams, $ionicHistory, $state, Expressions) {
+  .controller('MessageDetailCtrl', function($scope, Chats, $stateParams, $ionicHistory, $state, Expressions, $ionicScrollDelegate) {
     $scope.chat = Chats.getByChatName($stateParams.ChatName);
     $scope.expressions = Expressions.getAll();
     $scope.showExpression = false;
@@ -1167,7 +1217,7 @@ angular.module('starter.controllers', [])
       msg:''
     };
 
-    var pattern= /\.bs|\.dk|\.dx|\.fh|\.gz|\.jk|\.jy|\.kb|\.ku|\.lh|\.pz|\.qq|\.se|\.shuai|\.tx|\.wq|\.wx|\.yun|\.yw|\.zj|\.zk/g;
+    var pattern= /\.bs|\.db|\.dk|\.dx|\.fd|\.fh|\.gz|\.hh|\.hx|\.jk|\.jy|\.kb|\.kj|\.kl|\.ku|\.lh|\.ng|\.pz|\.qq|\.se|\.shuai|\.tx|\.wq|\.wx|\.yun|\.yw|\.yx|\.zj|\.zk|\.zt/g;
     var regExp  = new RegExp(pattern);
     $scope.goChatSetting = function(){
       $state.go('tab.chat-setting', {
@@ -1191,6 +1241,8 @@ angular.module('starter.controllers', [])
       ionItem.appendChild(div);
       list.appendChild(ionItem);
       $scope.msg.msg = '';
+      $scope.showExpression = false;
+      $ionicScrollDelegate.scrollBottom();
     };
     $scope.addExpression = function(name) {
       $scope.msg.msg += name;
@@ -1988,7 +2040,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('WorkCircleCtrl', function($scope, $ionicHistory, Dynamics) {
+  .controller('WorkCircleCtrl', function($scope, $ionicHistory, Dynamics, $ionicScrollDelegate) {
     $scope.dynamics = Dynamics.getAll();
     $scope.back = function(){
       $ionicHistory.goBack();
@@ -2012,7 +2064,45 @@ angular.module('starter.controllers', [])
       };
       dynamic.comment.push(comment);
       $scope.comment.comment = '';
-    }
+    };
+
+    $scope.scale = 1.005;
+    $scope.filterNum = 1;
+    $scope.opacity = 1;
+    var flag = 0;
+    $scope.onDragDown = function(){
+      flag++;
+      var dynamicContainer = document.getElementsByClassName('dynamic-container')[0];
+      var backgroundImage = document.getElementsByClassName('background-img')[0];
+      var me = document.getElementById('me');
+      if(flag % 5 == 0){
+        if(flag % 40 == 0){
+          if($scope.filterNum > 0.25){
+            $scope.filterNum -= 0.25;
+          }
+        }
+        if($scope.opacity >= 0)
+          $scope.opacity -= 0.1;
+      }
+      me.setAttribute('style','opacity:'+$scope.opacity);
+      dynamicContainer.setAttribute('style', 'transform:translateY('+($scope.scale - 1 )*35+'vw)');
+      backgroundImage.setAttribute('style','transform:scale('+$scope.scale+','+$scope.scale+');-webkit-filter:blur('+$scope.filterNum+'px)');
+      if($scope.scale<1.5){
+        $scope.scale += 0.005;
+      }
+    };
+    $scope.onRelease = function(){
+      flag = 0;
+      var backgroundImage = document.getElementsByClassName('background-img')[0];
+      var dynamicContainer = document.getElementsByClassName('dynamic-container')[0];
+      var me = document.getElementById('me');
+      backgroundImage.setAttribute('style','');
+      dynamicContainer.setAttribute('style', '');
+      me.setAttribute('style','');
+      $scope.filterNum = 1;
+      $scope.scale = 1.005;
+      $scope.opacity = 1;
+    };
   })
 
 ;
