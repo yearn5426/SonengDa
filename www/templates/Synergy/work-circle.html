@@ -8,6 +8,8 @@
       <i class="icon ion-ios-camera-outline right"></i>
     </button>
   </ion-header-bar>
+  <div class="icon ion-ios-heart like-animation"  ng-class="{true:'run-animation',false:''}[animationRun]"></div>
+  <img class="big-image" ng-src="{{bigImage}}" ng-class="{'none':showBigImage[0],'show':showBigImage[1],'hidden':showBigImage[2]}" ng-click="closeImage()">
   <ion-content class="padding" on-drag-down="onDragDown()" on-release="onRelease()" overflow-scroll="true">
     <div class="background">
       <div class="background-img">
@@ -20,7 +22,7 @@
         <p class="name">{{dynamic.name}}</p>
         <p>{{dynamic.content}}</p>
         <div>
-          <img ng-src="{{img}}" ng-repeat="img in dynamic.image"><img ng-src="{{img}}"><img ng-src="{{img}}">
+          <img ng-src="{{img}}" ng-click="openImage(img)" ng-repeat="img in dynamic.image"><img ng-src="{{img}}"><img ng-src="{{img}}">
         </div>
         <div>
           <span>1小时前</span><i ng-click="collect(dynamic)" class="icon" ng-class="{true:'ion-ios-book',false:'ion-ios-book-outline'}[dynamic.collected]"></i><i ng-click="edit(dynamic)" class="icon " ng-class="{true:'ion-ios-compose',false:'ion-ios-compose-outline'}[dynamic.edit]"></i><i ng-click="like(dynamic)" class="icon " ng-class="{true:'ion-ios-heart',false:'ion-ios-heart-outline'}[dynamic.like]"></i>
