@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-datepicker'])
+angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter.services', 'ionic-datepicker'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -273,6 +273,45 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
+    .state('tab.change-background', {
+      url: '/synergy/change-background',
+      views: {
+        'tab-synergy': {
+          templateUrl: 'templates/Synergy/change-background.html',
+          controller: 'ChangeBackgroundCtrl'
+        }
+      },
+      params:{
+        'CurrentBackground':''
+      }
+    })
+
+    .state('tab.change-background-home', {
+      url: '/home/change-background',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/Synergy/change-background.html',
+          controller: 'ChangeBackgroundCtrl'
+        }
+      },
+      params:{
+        'CurrentBackground':''
+      }
+    })
+
+    .state('tab.change-background-me', {
+      url: '/me/change-background',
+      views: {
+        'tab-me': {
+          templateUrl: 'templates/Synergy/change-background.html',
+          controller: 'ChangeBackgroundCtrl'
+        }
+      },
+      params:{
+        'CurrentBackground':''
+      }
+    })
+
     .state('tab.dashboard-aggregate', {
       url: '/home/dashboard-aggregate',
       views: {
@@ -327,9 +366,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
     .state('tab.expense-claim-detail', {
-      url: '/home/expense-claim-detail',
+      url: '/work/expense-claim-detail',
       views: {
         'tab-work': {
+          templateUrl: 'templates/Work/expense-claim-detail.html',
+          controller: 'ExpenseClaimDetailCtrl'
+        }
+      },
+      params: {
+        'ExpenseClaimHead':''
+      }
+    })
+
+    .state('tab.expense-claim-detail-home', {
+      url: '/home/expense-claim-detail',
+      views: {
+        'tab-home': {
           templateUrl: 'templates/Work/expense-claim-detail.html',
           controller: 'ExpenseClaimDetailCtrl'
         }
@@ -448,6 +500,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
+    .state('tab.message-detail-home', {
+      url: '/home/message-detail',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/Synergy/message-detail.html',
+          controller: 'MessageDetailCtrl'
+        }
+      },
+      params: {
+        'ChatName':''
+      }
+    })
+
     .state('tab.my-information', {
       url: '/me/my-information',
       views: {
@@ -502,6 +567,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       url: '/crm/new-activity',
       views: {
         'tab-crm': {
+          templateUrl: 'templates/CRM/Activity/new-activity.html',
+          controller: 'NewActivityCtrl'
+        }
+      }
+    })
+
+    .state('tab.new-activity-work',{
+      url: '/work/new-activity',
+      views: {
+        'tab-work': {
           templateUrl: 'templates/CRM/Activity/new-activity.html',
           controller: 'NewActivityCtrl'
         }
@@ -836,6 +911,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     url: '/synergy/work-circle',
     views: {
      'tab-synergy': {
+        templateUrl: 'templates/Synergy/work-circle.html',
+        controller: 'WorkCircleCtrl'
+     }
+    }
+  })
+
+    .state('tab.work-circle-me', {
+    url: '/me/work-circle',
+    views: {
+     'tab-me': {
         templateUrl: 'templates/Synergy/work-circle.html',
         controller: 'WorkCircleCtrl'
      }

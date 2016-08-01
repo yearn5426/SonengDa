@@ -1,6 +1,6 @@
 <ion-view view-title="Dashboard" class="work-circle" ng-controller="WorkCircleCtrl">
   <ion-header-bar align-title="center" class="head-bar" >
-    <button class="button icon" ng-click="back()">
+    <button class="button icon" ng-click="back()" ng-show="showBack">
       <i class="icon ion-ios-arrow-left"></i>
     </button>
     <h1 class="title">Work Circle</h1>
@@ -8,13 +8,24 @@
       <i class="icon ion-ios-camera-outline right"></i>
     </button>
   </ion-header-bar>
+  <style>
+    .work-circle .background .icon{
+      position: absolute;
+      bottom:0;
+      right: 3vw;
+      color: #fff;
+      font-size:1.5em;
+      padding:0 5px;
+    }
+  </style>
   <div class="icon ion-ios-heart like-animation"  ng-class="{true:'run-animation',false:''}[animationRun]"></div>
   <img class="big-image" ng-src="{{bigImage}}" ng-class="{'none':showBigImage[0],'show':showBigImage[1],'hidden':showBigImage[2]}" ng-click="closeImage()">
-  <ion-content class="padding" on-drag-down="onDragDown()" on-release="onRelease()" overflow-scroll="true">
+  <ion-content class="padding" on-drag-down="onDragDown()" on-release="onRelease()" overflow-scroll="true" has-bouncing="true">
     <div class="background">
       <div class="background-img">
       </div>
-      <img id="me" src="img/me.jpg">
+      <img id="me" ng-src="{{me.face}}">
+      <i ng-click="goChangeBackground()" class="icon ion-ios-more change-background"></i>
     </div>
     <div class="dynamic-container">
       <div class="dynamic" ng-repeat="dynamic in dynamics">

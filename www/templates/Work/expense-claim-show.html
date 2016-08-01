@@ -37,22 +37,22 @@
         <label>汇率</label><input type="text" value="1.0000">
       </div>
       <div class="date">
-        <label>日期</label><div><input type="text" value="2015-11-01" class="left"><i class="icon ion-ios-calendar-outline left"></i>-<input type="text" value="2015-11-01" class="right"><i class="icon ion-ios-calendar-outline right"></i></div>
+        <label>日期</label><div><input type="text" ng-model="data.startDate" class="left"><i ng-click="openStartDatePicker()" class="icon ion-ios-calendar-outline left"></i>-<input type="text" ng-model="data.endDate" class="right"><i ng-click="openEndDatePicker()" class="icon ion-ios-calendar-outline right"></i></div>
       </div>
       <div class="icon">
-        <label>地点</label><input type="text" value="浙江杭州"><i class="icon ion-ios-location-outline"></i>
+        <label>地点</label><input type="text" ng-model="data.address"><i ng-click="goMap()" class="icon ion-ios-location-outline"></i>
       </div>
       <div>
         <label>主题</label><input type="text" value="1.0000">
       </div>
       <div class="icon">
-        <label>活动</label><input type="text" value="访问施耐德电器"><i class="icon ion-ios-calendar-outline"></i>
+        <label>活动</label><input type="text" value="访问施耐德电器"><i class="icon ion-ios-search"></i>
       </div>
       <div class="icon">
-        <label>客户</label><input type="text" value="施耐德电器"><i class="icon ion-ios-calendar-outline"></i>
+        <label>客户</label><input type="text" value="施耐德电器"><i class="icon ion-ios-search></i>
       </div>
       <div class="icon">
-        <label>商机</label><input type="text" value="新产品展示"><i class="icon ion-ios-calendar-outline"></i>
+        <label>商机</label><input type="text" value="新产品展示"><i class="icon ion-ios-search"></i>
       </div>
     </div>
   </ion-content>

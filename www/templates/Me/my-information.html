@@ -35,12 +35,12 @@
         <label>地区</label><span>{{me.address}}</span><i class="icon ion-ios-arrow-right"></i>
       </div>
       <div>
-        <label>个性签名</label><input type="text" value="{{me.explanation}}"><i class="icon ion-ios-arrow-right"></i>
+        <label>个性签名</label><input type="text" value="{{me.explanation}}">
       </div>
     </div>
   </ion-content>
   <div class="tool" ng-show="showTool" ng-click="close()">
-    <p class="photo">拍照</p>
+    <p class="photo" ng-click="takePhoto()">拍照</p>
     <p class="album">相册</p>
     <p class="cancel">取消</p>
   </div>

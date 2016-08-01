@@ -1,0 +1,34 @@
+<ion-view view-title="Change-background" class="change-background">
+  <ion-header-bar align-title="center" class="head-bar" >
+    <button class="button icon" ng-click="back()">
+      <i class="icon ion-ios-arrow-left"></i>
+    </button>
+    <h1 class="title">Change Background</h1>
+    <button class="button icon" ng-click="save()">
+      Save
+    </button>
+  </ion-header-bar>
+  <ion-content class="padding" >
+    <div ng-click="open(0)" class="background" ng-class="{true:'selected', false:''}[select[0]]" style="background-image: url('img/background/background0.jpg');">
+      <i ng-show="select[0]" class="icon ion-ios-checkmark-outline"></i>
+    </div>
+    <div ng-click="open(1)" class="background" ng-class="{true:'selected', false:''}[select[1]]" style="background-image: url('img/background/background1.jpg');">
+      <i ng-show="select[1]" class="icon ion-ios-checkmark-outline"></i>
+    </div>
+    <div ng-click="open(2)" class="background" ng-class="{true:'selected', false:''}[select[2]]" style="background-image: url('img/background/background2.jpg');">
+      <i ng-show="select[2]" class="icon ion-ios-checkmark-outline"></i>
+    </div>
+    <div ng-click="open(3)" class="background" ng-class="{true:'selected', false:''}[select[3]]" style="background-image: url('img/background/background3.jpg');">
+      <i ng-show="select[3]" class="icon ion-ios-checkmark-outline"></i>
+    </div>
+    <div ng-click="open(4)" class="background" ng-class="{true:'selected', false:''}[select[4]]" style="background-image: url('img/background/background4.jpg');">
+      <i ng-show="select[4]" class="icon ion-ios-checkmark-outline"></i>
+    </div>
+    <div ng-click="open(5)" class="background" ng-class="{true:'selected', false:''}[select[5]]" style="background-image: url('img/background/background5.jpg');">
+      <i ng-show="select[5]" class="icon ion-ios-checkmark-outline"></i>
+    </div>
+    <div ng-click="open(6)" class="background" ng-class="{true:'selected', false:''}[select[6]]" style="background-image: url('img/background/background6.jpg');">
+      <i ng-show="select[6]" class="icon ion-ios-checkmark-outline"></i>
+    </div>
+  </ion-content>
+</ion-view>

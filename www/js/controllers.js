@@ -166,7 +166,7 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('AddressListCtrl', function($scope, $state, Contacts, $ionicHistory, $ionicScrollDelegate,  $timeout) {
+  .controller('AddressListCtrl', function($scope, $state, Contacts, $ionicHistory, $ionicScrollDelegate,  $timeout, $rootScope) {
     $scope.back = function(){
       $ionicHistory.goBack();
     };
@@ -174,28 +174,63 @@ angular.module('starter.controllers', [])
     $scope.contacts = Contacts.getAll().sort(function(a, b){
       return pinyin.getCamelChars(a.name)>pinyin.getCamelChars(b.name)? 1: -1;
     });
-
-    $scope.character;
-
-    $scope.charPosition = new Array(26);
-    for(var i = 0; i < 26; i++){
-      $scope.charPosition[i] = {
-        num:0,
-        position:0
+    $scope.character = null;
+    $scope.charPosition = [];
+    existInPosition = function(char){
+      var index = -1;
+      for(var i = 0; i < $scope.charPosition.length; i++){
+        if($scope.charPosition[i].name == char)
+          index = i
       }
-    }
-
-    for(i = 0; i < $scope.contacts.length; i++){
-      $scope.charPosition[pinyin.getCamelChars($scope.contacts[i].name)[0].charCodeAt() - 'A'.charCodeAt()].num += 1;
-    }
-    $scope.charPosition[0].position = 0;
-    for(i = 1; i < 26; i++){
-      $scope.charPosition[i].position += $scope.charPosition[i-1].position;
-      if($scope.charPosition[i-1].num != 0){
-        $scope.charPosition[i].position += 20;
-        $scope.charPosition[i].position += $scope.charPosition[i-1].num * 80;
+      return index;
+    };
+    $scope.init = function(){
+      // for(var i = 0; i < 26; i++){
+      //   $scope.charPosition[i] = {
+      //     num:0,
+      //     position:0
+      //   }
+      // }
+      // for(i = 0; i < $scope.contacts.length; i++){
+      //   $scope.charPosition[pinyin.getCamelChars($scope.contacts[i].name)[0].charCodeAt() - 'A'.charCodeAt()].num += 1;
+      // }
+      // $scope.charPosition[0].position = 0;
+      // for(i = 1; i < 26; i++){
+      //   $scope.charPosition[i].position += $scope.charPosition[i-1].position;
+      //   if($scope.charPosition[i-1].num != 0){
+      //     $scope.charPosition[i].position += 20;
+      //     $scope.charPosition[i].position += $scope.charPosition[i-1].num * 80;
+      //   }
+      // }
+      for(var i = 0; i < $scope.contacts.length; i++) {
+        if ($scope.charPosition.length == 0) {
+          $scope.charPosition[0] = {
+            name: pinyin.getCamelChars($scope.contacts[i].name)[0],
+            form: 0,
+            to: 0,
+            num: 1
+          }
+        } else if (existInPosition(pinyin.getCamelChars($scope.contacts[i].name)[0]) != -1) {
+          $scope.charPosition[existInPosition(pinyin.getCamelChars($scope.contacts[i].name)[0])].num++;
+        } else {
+          $scope.charPosition[$scope.charPosition.length] = {
+            name: pinyin.getCamelChars($scope.contacts[i].name)[0],
+            form: 0,
+            to: 0,
+            num: 1
+          }
+        }
       }
-    }
+      $scope.charPosition[0].from = 0;
+      $scope.charPosition[0].to += 20;
+      $scope.charPosition[0].to += $scope.charPosition[0].num * 80;
+      $scope.charPosition[0].to -= 40;
+      for(i = 1; i < $scope.charPosition.length; i++){
+        $scope.charPosition[i].from = $scope.charPosition[i-1].to;
+        $scope.charPosition[i].to = $scope.charPosition[i].from + $scope.charPosition[i].num * 80 + 20;
+      }
+    };
+    $scope.init();
 
     $scope.goAddressDetail = function(name){
       $state.go('tab.address-detail',{
@@ -218,14 +253,14 @@ angular.module('starter.controllers', [])
       }
     };
 
-    var distance;
+    var distance = 0;
     var backSpan = document.getElementsByClassName('nav-back')[0];
     $scope.scrollGo = function(select){
       if(select == 0){
-        backSpan.setAttribute('style','transition:all 1s;transform:translateY(0);animation:1s zoom-out;');
+        backSpan.setAttribute('style','transition:all 0.5s;transform:translateY(0);animation:0.5s zoom-out;');
         $ionicScrollDelegate.scrollTop();
       } else if(select == 1){
-        backSpan.setAttribute('style','transition:all 1s;transform:translateY(89.1vh);animation:1s zoom-out;');
+        backSpan.setAttribute('style','transition:all 0.5s;transform:translateY(89.1vh);animation:0.5s zoom-out;');
         $ionicScrollDelegate.scrollBottom();
       } else {
         var exist = false;
@@ -237,45 +272,63 @@ angular.module('starter.controllers', [])
           window.location.hash = '#/tab/me/address-list#' + select;
           $ionicScrollDelegate.anchorScroll();
           distance = select.charCodeAt() - 'A'.charCodeAt() + 1;
-          backSpan.setAttribute('style','transition:all 1s;transform:translateY('+ distance*3.3 +'vh);animation:1s zoom-out;');
+          backSpan.setAttribute('style','transition:all 0.5s;transform:translateY('+ distance*3.3 +'vh);animation:0.5s zoom-out;');
           $timeout(function () {
             backSpan.setAttribute('style','transform:translateY('+ distance*3.3 +'vh);');
-          },1000);
+          },500);
         }
       }
     };
     $scope.onDrag = function(){
-      for(var i = 0; i < 26; i++){
-        if($ionicScrollDelegate.getScrollPosition().top >= $scope.charPosition[i].position - 40
-          && $ionicScrollDelegate.getScrollPosition().top <= $scope.charPosition[i].position + 40
+      for(var i = 0; i < $scope.charPosition.length; i++){
+        if($ionicScrollDelegate.getScrollPosition().top >= $scope.charPosition[i].from
+          && $ionicScrollDelegate.getScrollPosition().top <= $scope.charPosition[i].to
           && $scope.charPosition[i].num != 0){
-          if(distance - 1 != i){
-            distance = i +1;
-            backSpan.setAttribute('style','transition:all 1s;transform:translateY('+ distance*3.3 +'vh);animation:1s zoom-out;');
+          if(distance - 1 != ($scope.charPosition[i].name.charCodeAt() - 65)){
+            distance = ($scope.charPosition[i].name.charCodeAt() - 65) +1;
+            backSpan.setAttribute('style','transition:all 0.5s;transform:translateY('+ distance*3.3 +'vh);animation:0.5s zoom-out;');
             $timeout(function () {
               backSpan.setAttribute('style','transform:translateY('+ distance*3.3 +'vh);');
-            },1000);
+            },500);
           }
         }
       }
-    }
+    };
+    $scope.onSwipe = function(){
+      $timeout(function () {
+        var top = $ionicScrollDelegate.getScrollPosition().top;
+          for(var i = 0; i < $scope.charPosition[i].length; i++){
+            if(top >= $scope.charPosition[i].from
+              && top <= $scope.charPosition[i].to
+              && $scope.charPosition[i].num != 0){
+              if(distance - 1 != ($scope.charPosition[i].name.charCodeAt() - 65)){
+                distance = ($scope.charPosition[i].name.charCodeAt() - 65) +1;
+                backSpan.setAttribute('style','transition:all 0.5s;transform:translateY('+ distance*3.3 +'vh);animation:0.5s zoom-out;');
+              }
+            }
+          }
+        $timeout(function () {
+          backSpan.setAttribute('style','transform:translateY('+ distance*3.3 +'vh);');
+        },500);
+      },300);
+    };
+
+    $rootScope.$on('DELETE_CONTACT',function(e,name){
+      var index;
+      for(var i = 0; i < $scope.contacts.length; i++){
+        if($scope.contacts[i].name == name)
+          index = i;
+      }
+      $scope.contacts.splice(index,1);
+      $scope.init();
+    })
   })
 
-  .controller('AddressDetailCtrl', function($scope, $state, Contacts, $stateParams, $ionicHistory) {
+  .controller('AddressDetailCtrl', function($scope, $state, Contacts, $stateParams, $ionicHistory, $rootScope) {
     $scope.back = function(){
       $ionicHistory.goBack();
     };
     $scope.contact = Contacts.getByName($stateParams.Name);
-
-    // var pinyin = require('pinyin');
-    //
-    // $scope.contacts.sort(function(a, b){
-    //   return pinyin(a.name, {
-    //       style:pinyin.STYLE_FIRST_LETTER
-    //     }) -  pinyin(b.name, {
-    //       style:pinyin.STYLE_FIRST_LETTER
-    //     });
-    // });
     $scope.goSendMessage = function(){
       $state.go('tab.send-message',{
         'Name':$stateParams.Name
@@ -283,6 +336,10 @@ angular.module('starter.controllers', [])
     };
     $scope.phone = function (phoneNumber) {
       window.location.href = 'tel:' + phoneNumber;
+    };
+    $scope.delete = function(contact){
+      $rootScope.$broadcast('DELETE_CONTACT',contact.name);
+      $ionicHistory.goBack();
     };
   })
 
@@ -478,13 +535,40 @@ angular.module('starter.controllers', [])
     }
   })
 
-  .controller('CollectionCtrl', function($scope, $ionicHistory, Dynamics) {
+  .controller('CollectionCtrl', function($scope, $ionicHistory, Dynamics, $state) {
     $scope.dynamics = Dynamics.getAll();
     $scope.back = function(){
       $ionicHistory.goBack();
     };
     $scope.delete = function(dynamic){
       dynamic.collected = false;
+    };
+    $scope.goWorkCircle = function(){
+      $state.go('tab.work-circle-me');
+    };
+  })
+
+  .controller('ChangeBackgroundCtrl', function($scope, $ionicHistory, $stateParams, $rootScope) {
+    $scope.select = [false, false, false, false, false, false, false];
+    $scope.select[$stateParams.CurrentBackground] = true;
+    $scope.back = function(){
+      $ionicHistory.goBack();
+    };
+    $scope.open = function (num) {
+      var divs = document.getElementsByClassName('background');
+      for(var i = 0; i < 7; i++){
+        $scope.select[i]  = false;
+      }
+      $scope.select[num] = true;
+    };
+    $scope.save = function () {
+      for(var i = 0; i < 7; i++){
+        if($scope.select[i] == true)
+          var changeBackground = i;
+      }
+      $rootScope.$broadcast('CHANGE_BACKGROUND',changeBackground);
+      console.log('send');
+      $ionicHistory.goBack();
     };
   })
 
@@ -515,9 +599,9 @@ angular.module('starter.controllers', [])
   .controller('DashboardAggregateCtrl', function($scope) {
     $scope.timesSelected = [false, true, false];
 
-    $scope.data =[[28, 25, 36, 30, 31, 28, 25, 30, 21, 22, 25, 29],
-      [20, 25, 31, 34, 35, 33, 29, 26, 30, 28, 25, 22],
-      [31, 33, 36, 28, 33, 29, 25, 22, 20, 25, 27, 30]];
+    $scope.data =[[28, 25, 36, 30, 31, 28, 25, 30, 21, 22],
+      [20, 25, 31, 34, 35, 33, 29, 26, 30, 28],
+      [31, 33, 36, 28, 33, 29, 25, 22, 20, 25]];
 
     //绘制销售额趋势柱状图
     $scope.drawTrendChart = function(dataId){
@@ -679,9 +763,16 @@ angular.module('starter.controllers', [])
 
 
     $scope.goDetail = function(expenseClaimHead){
-      $state.go('tab.expense-claim-detail',{
-        'ExpenseClaimHead':expenseClaimHead
-      });
+      var currentViewName = $state.current.name;
+      if($state.current.name == 'tab.expense-claim-home'){
+        $state.go('tab.expense-claim-detail-home',{
+          'ExpenseClaimHead':expenseClaimHead
+        });
+      } else {
+        $state.go('tab.expense-claim-detail',{
+          'ExpenseClaimHead':expenseClaimHead
+        });
+      }
     };
 
     $rootScope.$on("DONE_EXAMINE", function(e, param){
@@ -859,9 +950,50 @@ angular.module('starter.controllers', [])
     expenseTypeChart.setOption(expenseTypeOption);
   })
 
-  .controller('ExpenseClaimShowCtrl', function($scope, $ionicHistory) {
+  .controller('ExpenseClaimShowCtrl', function($scope, $ionicHistory, $state, $rootScope, ionicDatePicker) {
     $scope.back = function(){
       $ionicHistory.goBack();
+    };
+    $scope.goMap = function () {
+      $state.go('tab.map');
+    };
+    $scope.data = {
+      address:'',
+      startDate:'',
+      endDate:''
+    };
+    $rootScope.$on('SAVE_POSITION', function(e, param){
+      $scope.data.address = param.position;
+    });
+
+    var startCalendar = {
+      callback: function (val) {  //Mandatory
+        var date = new Date(val);
+        $scope.data.date = date.getFullYear() + '-' + date.getMonth() + '-'+ date.getDate();
+      },
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2016, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+    var endCalendar = {
+      callback: function (val) {  //Mandatory
+        var date = new Date(val);
+        $scope.data.date = date.getFullYear() + '-' + date.getMonth() + '-'+ date.getDate();
+      },
+      from: new Date(2012, 1, 1), //Optional
+      to: new Date(2016, 10, 30), //Optional
+      inputDate: new Date(),      //Optional
+      closeOnSelect: false,       //Optional
+      templateType: 'popup'       //Optional
+    };
+
+    $scope.openStartDatePicker = function(){
+      ionicDatePicker.openDatePicker(startCalendar);
+    };
+    $scope.openEndDatePicker = function(){
+      ionicDatePicker.openDatePicker(endCalendar);
     };
   })
 
@@ -1196,9 +1328,16 @@ angular.module('starter.controllers', [])
       $rootScope.$broadcast('CHANGE_MESSAGE_NUM');
     };
     $scope.goMessageDetail = function(chatName){
-      $state.go('tab.message-detail',{
-        'ChatName':chatName
-      })
+      var currentViewName = $state.current.name;
+      if(currentViewName == 'tab.message-home'){
+        $state.go('tab.message-detail-home',{
+          'ChatName':chatName
+        })
+      } else {
+        $state.go('tab.message-detail',{
+          'ChatName':chatName
+        })
+      }
     };
     $scope.goSearch = function(){
       $state.go('tab.search');
@@ -1209,6 +1348,7 @@ angular.module('starter.controllers', [])
     $scope.chat = Chats.getByChatName($stateParams.ChatName);
     $scope.expressions = Expressions.getAll();
     $scope.showExpression = false;
+    $scope.sendOrTape = false;
     $scope.back = function(){
       $ionicHistory.goBack();
       $scope.chat.messageNum = 0;
@@ -1225,6 +1365,9 @@ angular.module('starter.controllers', [])
       });
     };
     $scope.send = function(){
+      if(!$scope.msg.msg.trim()){
+        return;
+      }
       var newmsg = $scope.msg.msg.replace(regExp,"<img class='content-expression' src='img/expression/$&.png'>");
       var ionList = document.getElementsByClassName('message-list')[0];
       var list = ionList.childNodes[0];
@@ -1243,16 +1386,18 @@ angular.module('starter.controllers', [])
       $scope.msg.msg = '';
       $scope.showExpression = false;
       $ionicScrollDelegate.scrollBottom();
+      $scope.sendOrTape = false;
     };
     $scope.addExpression = function(name) {
       $scope.msg.msg += name;
+      $scope.sendOrTape = true;
     };
     $scope.openExpression = function(){
       $scope.showExpression = !$scope.showExpression;
     }
   })
 
-  .controller('MyInformationCtrl', function($scope, Chats, $ionicHistory, Me) {
+  .controller('MyInformationCtrl', function($scope, Chats, $ionicHistory, Me, $cordovaCamera) {
     $scope.me = Me.get();
 
     $scope.back = function(){
@@ -1266,6 +1411,20 @@ angular.module('starter.controllers', [])
     $scope.close = function () {
       $scope.showTool=$scope.showTool?false:false;
     };
+    $scope.takePhoto = function(){
+      var options = {
+        destinationType: Camera.DestinationType.FILE_URI,
+        sourceType: Camera.PictureSourceType.CAMERA
+      };
+
+      $cordovaCamera.getPicture(options).then(function(imageURI) {
+        // var image = document.getElementById('myImage');
+        // image.src = imageURI;
+        $scope.me.face = imageURI;
+      }, function(err) {
+        // error
+      });
+    }
   })
 
   .controller('NewNicheCtrl', function($scope, $ionicHistory) {
@@ -2038,22 +2197,53 @@ angular.module('starter.controllers', [])
     $scope.goExpenseChart = function(){
       $state.go('tab.expense-chart');
     };
+    $scope.goNewActivity = function(){
+      $state.go('tab.new-activity-work');
+    }
   })
 
-  .controller('WorkCircleCtrl', function($scope, $ionicHistory, Dynamics, $ionicScrollDelegate) {
+  .controller('WorkCircleCtrl', function($scope, $ionicHistory, Dynamics, $timeout, $state, Me, $rootScope) {
+    $scope.me = Me.get();
     $scope.dynamics = Dynamics.getAll();
+    $scope.animationRun = false;
+    $scope.bigImage = '';
+    $scope.showBigImage = [true, false, false];
+    $scope.showBack = true;
+    $scope.currentBackground = Me.get().background;
+    var backgrounds = document.getElementsByClassName('background-img');
+    for(var i = 0; i < backgrounds.length; i++){
+      backgrounds[i].setAttribute('style','background-image:url("img/background/background'+ $scope.currentBackground +'.jpg")')
+    }
+
+    var currentViewName = $state.current.name;
+    if(currentViewName == 'tab.home'){
+      $scope.showBack = false;
+    } else {
+      $scope.showBack = true;
+    }
+
     $scope.back = function(){
       $ionicHistory.goBack();
     };
+
     $scope.collect = function(dynamic){
       dynamic.collected = !dynamic.collected;
     };
+
     $scope.edit = function(dynamic){
       dynamic.edit = !dynamic.edit;
     };
+
     $scope.like = function(dynamic){
       dynamic.like = !dynamic.like;
+      if(dynamic.like){
+        $scope.animationRun = true;
+        $timeout(function(){
+          $scope.animationRun = false;
+        },1500)
+      }
     };
+
     $scope.comment = {
       comment:''
     };
@@ -2066,42 +2256,81 @@ angular.module('starter.controllers', [])
       $scope.comment.comment = '';
     };
 
-    $scope.scale = 1.005;
+    $scope.scale = 1.003;
     $scope.filterNum = 1;
     $scope.opacity = 1;
     var flag = 0;
+    var dynamicContainer = document.getElementsByClassName('dynamic-container')[0];
+    var backgroundImage = document.getElementsByClassName('background-img')[0];
+    var me = document.getElementById('me');
+    var changeBackground = document.getElementsByClassName('change-background')[0];
     $scope.onDragDown = function(){
       flag++;
-      var dynamicContainer = document.getElementsByClassName('dynamic-container')[0];
-      var backgroundImage = document.getElementsByClassName('background-img')[0];
-      var me = document.getElementById('me');
-      if(flag % 5 == 0){
-        if(flag % 40 == 0){
+      if(flag % 2 == 0){
+        if($scope.opacity >= 0)
+          $scope.opacity -= 0.1;
+        if(flag % 10 == 0){
           if($scope.filterNum > 0.25){
             $scope.filterNum -= 0.25;
           }
         }
-        if($scope.opacity >= 0)
-          $scope.opacity -= 0.1;
       }
       me.setAttribute('style','opacity:'+$scope.opacity);
       dynamicContainer.setAttribute('style', 'transform:translateY('+($scope.scale - 1 )*35+'vw)');
-      backgroundImage.setAttribute('style','transform:scale('+$scope.scale+','+$scope.scale+');-webkit-filter:blur('+$scope.filterNum+'px)');
-      if($scope.scale<1.5){
-        $scope.scale += 0.005;
+      backgroundImage.setAttribute('style','transform:scale('+$scope.scale+','+$scope.scale+');-webkit-filter:blur('+$scope.filterNum+'px);background-image:url("img/background/background'+ $scope.currentBackground +'.jpg")');
+      changeBackground.setAttribute('style', 'opacity:0;transition:all 0.5s;');
+      if($scope.scale<1.3){
+        $scope.scale += 0.01;
       }
     };
     $scope.onRelease = function(){
       flag = 0;
-      var backgroundImage = document.getElementsByClassName('background-img')[0];
-      var dynamicContainer = document.getElementsByClassName('dynamic-container')[0];
-      var me = document.getElementById('me');
-      backgroundImage.setAttribute('style','');
+      backgroundImage.setAttribute('style','background-image:url("img/background/background'+ $scope.currentBackground +'.jpg")');
       dynamicContainer.setAttribute('style', '');
       me.setAttribute('style','');
+      changeBackground.setAttribute('style', 'transition:all 0.5s');
       $scope.filterNum = 1;
-      $scope.scale = 1.005;
+      $scope.scale = 1.002;
       $scope.opacity = 1;
+    };
+
+    $scope.openImage = function(image){
+      $scope.bigImage = image;
+      $scope.showBigImage[0] = false;
+      $scope.showBigImage[2] = false;
+      $scope.showBigImage[1] = true;
+    };
+    $scope.closeImage = function(){
+      $scope.showBigImage[0] = false;
+      $scope.showBigImage[1] = false;
+      $scope.showBigImage[2] = true;
+    };
+
+    $rootScope.$on('CHANGE_BACKGROUND',function(e,param){
+      Me.get().background = param;
+      console.log('receive'+Me.get().background);
+      $scope.currentBackground = param;
+      var backgrounds = document.getElementsByClassName('background-img');
+      for(var i = 0; i < backgrounds.length; i++){
+        backgrounds[i].setAttribute('style','background-image:url("img/background/background'+ $scope.currentBackground +'.jpg")')
+      }
+    });
+
+    $scope.goChangeBackground = function () {
+      var currentViewName = $state.current.name;
+      if( currentViewName == 'tab.home'){
+        $state.go('tab.change-background-home',{
+          'CurrentBackground':$scope.currentBackground
+        });
+      } else if( currentViewName == 'tab.work-circle-me'){
+        $state.go('tab.change-background-me',{
+          'CurrentBackground':$scope.currentBackground
+        });
+      } else {
+        $state.go('tab.change-background',{
+          'CurrentBackground':$scope.currentBackground
+        });
+      }
     };
   })
 

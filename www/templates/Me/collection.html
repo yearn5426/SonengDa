@@ -6,6 +6,11 @@
     <h1 class="title">Collection</h1>
   </ion-header-bar>
   <ion-content>
+    <div class="placeholder">
+      <p ng-click="goWorkCircle()">
+        暂时还没有收藏，去添加一个吧...
+      </p>
+    </div>
     <div class="dynamic" ng-repeat="dynamic in dynamics" ng-show="dynamic.collected">
       <img ng-src="{{dynamic.face}}" class="head">
       <p class="name">{{dynamic.name}}</p>

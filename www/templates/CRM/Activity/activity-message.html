@@ -13,7 +13,7 @@
       <p class="name"><i class="icon ion-ios-cart-outline"></i>{{activity.content}} <i class="icon ion-android-create right" ng-click="edit()" ng-show="!editable"></i><i class="icon ion-android-close right" ng-show="!editable"></i></p>
       <span>{{activity.endDate}} 客户 {{activity.custom}} {{activity.state}}</span>
       <p ng-show="!editable" class="record">{{activity.explanation}}</p>
-      <textarea class="record" ng-show="editable" >{{activity.explanation}}</textarea>
+      <textarea class="record" ng-show="editable" ng-model="activity.explanation"></textarea>
       <span class="address"><i class="icon ion-ios-location-outline"></i>{{activity.address}}</span>
       <p class="address">
         <img src="img/map.png">{{activity.address}}

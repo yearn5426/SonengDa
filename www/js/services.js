@@ -890,7 +890,8 @@ angular.module('starter.services', [])
     phone:'021-3573095',
     sex:'男',
     address:'上海 青浦',
-    explanation:'Do Myself!'
+    explanation:'Do Myself!',
+    background:0
   };
   return {
     get: function(){

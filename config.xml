@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.sonengda478450" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>SonengDa</name>
+  <name>10977-袁梦</name>
   <description>
         An Ionic Framework and Cordova project.
     </description>
@@ -20,4 +20,11 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <platform name="android">
+    <icon src="resources/android/icon/me.png" />
+    <splash src="resources/android/splash/loading.png"/>
+  </platform>
+  <preference name="SplashScreen" value="screen"/>
+  <preference name="SplashScreenDelay" value="2000" />
+
 </widget>

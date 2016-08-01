@@ -8,50 +8,6 @@
       <i class="icon ion-ios-search right"></i>
     </button>
   </ion-header-bar>
-  <style>
-    .address-list ul.nav{
-      position: fixed;
-      top: 7vh;
-      bottom:0;
-      right:0.25em;
-      padding:0;
-      display: block;
-      background-color: transparent;
-      z-index: 9;
-      text-align: center;
-      border-radius: 10px;
-      opacity:0.7;
-      width: 1em;
-    }
-    .address-list ul.nav li{
-      display: block;
-      color: #606060;
-      height: 3.3vh;
-      text-align: center;
-      font-weight: 600;
-      z-index: 9;
-    }
-    .address-list .nav-back{
-      display: block;
-      position: fixed;
-      top: 7vh;
-      right:0;
-      z-index:8;
-      width: 1.5em;
-      height: 1.5em;
-      border-radius:1em;
-      background-color: rgb(7,156,246);
-      margin:0;
-      padding:0;
-    }
-
-    @keyframes zoom-out
-    {
-      0% {width: 1.5em;height: 1.5em;right:0;}
-      50% {width:0.7em;height:0.7em;right:0.4em}
-      100% {width: 1.5em;height: 1.5em;right:0;}
-    }
-  </style>
   <ul class="nav">
     <li ng-click="scrollGo(0)">↑</li>
     <li ng-click="scrollGo('A')">A</li>
@@ -83,7 +39,7 @@
     <li ng-click="scrollGo(1)">#</li>
   </ul>
   <span class="nav-back"></span>
-  <ion-content on-drag="onDrag()">
+  <ion-content on-drag="onDrag()" overflow-scroll="true" on-swipe="onSwipe()">
     <div class="contacts" ng-repeat="contact in contacts track by $index">
       <p class="split" ng-if="showSplit(contact.name)" ng-bind="toChar(contact.name)" id="{{toChar(contact.name)}}"></p>
       <div ng-click="goAddressDetail(contact.name)">

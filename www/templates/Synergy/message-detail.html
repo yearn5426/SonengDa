@@ -4,11 +4,8 @@
       <i class="icon ion-ios-arrow-left"></i>
     </button>
     <h1 class="title">{{chat.chatName}}</h1>
-    <button class="button icon third-button" ng-click="goChatSetting()">
+    <button class="button icon" ng-click="goChatSetting()">
       <i class="icon ion-ios-gear-outline right"></i>
-    </button>
-    <button class="button icon" ng-click="" >
-    <i class="icon ion-ios-telephone-outline right"></i>
     </button>
   </ion-header-bar>
   <ion-content class="padding" ng-class="{true:'open-expression', false:''}[showExpression]">
@@ -29,9 +26,10 @@
         </div>
       </div>
       <button class="toolBtn"><i class="icon ion-ios-plus-outline"></i></button>
-      <input name="msg" type="text" class="msg" placeholder="请输入消息" ng-model="msg.msg"/>
+      <input name="msg" type="text" class="msg" placeholder="请输入消息" ng-model="msg.msg" ng-change="sendOrTape=true"/>
       <button ng-click="openExpression()" class="expressionBtn"><i class="icon ion-happy-outline"></i></button>
-      <button class="sendBtn" ng-click="send()"><i class="icon ion-ios-redo"></i></button>
+      <button ng-if="sendOrTape" class="sendBtn" ng-click="send()"><i class="icon ion-ios-redo"></i></button>
+      <button ng-if="!sendOrTape" class="sendBtn" ng-click=""><i class="icon ion-ios-mic-outline"></i></button>
     </form>
   </div>
 </ion-view>
