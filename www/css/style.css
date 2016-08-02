@@ -1,5 +1,33 @@
 /* Empty. Add your own CSS if you like */
 
+/* 颜色 */
+ion-content div.common i,.new .info .out-icon i, .new .info .icon i, form.send *, .popup .prev_btn_section i, .popup .next_btn_section i,.ionic_datepicker_popup .popup .popup-body .year_select:after,
+.ionic_datepicker_popup .popup .popup-body .month_select:after, .home .activity p i,.expense-claim-detail .head-info div i, .expense-claim-detail .examine button,
+.work-circle .dynamic div i, .work-circle .dynamic .comment span, .activity-detail .detail p i, .activity-detail .detail p span i, .activity-detail .tool button, .search-result .common p .comment:before,
+.search-result .message .transmit:before, .contact-detail .detail p i, .contact-detail .detail p span i, .niche-stage .stage i, .activity-record .activity-info p.name i,
+.activity-record .activity-info>i:before, .custom-detail .detail p i, .custom-detail .detail p span i, .activity-state .state i, .niche-detail .detail p i, .niche-detail .detail p span i,
+.attachment-detail .tool button, .activity-message .activity-info p.name i, .activity-message .activity-info>i:before, .activity-message .common-detail i, .activity-message .common-detail p span,
+.quote-detail .detail p span i, .order-detail .detail p span i, .expense-shorthand .save-again button, .new-expense-detail .save-again button, .new-expense-claim .expense i, .new-expense-claim .expense i,
+.new-expense-claim .build button, .submit-expense-claim .expense span i, .submit-expense-claim .submit button, .expense-claim-show .info .date i, .expense-query .expense span i, .expense-query .shorthand span i,
+.chat-setting .member i, .address-detail .info label, .address-detail .info i, .change-background .padding .background i{
+  color: rgb(7,156,246);
+}
+div.tab-nav.tabs, ion-header-bar.head-bar, ion-header-bar.head-bar, .ionic_datepicker_popup .popup .popup-body .selected_date_full, .ionic_datepicker_popup .popup .selected_date,
+.ionic_datepicker_popup .popup .popup-buttons button, .home .search, .message-detail div.send span, .search .search-nav, .search .search-nav button, .address-list .nav-back,
+.map .input button{
+  background-color: rgb(7,156,246);
+}
+.ionic_datepicker_popup .popup .popup-body .year_select, .ionic_datepicker_popup .popup .popup-body .month_select, .expense-claim .is-examine div button.selected{
+  border-bottom-color: rgb(7,156,246);
+}
+.contacts .common i.ion-ios-person-outline:before, .expense-shorthand .info textarea:focus, .new-expense-detail .info textarea:focus, .expense-claim-show .info textarea:focus, form.send .msg:focus{
+  border-color: rgb(7,156,246);
+}
+.message-detail div.send span:after{
+  border-left-color: rgb(7,156,246);
+}
+/* 颜色end */
+
 /* 常用样式 */
 ion-content.scroll-content{
   background-color: #f0f0f0;
@@ -27,7 +55,6 @@ ion-content div.common i{
   position: absolute;
   font-size: 2.5em;
   left: -0.3em;
-  color: rgb(7,156,246);
 }
 ion-content div.common i.right{
   position: static;
@@ -35,7 +62,7 @@ ion-content div.common i.right{
   color: black;
 }
 ion-content.has-header{
-  top:7.5vh;
+  top:7vh;
 }
   /* 分隔p样式 */
 .work ion-content div div, .team ion-content div div, .search-result ion-content div div{
@@ -63,9 +90,6 @@ p.split{
 }
   /* 消息数量span样式end */
   /* tab栏样式 */
-div.tab-nav.tabs{
-  background-color: rgb(7,156,246);
-}
 div.tab-nav.tabs .tab-item{
   opacity: 1;
 }
@@ -79,7 +103,6 @@ div.tab-nav.tabs a span{
 
   /* head-bar样式 */
 ion-header-bar.head-bar{
-  background-color: rgb(7,156,246);
   height: 7vh;
 }
 ion-header-bar.head-bar .title{
@@ -283,11 +306,10 @@ ion-content.new.scroll-content{
 }
 .new .info .icon i{
   position: absolute;
-  top:10px;
+  top:12px;
   left:81%;
   font-size: 1.3em;
   line-height: 0.5em;
-  color:rgb(7,156,246);
 }
 .new .info select{
   display: inline-block;
@@ -307,7 +329,6 @@ ion-content.new.scroll-content{
 form.send *{
   padding:0;
   margin:0;
-  color: rgb(7,156,246);
 }
 form.send{
   background-color: white;
@@ -343,32 +364,15 @@ form.send .msg{
   vertical-align: middle;
   color: #000;
 }
-form.send .msg:focus{
-  border-color: #387ef5;
-}
   /* 聊天消息发送栏样式end */
 
   /* 弹出日历样式 */
-.popup .prev_btn_section i, .popup .next_btn_section i{
-  color: rgb(7,156,246);
-}
-.ionic_datepicker_popup .popup .popup-body .selected_date_full{
-  background-color: rgb(7,156,246);
-}
 .ionic_datepicker_popup .popup .popup-body .year_select, .ionic_datepicker_popup .popup .popup-body .month_select{
-  border-bottom:1px solid rgb(7,156,246);
-}
-.ionic_datepicker_popup .popup .popup-body .year_select:after, .ionic_datepicker_popup .popup .popup-body .month_select:after{
-  color: rgb(7,156,246);
-}
-.ionic_datepicker_popup .popup .selected_date{
-  background-color: rgb(7,156,246);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
 }
 .ionic_datepicker_popup .popup .today{
   border:0;
-}
-.ionic_datepicker_popup .popup .popup-buttons button{
-  background-color: rgb(7,156,246);
 }
   /* 弹出日历样式end */
 /* 常用样式end */
@@ -383,7 +387,6 @@ form.send .msg:focus{
   margin-top: 7vh;
   height: 7.5vh;
   width:100%;
-  background-color: rgb(7,156,246);
   padding:0 20px;
   border:0;
 }
@@ -400,7 +403,7 @@ form.send .msg:focus{
 
   /* home页面content样式 */
 .home .padding{
-  margin-top:6vh;
+  margin-top:7.5vh;
 }
     /* home页面日历样式 */
 .home .padding .date{
@@ -472,7 +475,6 @@ form.send .msg:focus{
   position: absolute;
   font-size: 2.5em;
   left: -0.3em;
-  color: rgb(7,156,246);
 }
 .home .activity ion-item{
   min-height: 0;
@@ -584,7 +586,8 @@ form.send .msg:focus{
 }
 .expense-claim .is-examine div button.selected{
   margin-bottom: 3px;
-  border-bottom: 2px solid rgb(7,156,246);
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
 }
 .expense-claim .list{
   width: 100%;
@@ -604,7 +607,7 @@ form.send .msg:focus{
   padding: 10px;
 }
 .expense-claim .list .item.activated{
-  borde: 0;
+  border: 0;
   background-color: white;
 }
 .expense-claim .list .item div{
@@ -659,7 +662,6 @@ form.send .msg:focus{
 }
 .expense-claim-detail .head-info div i{
   font-size: 2em;
-  color: rgb(7,156,246);
   margin-right:10px;
   margin-left:1em;
 }
@@ -731,7 +733,6 @@ form.send .msg:focus{
 .expense-claim-detail .examine button{
   border:none;
   background-color: white;
-  color: rgb(7,156,246);
 }
 .expense-claim-detail .examine .left{
   float: left;
@@ -866,7 +867,6 @@ form.send .msg:focus{
   color: #808080;
 }
 .work-circle .dynamic div i{
-  color: rgb(7,156,246);
   float: right;
   font-size: 1.6em;
   margin-right: 8px;
@@ -877,7 +877,6 @@ form.send .msg:focus{
 }
 .work-circle .dynamic .comment span{
   font-size: 1em;
-  color: rgb(7,156,246);
 }
 .work-circle .dynamic .comment p{
   margin:0;
@@ -894,7 +893,6 @@ form.send .msg:focus{
 .work-circle .dynamic .comment button{
   margin-left: 5%;
   border: 0;
-  background-color: rgb(7,156,246);
   color: #fff;
   height: 2em;
   vertical-align: bottom;
@@ -1047,13 +1045,11 @@ form.send .msg:focus{
 .activity-detail .detail p i{
   font-size: 1.8em;
   margin-left:0.5em;
-  color: rgb(7,156,246);
 }
 .activity-detail .detail p span i{
   float: none;
   margin-left:0;
   font-size: 2.5em;
-  color: rgb(7,156,246);
 }
 .activity-detail .detail p i.right{
   margin-left:1.8em;
@@ -1071,7 +1067,6 @@ form.send .msg:focus{
   width:24%;
   border:0;
   background-color: transparent;
-  color: rgb(7,156,246);
 }
 /* activity-detail界面样式end */
 
@@ -1181,14 +1176,14 @@ form.send .msg:focus{
 .message-detail div.send span{
   float: right;
   margin-right: 5vw;
-  background-color: rgb(7,156,246);
   color: #fff;
 }
 .message-detail div.send span:after{
   position: absolute;
   right:-4.5vw;
   content: '';
-  border-left: 20px solid rgb(7,156,246);
+  border-left-width: 20px;
+  border-left-style: solid;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
   font-size: 0;
@@ -1289,7 +1284,6 @@ form.send .msg:focus{
   color: #000;
 }
 .search-result .common p .comment:before{
-  color: rgb(7,156,246);
   font-size:25px;
 }
 .search-result .message{
@@ -1312,14 +1306,13 @@ form.send .msg:focus{
   font-size: 0.5em;
 }
 .search-result .message .transmit:before{
-  color:rgb(7,156,246);
   font-size: 3em;
 }
 /* search-result界面样式end */
 
 /* contacts界面样式 */
 .contacts .common i.ion-ios-person-outline:before{
-  border:1px solid rgb(7,156,246);
+  border:1px solid;
   height: 0.8em;
   width:0.8em;
   text-align: center;
@@ -1363,14 +1356,12 @@ form.send .msg:focus{
 }
 .contact-detail .detail p i{
   font-size: 1.8em;
-  color: rgb(7,156,246);
   margin-left:2%;
 }
 .contact-detail .detail p span i{
   float: none;
   margin-left:0;
   font-size: 2.5em;
-  color: rgb(7,156,246);
 }
 .contact-detail .detail p i.right{
   margin-left:9%;
@@ -1427,7 +1418,6 @@ form.send .msg:focus{
   position: absolute;
   font-size: 2em;
   vertical-align: middle;
-  color: rgb(7,156,246);
 }
 /* niche-stage界面样式end */
 
@@ -1448,7 +1438,6 @@ form.send .msg:focus{
   font-size: 2.5em;
   position: absolute;
   left:20px;
-  color: rgb(7,156,246);
 }
 .activity-record .activity-info p.name i.right{
   font-size: 2.5em;
@@ -1494,7 +1483,6 @@ form.send .msg:focus{
   font-size: 1.2em;
 }
 .activity-record .activity-info>i:before{
-  color: rgb(7,156,246);
   font-size: 1.5em;
 }
 /* activity-record界面样式end */
@@ -1502,7 +1490,6 @@ form.send .msg:focus{
 /* search界面样式 */
 .search .search-nav{
   height: 45px;
-  background-color: rgb(7,156,246);
   line-height: 45px;
 }
 .search .search-nav div{
@@ -1535,7 +1522,6 @@ form.send .msg:focus{
   vertical-align: middle;
 }
 .search .search-nav button{
-  background-color: rgb(7,156,246);
   border:none;
   color: white;
 }
@@ -1638,14 +1624,12 @@ form.send .msg:focus{
 }
 .custom-detail .detail p i{
   font-size: 1.8em;
-  color: rgb(7,156,246);
   margin-left:2%;
 }
 .custom-detail .detail p span i{
   float: none;
   margin-left:0;
   font-size: 2.5em;
-  color: rgb(7,156,246);
 }
 .custom-detail .detail p i.right{
   margin-left:9%;
@@ -1681,7 +1665,6 @@ form.send .msg:focus{
   position: absolute;
   font-size: 2em;
   vertical-align: middle;
-  color: rgb(7,156,246);
 }
 /* activity-state界面样式end */
 
@@ -1767,14 +1750,12 @@ ion-item.repeat-go-item.activated{
 }
 .niche-detail .detail p i{
   font-size: 1.8em;
-  color: rgb(7,156,246);
   margin-left:2%;
 }
 .niche-detail .detail p span i{
   float: none;
   margin-left:0;
   font-size: 2.5em;
-  color: rgb(7,156,246);
 }
 .niche-detail .detail p i.right{
   margin-left:9%;
@@ -1812,7 +1793,6 @@ ion-item.repeat-go-item.activated{
 .attachment-detail .tool button{
   border:none;
   background-color: white;
-  color: rgb(7,156,246);
   font-size: 2em;
 }
 .attachment-detail .tool .left{
@@ -1943,7 +1923,6 @@ ion-item.repeat-go-item.activated{
   font-size: 2.5em;
   position: absolute;
   left:20px;
-  color: rgb(7,156,246);
 }
 .activity-message .activity-info p.name i.right{
   font-size: 2em;
@@ -2005,7 +1984,6 @@ ion-item.repeat-go-item.activated{
   font-size: 1.2em;
 }
 .activity-message .activity-info>i:before{
-  color: rgb(7,156,246);
   font-size: 1.5em;
 }
 .activity-message .activity-info .common{
@@ -2030,7 +2008,6 @@ ion-item.repeat-go-item.activated{
 }
 .activity-message .common-detail i{
   font-size: 2.5em;
-  color: rgb(7,156,246);
   position: absolute;
   left:3px;
 }
@@ -2045,9 +2022,6 @@ ion-item.repeat-go-item.activated{
 }
 .activity-message .common-detail div > p{
   margin-top:5px;
-}
-.activity-message .common-detail p span{
-  color: rgb(7,156,246);
 }
 /* activity-message界面样式end */
 
@@ -2098,7 +2072,6 @@ ion-item.repeat-go-item.activated{
   float: none;
   margin-left:0;
   font-size: 2.5em;
-  color: rgb(7,156,246);
 }
 .quote-detail .detail span, .order-detail .detail span{
   margin-right: 2%;
@@ -2131,7 +2104,7 @@ ion-item.repeat-go-item.activated{
   border:1px solid;
 }
 .expense-shorthand .info textarea:focus, .new-expense-detail .info textarea:focus{
-  border:2px solid rgb(7,156,246);
+  border:2px solid;
   border-radius: 3px;
 }
 .expense-shorthand .save-again, .new-expense-detail .save-again{
@@ -2145,7 +2118,6 @@ ion-item.repeat-go-item.activated{
 .expense-shorthand .save-again button, .new-expense-detail .save-again button{
   border:none;
   background-color: white;
-  color: rgb(7,156,246);
 }
 .expense-shorthand .save-again .left, .new-expense-detail .save-again .left{
   float: left;
@@ -2219,9 +2191,6 @@ ion-item.repeat-go-item.activated{
   width:33%;
   text-align: center;
 }
-.new-expense-claim .expense i{
-  color: rgb(7,156,246);
-}
 .new-expense-claim .build{
   background-color: white;
   width:100%;
@@ -2234,7 +2203,6 @@ ion-item.repeat-go-item.activated{
 .new-expense-claim .build button{
   background-color: white;
   border:0;
-  color: rgb(7,156,246);
 }
 /* new-expense-claim界面样式end */
 
@@ -2265,9 +2233,6 @@ ion-item.repeat-go-item.activated{
 .submit-expense-claim .expense .col-25{
   text-align: center;
 }
-.submit-expense-claim .expense span i{
-  color: rgb(7,156,246);
-}
 .submit-expense-claim .expense .ion-ios-arrow-right{
   font-size: 2.5em;
   position: absolute;
@@ -2287,7 +2252,6 @@ ion-item.repeat-go-item.activated{
 .submit-expense-claim .submit button{
   background-color: white;
   border:0;
-  color: rgb(7,156,246);
 }
 /* submit-expense-claim界面样式end */
 
@@ -2314,7 +2278,7 @@ ion-item.repeat-go-item.activated{
   border:1px solid;
 }
 .expense-claim-show .info textarea:focus{
-  border:2px solid rgb(7,156,246);
+  border:2px solid;
   border-radius: 3px;
 }
 .expense-claim-show .info .date div{
@@ -2341,7 +2305,6 @@ ion-item.repeat-go-item.activated{
   position: absolute;
   font-size:1.5em;
   line-height: 0.5em;
-  color: rgb(7,156,246);
 }
 .expense-claim-show .info .date i.left{
   top:10px;
@@ -2368,7 +2331,6 @@ ion-item.repeat-go-item.activated{
   text-align: center;
 }
 .expense-query .expense span i, .expense-query .shorthand span i{
-  color: rgb(7,156,246);
 }
 .expense-query .expense .ion-ios-arrow-right, .expense-query .shorthand .ion-ios-arrow-right{
   font-size: 2.5em;
@@ -2415,7 +2377,6 @@ ion-item.repeat-go-item.activated{
   border-radius: 20px;
   display: block;
   font-size: 3em;
-  color: rgb(7,156,246);
 }
 .chat-setting .member i:before{
   height: 40px;
@@ -2697,7 +2658,6 @@ ion-item.repeat-go-item.activated{
   width: 1.5em;
   height: 1.5em;
   border-radius:1em;
-  background-color: rgb(7,156,246);
   margin:0;
   padding:0;
 }
@@ -2731,14 +2691,12 @@ ion-item.repeat-go-item.activated{
 }
 .address-detail .info label{
   font-size: 0.9em;
-  color: rgb(7,156,246);
   margin-left:3%;
 }
 .address-detail .info i{
   position: absolute;
   font-size: 2.5em;
   right:5%;
-  color: rgb(7,156,246);
   top: 10px;
 }
 .address-detail .info.note p{
@@ -2835,7 +2793,6 @@ ion-item.repeat-go-item.activated{
   display: inline-block;
   height: 3em;
   width: 18vw;
-  background-color: rgb(7,156,246);
   color: white;
   border-radius: 10px;
   border:1px solid #a0a0a0;
@@ -2862,7 +2819,6 @@ ion-item.repeat-go-item.activated{
   transition:height 0.5s;
 }
 .change-background .padding .background i{
-  color: rgb(7,156,246);
   font-size: 2em;
   float: right;
   margin-right: 10px;

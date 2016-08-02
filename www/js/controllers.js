@@ -567,7 +567,6 @@ angular.module('starter.controllers', [])
           var changeBackground = i;
       }
       $rootScope.$broadcast('CHANGE_BACKGROUND',changeBackground);
-      console.log('send');
       $ionicHistory.goBack();
     };
   })
@@ -1357,7 +1356,7 @@ angular.module('starter.controllers', [])
       msg:''
     };
 
-    var pattern= /\.bs|\.db|\.dk|\.dx|\.fd|\.fh|\.gz|\.hh|\.hx|\.jk|\.jy|\.kb|\.kj|\.kl|\.ku|\.lh|\.ng|\.pz|\.qq|\.se|\.shuai|\.tx|\.wq|\.wx|\.yun|\.yw|\.yx|\.zj|\.zk|\.zt/g;
+    var pattern= /\[bs\]|\[db\]|\[dk\]|\[dx\]|\[fd\]|\[fh\]|\[gz\]|\[hh\]|\[hx\]|\[jk\]|\[jy\]|\[kb\]|\[kj\]|\[kl\]|\[ku\]|\[lh\]|\[ng\]|\[pz\]|\[qq\]|\[se\]|\[shuai\]|\[tx\]|\[wq\]|\[wx\]|\[yun\]|\[yw\]|\[yx\]|\[zj\]|\[zk\]|\[zt\]/g;
     var regExp  = new RegExp(pattern);
     $scope.goChatSetting = function(){
       $state.go('tab.chat-setting', {
@@ -2308,7 +2307,6 @@ angular.module('starter.controllers', [])
 
     $rootScope.$on('CHANGE_BACKGROUND',function(e,param){
       Me.get().background = param;
-      console.log('receive'+Me.get().background);
       $scope.currentBackground = param;
       var backgrounds = document.getElementsByClassName('background-img');
       for(var i = 0; i < backgrounds.length; i++){
