@@ -4,9 +4,6 @@
       <i class="icon ion-ios-arrow-left"></i>
     </button>
     <h1 class="title">Work Circle</h1>
-    <button class="button icon" ng-click="">
-      <i class="icon ion-ios-camera-outline right"></i>
-    </button>
   </ion-header-bar>
   <style>
     .work-circle .background .icon{
@@ -20,7 +17,7 @@
   </style>
   <div class="icon ion-ios-heart like-animation"  ng-class="{true:'run-animation',false:''}[animationRun]"></div>
   <img class="big-image" ng-src="{{bigImage}}" ng-class="{'none':showBigImage[0],'show':showBigImage[1],'hidden':showBigImage[2]}" ng-click="closeImage()">
-  <ion-content class="padding" on-drag-down="onDragDown()" on-release="onRelease()" overflow-scroll="true" has-bouncing="true">
+  <ion-content class="padding" on-drag-down="onDragDown()" on-release="onRelease()"  overflow-scroll="true">
     <div class="background">
       <div class="background-img">
       </div>
@@ -40,7 +37,7 @@
         </div>
         <div class="comment" ng-show="dynamic.edit">
           <p ng-repeat="comment in dynamic.comment"><span>{{comment.people}}：</span>{{comment.content}}</p>
-          <input type="text" placeholder="评论" ng-model="comment.comment"><button ng-click="send(dynamic)">Send</button>
+          <input type="text" placeholder="评论" ng-model="comment.comment" ng-change="sendReady()"><button ng-class="{true:'send-ready', false:''}[sendButtun]" ng-click="send(dynamic)">Send</button>
         </div>
       </div>
     </div>

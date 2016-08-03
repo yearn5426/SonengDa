@@ -26,7 +26,7 @@
       </div>
     </div>
     <div ng-repeat="product in products" class="attachment" ng-click="goProductDetail(product.name)">
-      <img src="{{product.image}}">
+      <img ng-src="{{product.image}}">
       <p>{{product.name}}</p><br>
       <span>单位：{{product.unit}}</span><br>
       <span>单价：{{product.price}}</span>

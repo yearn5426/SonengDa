@@ -1,0 +1,24 @@
+<ion-view view-title="Lock" class="lock">
+  <div class="toast" ng-class="{true:'show', false:''}[showToast]">
+    您输入的密码有误，无法进入！
+  </div>
+  <div class="toast" ng-class="{true:'show', false:''}[showReturn]">
+    再次点击返回键退出应用
+  </div>
+  <ion-content scroll="false">
+    <div class="background"></div>
+    <img ng-src="{{me.face}}">
+    <div class="password">
+      <i class="icon" ng-class="{true:'ion-ios-unlocked-outline', false:'ion-ios-locked-outline'}[isInput]"></i><input ng-change="input()" ng-model="password.password" type="password" maxlength="20">
+    </div>
+    <button ng-click="goHome()">
+      Enter
+    </button>
+    <div class="sunshine-one">
+    </div>
+    <div class="sunshine-two">
+    </div>
+    <div class="sunshine-three">
+    </div>
+  </ion-content>
+</ion-view>

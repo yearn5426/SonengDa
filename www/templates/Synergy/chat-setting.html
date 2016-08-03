@@ -8,7 +8,7 @@
   <ion-content class="padding" >
     <div class="member">
       <div ng-repeat="people in chat.people" ng-if="!(people.name == '袁梦' && chat.people.length <= 2)">
-        <img src="{{people.face}}">
+        <img ng-src="{{people.face}}">
         <span>{{people.name}}</span>
       </div>
       <div>

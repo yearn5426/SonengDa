@@ -8,6 +8,11 @@
       <i class="icon ion-ios-search right"></i>
     </button>
   </ion-header-bar>
+  <style>
+    .item-complex .item-content{
+      padding:0;
+    }
+  </style>
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="chat in chats track by $index"
@@ -16,6 +21,9 @@
         <p class="name">{{chat.chatName}}</p><p class="time"><span>{{chat.date}}</span><br><span>{{chat.time}}</span></p><br>
         <p class="text">{{chat.message[chat.message.length - 1].content}}</p>
         <i class="icon ion-ios-arrow-right"></i>
+        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+          Delete
+        </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>

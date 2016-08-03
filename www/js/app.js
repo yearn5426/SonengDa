@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter.services', 'ionic-datepicker'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $location, $timeout, $ionicHistory) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,6 +21,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       StatusBar.styleDefault();
     }
   });
+  $ionicPlatform.registerBackButtonAction(function (e) {
+    //判断处于哪个页面时双击退出
+    if ($location.path() == '/tab/home'||$location.path() == '/tab/crm'||$location.path() == '/tab/me'||
+      $location.path() == '/tab/synergy'||$location.path() == '/tab/work'||$location.path() == '/tab/lock') {
+      if ($rootScope.backButtonPressedOnceToExit) {
+        ionic.Platform.exitApp();
+      } else {
+        $rootScope.backButtonPressedOnceToExit = true;
+        $rootScope.$broadcast('SHOW_RETURN');
+        setTimeout(function () {
+          $rootScope.backButtonPressedOnceToExit = false;
+        }, 2000);
+      }
+    }
+    else if ($ionicHistory.backView()) {
+      $ionicHistory.goBack();
+    }
+    // else {
+    //   $rootScope.backButtonPressedOnceToExit = true;
+    //   setTimeout(function () {
+    //     $rootScope.backButtonPressedOnceToExit = false;
+    //   }, 2000);
+    // }
+    e.preventDefault();
+    return false;
+  }, 101);
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, ionicDatePickerProvider) {
@@ -543,6 +569,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       }
     })
 
+    .state('tab.lock', {
+      url: '/lock',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/lock.html',
+          controller: 'LockCtrl'
+        }
+      }
+    })
+
     .state('tab.new-custom', {
       url: '/crm/new-custom',
       views: {
@@ -929,6 +965,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
 
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/home');
+  $urlRouterProvider.otherwise('/tab/lock');
 
 });

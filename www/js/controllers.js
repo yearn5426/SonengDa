@@ -297,7 +297,7 @@ angular.module('starter.controllers', [])
     $scope.onSwipe = function(){
       $timeout(function () {
         var top = $ionicScrollDelegate.getScrollPosition().top;
-          for(var i = 0; i < $scope.charPosition[i].length; i++){
+          for(var i = 0; i < $scope.charPosition.length; i++){
             if(top >= $scope.charPosition[i].from
               && top <= $scope.charPosition[i].to
               && $scope.charPosition[i].num != 0){
@@ -310,7 +310,7 @@ angular.module('starter.controllers', [])
         $timeout(function () {
           backSpan.setAttribute('style','transform:translateY('+ distance*3.3 +'vh);');
         },500);
-      },300);
+      },500);
     };
 
     $rootScope.$on('DELETE_CONTACT',function(e,name){
@@ -343,7 +343,8 @@ angular.module('starter.controllers', [])
     };
   })
 
-  .controller('CrmCtrl', function($scope, $state) {
+  .controller('CrmCtrl', function($scope, $state, $rootScope, $timeout) {
+    $scope.showReturn = false;
     $scope.goDashboard = function(){
       $state.go('tab.dashboard');
     };
@@ -379,6 +380,12 @@ angular.module('starter.controllers', [])
     $scope.goOrderList = function(){
       $state.go('tab.order-list');
     };
+    $rootScope.$on('SHOW_RETURN', function(){
+      $scope.showReturn = true;
+      $timeout(function(){
+        $scope.showReturn = false;
+      }, 2000);
+    });
   })
 
   .controller('ContactsCtrl', function($scope, $state, $ionicHistory) {
@@ -532,7 +539,7 @@ angular.module('starter.controllers', [])
     $scope.delete = function(){
       Chats.getAll().pop($scope.chat);
       $ionicHistory.goBack(-2);
-    }
+    };
   })
 
   .controller('CollectionCtrl', function($scope, $ionicHistory, Dynamics, $state) {
@@ -1083,6 +1090,8 @@ angular.module('starter.controllers', [])
     $scope.messageNum = 0;
     $scope.claimNum = 0;
     $scope.expenseClaim = ExpenseClaim.getAll();
+    $scope.showSmallTool = false;
+    $scope.showReturn = false;
 
     for(var i = 0; i < $scope.chats.length; i++){
       $scope.messageNum += parseInt($scope.chats[i].messageNum);
@@ -1095,7 +1104,7 @@ angular.module('starter.controllers', [])
 
     $scope.chooseDate= function(date){
       $scope.activities = Activities.get(date);
-      $scope.noActivities = !Activities.get(date);
+      $scope.noActivities = !Activities.get(date).length;
       for(var i = 0; i < 14; i++){
         $scope.selected[i] = false;
       }
@@ -1146,7 +1155,33 @@ angular.module('starter.controllers', [])
             $scope.claimNum++;
         }
       },1000);
-    })
+    });
+
+    $scope.clickSmallTool = function(){
+      $scope.showSmallTool = !$scope.showSmallTool;
+    };
+
+    $scope.toNight = function(){
+      var view = document.getElementsByTagName('ion-nav-view')[0];
+      var index = view.className.indexOf('night');
+      if(index != -1){
+        var className = view.className.toString().split('');
+        className.splice(index - 1, 6);
+        view.className = className.join('');
+      } else {
+        view.className += ' night';
+      }
+    };
+
+    $scope.goLock = function(){
+      $state.go('tab.lock');
+    };
+    $rootScope.$on('SHOW_RETURN', function(){
+      $scope.showReturn = true;
+      $timeout(function(){
+        $scope.showReturn = false;
+      }, 2000);
+    });
   })
 
   .controller('KeyNicheCtrl', function($scope, $ionicHistory) {
@@ -1237,7 +1272,42 @@ angular.module('starter.controllers', [])
     chart.setOption(option);
   })
 
-  .controller('MeCtrl', function($scope, $state, Me) {
+  .controller('LockCtrl', function($scope, $state, Me, $ionicHistory, $timeout, $rootScope) {
+    $scope.me = Me.get();
+    $scope.password = {
+      password:''
+    };
+    $scope.showToast = false;
+    $scope.showReturn = false;
+    $scope.isInput = false;
+    $scope.input = function(){
+      if(!$scope.isInput)
+        $scope.isInput = true;
+    };
+    $scope.goHome = function(){
+      if($scope.me.password == $scope.password.password){
+        $state.go('tab.home');
+        $scope.password.password = '';
+        $scope.isInput = false;
+      } else {
+        if(!$scope.showToast)
+          $scope.showToast = true;
+        $scope.password.password = '';
+        $timeout(function(){
+          $scope.showToast = false;
+        }, 2000);
+      }
+    };
+    $rootScope.$on('SHOW_RETURN', function(){
+      $scope.showReturn = true;
+      $timeout(function(){
+        $scope.showReturn = false;
+      }, 2000);
+    });
+  })
+
+  .controller('MeCtrl', function($scope, $state, Me, $rootScope, $timeout) {
+    $scope.showReturn = false;
     $scope.me = Me.get();
     $scope.goMyInformation = function(){
       $state.go('tab.my-information');
@@ -1253,7 +1323,13 @@ angular.module('starter.controllers', [])
     };
     $scope.goSendEmail = function () {
       $state.go('tab.send-email');
-    }
+    };
+    $rootScope.$on('SHOW_RETURN', function(){
+      $scope.showReturn = true;
+      $timeout(function(){
+        $scope.showReturn = false;
+      }, 2000);
+    });
   })
 
   .controller('MapCtrl', function($scope, $state, $ionicHistory, $rootScope) {
@@ -1328,6 +1404,7 @@ angular.module('starter.controllers', [])
     };
     $scope.goMessageDetail = function(chatName){
       var currentViewName = $state.current.name;
+      Chats.getByChatName(chatName).messageNum = 0;
       if(currentViewName == 'tab.message-home'){
         $state.go('tab.message-detail-home',{
           'ChatName':chatName
@@ -1341,6 +1418,9 @@ angular.module('starter.controllers', [])
     $scope.goSearch = function(){
       $state.go('tab.search');
     };
+    $scope.remove = function(chat){
+      Chats.getAll().splice(Chats.getAll().indexOf(chat),1);
+    }
   })
 
   .controller('MessageDetailCtrl', function($scope, Chats, $stateParams, $ionicHistory, $state, Expressions, $ionicScrollDelegate) {
@@ -1350,7 +1430,6 @@ angular.module('starter.controllers', [])
     $scope.sendOrTape = false;
     $scope.back = function(){
       $ionicHistory.goBack();
-      $scope.chat.messageNum = 0;
     };
     $scope.msg = {
       msg:''
@@ -1810,10 +1889,58 @@ angular.module('starter.controllers', [])
     $scope.product = Products.getByName($stateParams.ProductName);
   })
 
-  .controller('PasswordSettingCtrl', function($scope, $ionicHistory) {
+  .controller('PasswordSettingCtrl', function($scope, $ionicHistory, Me, $timeout) {
+    $scope.me = Me.get();
+    $scope.toastMessage = '';
+    $scope.showToast = false;
+    $scope.password = {
+      oldPassword:'',
+      newPassword:'',
+      confirmPassword:''
+    };
     $scope.back = function(){
       $ionicHistory.goBack();
     };
+    $scope.changePassword = function(){
+      if( $scope.password.oldPassword != $scope.me.password ){
+        $scope.toastMessage = '旧密码输入错误!';
+        if(!$scope.showToast)
+          $scope.showToast = true;
+        $timeout(function(){
+          $scope.showToast = false;
+        }, 2000);
+      } else if ($scope.password.newPassword.trim() == ''){
+        $scope.toastMessage = '新密码为空!';
+        if(!$scope.showToast)
+          $scope.showToast = true;
+        $timeout(function(){
+          $scope.showToast = false;
+        }, 2000);
+      } else if($scope.password.confirmPassword.trim() == ''){
+        $scope.toastMessage = '确认密码为空!';
+        if(!$scope.showToast)
+          $scope.showToast = true;
+        $timeout(function(){
+          $scope.showToast = false;
+        }, 2000);
+      } else if($scope.password.newPassword != $scope.password.confirmPassword){
+        $scope.toastMessage = '两次密码不一致!';
+        if(!$scope.showToast)
+          $scope.showToast = true;
+        $timeout(function(){
+          $scope.showToast = false;
+        }, 2000);
+      } else {
+        $scope.me.password = $scope.password.newPassword;
+        $scope.toastMessage = '修改成功!';
+        if(!$scope.showToast)
+          $scope.showToast = true;
+        $timeout(function(){
+          $scope.showToast = false;
+          $ionicHistory.goBack();
+        }, 2000);
+      }
+    }
   })
 
   .controller('QuoteListCtrl', function($scope, $ionicHistory, $state, Quotes) {
@@ -1962,7 +2089,8 @@ angular.module('starter.controllers', [])
 
   })
 
-  .controller('SynergyCtrl', function($scope, $state, Chats, $rootScope) {
+  .controller('SynergyCtrl', function($scope, $state, Chats, $rootScope, $timeout) {
+    $scope.showReturn = false;
     $scope.goWorkCircle = function(){
       $state.go('tab.work-circle');
     };
@@ -1990,7 +2118,13 @@ angular.module('starter.controllers', [])
         else
           $scope.privateMessageNum += parseInt($scope.chats[i].messageNum)
       }
-    })
+    });
+    $rootScope.$on('SHOW_RETURN', function(){
+      $scope.showReturn = true;
+      $timeout(function(){
+        $scope.showReturn = false;
+      }, 2000);
+    });
   })
 
   .controller('SendEmailCtrl', function($scope, $ionicHistory) {
@@ -2006,7 +2140,7 @@ angular.module('starter.controllers', [])
     $scope.name = $stateParams.Name;
   })
 
-  .controller('TabCtrl', function($scope, $state) {
+  .controller('TabCtrl', function($scope, $state, $ionicHistory) {
   $scope.$on('$ionicView.beforeEnter', function(){
     var currentViewName = $state.current.name;
     if(currentViewName != 'tab.home' && currentViewName != 'tab.crm' && currentViewName != 'tab.work' && currentViewName != 'tab.synergy' && currentViewName != 'tab.me'){
@@ -2017,6 +2151,7 @@ angular.module('starter.controllers', [])
     var currentViewName = $state.current.name;
     if(currentViewName == 'tab.home' || currentViewName == 'tab.crm' || currentViewName == 'tab.work' || currentViewName == 'tab.synergy' || currentViewName == 'tab.me'){
       $scope.hideTabs = false;
+      $ionicHistory.clearHistory();
     }
   });
 })
@@ -2177,7 +2312,8 @@ angular.module('starter.controllers', [])
     chart.setOption(option);
   })
 
-  .controller('WorkCtrl', function($scope, $state) {
+  .controller('WorkCtrl', function($scope, $state, $rootScope, $timeout) {
+    $scope.showReturn = false;
     $scope.goExpenseShort = function () {
       $state.go('tab.expense-shorthand')
     };
@@ -2198,7 +2334,13 @@ angular.module('starter.controllers', [])
     };
     $scope.goNewActivity = function(){
       $state.go('tab.new-activity-work');
-    }
+    };
+    $rootScope.$on('SHOW_RETURN', function(){
+      $scope.showReturn = true;
+      $timeout(function(){
+        $scope.showReturn = false;
+      }, 2000);
+    });
   })
 
   .controller('WorkCircleCtrl', function($scope, $ionicHistory, Dynamics, $timeout, $state, Me, $rootScope) {
@@ -2209,6 +2351,7 @@ angular.module('starter.controllers', [])
     $scope.showBigImage = [true, false, false];
     $scope.showBack = true;
     $scope.currentBackground = Me.get().background;
+    $scope.sendButtun = false;
     var backgrounds = document.getElementsByClassName('background-img');
     for(var i = 0; i < backgrounds.length; i++){
       backgrounds[i].setAttribute('style','background-image:url("img/background/background'+ $scope.currentBackground +'.jpg")')
@@ -2239,7 +2382,7 @@ angular.module('starter.controllers', [])
         $scope.animationRun = true;
         $timeout(function(){
           $scope.animationRun = false;
-        },1500)
+        },2000)
       }
     };
 
@@ -2247,12 +2390,15 @@ angular.module('starter.controllers', [])
       comment:''
     };
     $scope.send = function(dynamic){
+      if(!$scope.comment.comment)
+        return;
       var comment = {
         people:'我',
         content: $scope.comment.comment
       };
       dynamic.comment.push(comment);
       $scope.comment.comment = '';
+      $scope.sendButtun = false;
     };
 
     $scope.scale = 1.003;
@@ -2329,6 +2475,10 @@ angular.module('starter.controllers', [])
           'CurrentBackground':$scope.currentBackground
         });
       }
+    };
+    $scope.sendReady = function () {
+      if($scope.sendButtun == false)
+        $scope.sendButtun = true;
     };
   })
 

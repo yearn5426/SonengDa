@@ -519,6 +519,10 @@ angular.module('starter.services', [])
             return chats[i];
         }
         return null;
+      },
+      moveToTop: function(chat){
+        chats.splice(chats.indexOf(chat), 1);
+        chats.unshift(chat);
       }
     }
   })
@@ -891,7 +895,8 @@ angular.module('starter.services', [])
     sex:'男',
     address:'上海 青浦',
     explanation:'Do Myself!',
-    background:0
+    background:0,
+    password:'159357'
   };
   return {
     get: function(){

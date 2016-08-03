@@ -29,7 +29,7 @@
       </div>
     </div>
     <div ng-repeat="attachment in attachments" class="attachment" ng-click="goAttachmentDetail(attachment.name)">
-      <img src="{{attachment.image}}">
+      <img ng-src="{{attachment.image}}">
       <p>{{attachment.name}}</p><br>
       <span>{{attachment.explanation}}</span><br>
       <span>{{attachment.sale}}</span>

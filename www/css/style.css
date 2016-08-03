@@ -1,5 +1,11 @@
 /* Empty. Add your own CSS if you like */
 
+/* 夜间模式 */
+ion-nav-view.night{
+  -webkit-filter:brightness(.5);
+}
+/* 夜间模式end */
+
 /* 颜色 */
 ion-content div.common i,.new .info .out-icon i, .new .info .icon i, form.send *, .popup .prev_btn_section i, .popup .next_btn_section i,.ionic_datepicker_popup .popup .popup-body .year_select:after,
 .ionic_datepicker_popup .popup .popup-body .month_select:after, .home .activity p i,.expense-claim-detail .head-info div i, .expense-claim-detail .examine button,
@@ -14,7 +20,7 @@ ion-content div.common i,.new .info .out-icon i, .new .info .icon i, form.send *
 }
 div.tab-nav.tabs, ion-header-bar.head-bar, ion-header-bar.head-bar, .ionic_datepicker_popup .popup .popup-body .selected_date_full, .ionic_datepicker_popup .popup .selected_date,
 .ionic_datepicker_popup .popup .popup-buttons button, .home .search, .message-detail div.send span, .search .search-nav, .search .search-nav button, .address-list .nav-back,
-.map .input button{
+.map .input button, .work-circle .dynamic .comment button.send-ready{
   background-color: rgb(7,156,246);
 }
 .ionic_datepicker_popup .popup .popup-body .year_select, .ionic_datepicker_popup .popup .popup-body .month_select, .expense-claim .is-examine div button.selected{
@@ -375,6 +381,44 @@ form.send .msg{
   border:0;
 }
   /* 弹出日历样式end */
+
+  /* toast样式 */
+.toast{
+  background-color: #b0b0b0;
+  position: absolute;
+  bottom:10vh;
+  width: 80vw;
+  left:10vw;
+  opacity: 0;
+  color: white;
+  z-index:0;
+  text-align: center;
+  height: 3em;
+  border-radius: 10px;
+  line-height: 3em;
+}
+.toast.show{
+  animation: show-toast 2s;
+}
+@keyframes show-toast {
+  0%{
+    opacity: 0;
+    z-index:11;
+  }
+  30%{
+    opacity: 0.8;
+    z-index:11;
+  }
+  70%{
+    opacity: 0.8;
+    z-index:11;
+  }
+  100%{
+    opacity: 0;
+    z-index:11;
+  }
+}
+  /* toast样式end */
 /* 常用样式end */
 
 
@@ -498,6 +542,9 @@ form.send .msg{
   font-size: 1.3em;
   float: right;
   color: rgb(200,180,60);
+}
+.home .activity ion-item.activated{
+  background-color: white;
 }
     /* home页面活动样式end */
     /* home页面报销单和消息样式 */
@@ -817,7 +864,7 @@ form.send .msg{
   width: 100vw;
   height:70vw;
   background-size: cover;
-  -webkit-filter:blur(2px);
+  -webkit-filter:blur(1px);
   background-image: url('../img/background/background0.jpg');
 }
 .work-circle .background img{
@@ -967,11 +1014,11 @@ form.send .msg{
 }
 .big-image.show{
   transform: scale(1);
-  transition:all 1s;
+  transition:all 0.5s;
 }
 .big-image.hidden{
   transform: scale(0);
-  transition:all 1s;
+  transition:all 0.5s;
 }
 .big-image.none{
   transform: scale(0);
@@ -1897,6 +1944,9 @@ ion-item.repeat-go-item.activated{
   line-height: 2.7em;
   margin:0;
 }
+.product-detail .detail p.explanation{
+  height: auto;
+}
 .product-detail .detail span{
   margin-right: 2%;
 }
@@ -2812,11 +2862,13 @@ ion-item.repeat-go-item.activated{
   height: 10vh;
   background-size:100vw 70vw;
   overflow: hidden;
-  transition:height 0.5s;
+  -webkit-filter:blur(1.5px);
+  transition:all 0.5s;
 }
 .change-background .padding .background.selected{
   height:70vw;
-  transition:height 0.5s;
+  -webkit-filter:blur(0px);
+  transition:all 0.5s;
 }
 .change-background .padding .background i{
   font-size: 2em;
@@ -2825,3 +2877,166 @@ ion-item.repeat-go-item.activated{
   margin-top:10px;
 }
 /* change-background界面样式end */
+
+/* lock界面样式 */
+.lock *{
+  z-index:9;
+}
+.lock ion-content{
+  top:0;
+}
+.lock ion-content .background{
+  width:100vw;
+  height: 100vh;
+  background-image: url('../img/lock.png');
+  -webkit-filter: blur(2px) brightness(.95);
+}
+.lock ion-content img{
+  position: absolute;
+  top: 20vh;
+  width:30vw;
+  height: 30vw;
+  border-radius: 15vw;
+  border:1px solid #d0d0d0;
+  left: 35vw;
+}
+.lock .password{
+  position: absolute;
+  top: 50vh;
+  width: 80vw;
+  height: 3em;
+  line-height: 3em;
+  left:10vw;
+  background-color: transparent;
+  display: flex;
+  padding:0 5vw;
+}
+.lock .password i{
+  font-size: 2em;
+  color: rgb(7,156,246);
+  display: inline-block;
+  margin-right:10px;
+  vertical-align: top;
+}
+.lock .password input{
+  display: inline-flex;
+  height:3em;
+  vertical-align: top;
+  flex:1;
+  background-color: transparent;
+  border-bottom: 1px solid #fff;
+}
+.lock button{
+  position: absolute;
+  height: 2.3em;
+  font-size: 1.2em;
+  top:65vh;
+  width:70vw;
+  left:15vw;
+  border-radius: 10px;
+  background-color: transparent;
+  border:1px solid #fff;
+  color: #fff;
+}
+
+.lock .sunshine-one{
+  position: absolute;
+  background: linear-gradient(to bottom, transparent 0%,#f0f0f0 30%,#fff 50%,#f0f0f0 70%,transparent 100%);
+  background-color: transparent;
+  top:1vh;
+  right: 10px;
+  width:250px;
+  height:25px;
+  box-shadow: 0 0 5px 2px white;
+  border-radius: 100px;
+  -webkit-transform:translate(90px, -5px) perspective(20px) rotateY(10deg) rotate(-45deg) ;
+  -webkit-filter: blur(3px);
+  z-index: 5;
+  animation:sunshine-one-animation 15s infinite;
+}
+.lock .sunshine-two{
+  position: absolute;
+  background: linear-gradient(to bottom, transparent 0%,#f0f0f0 30%,#fff 50%,#f0f0f0 70%,transparent 100%);
+  background-color: white;
+  top:1vh;
+  right: 0;
+  width:250px;
+  height:30px;
+  box-shadow: 0 0 15px 1px white;
+  border-radius: 100px;
+  -webkit-transform:translate(130px, -5px) perspective(20px) rotateY(10deg) rotate(-55deg);
+  -webkit-filter: blur(3px);
+  z-index: 5;
+  animation:sunshine-two-animation 10s infinite;
+}
+.lock .sunshine-three{
+  position: absolute;
+  background: linear-gradient(to bottom, transparent 0%,#f0f0f0 30%,#fff 50%,#f0f0f0 70%,transparent 100%);
+  background-color: transparent;
+  top:1vh;
+  right: 0;
+  width:350px;
+  height:30px;
+  box-shadow: 0 0 25px 1px white;
+  border-radius: 100px;
+  -webkit-filter: blur(4px);
+  z-index: 5;
+  animation:sunshine-three-animation 20s infinite;
+}
+@keyframes sunshine-one-animation{
+  0%{
+    opacity: .5;
+  }
+  25%{
+    opacity: .2;
+  }
+  50%{
+    opacity: .5;
+  }
+  75%{
+    opacity: .2;
+  }
+  100%{
+    opacity: .5;
+  }
+}
+@keyframes sunshine-two-animation{
+  0%{
+    opacity: .2;
+  }
+  25%{
+    opacity: .5;
+  }
+  50%{
+    opacity: .2;
+  }
+  75%{
+    opacity: .5;
+  }
+  100%{
+    opacity: .2;
+  }
+}
+@keyframes sunshine-three-animation{
+  0%{
+    opacity: .2;
+    -webkit-transform:translate(170px, 65px) perspective(20px) rotateY(10deg) rotate(-63deg);
+  }
+  25%{
+    opacity: .6;
+    -webkit-transform:translate(170px, 65px) perspective(20px) rotateY(10deg) rotate(-66deg);
+  }
+  50%{
+    opacity: .2;
+    -webkit-transform:translate(170px, 65px) perspective(20px) rotateY(10deg) rotate(-60deg);
+  }
+  75%{
+    opacity: .6;
+    -webkit-transform:translate(170px, 65px) perspective(20px) rotateY(10deg) rotate(-66deg);
+  }
+  100%{
+    opacity: .2;
+    -webkit-transform:translate(170px, 65px) perspective(20px) rotateY(10deg) rotate(-63deg);
+  }
+}
+/* lock界面样式end */

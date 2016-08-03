@@ -13,6 +13,9 @@
       <div class="search">
         <input type="text" ng-model="search"  placeholder="输入客户/联系人/活动/消息关键字"><i ng-click="goSearchResult()" class="icon ion-ios-search"></i>
       </div>
+      <div class="toast" ng-class="{true:'show', false:''}[showReturn]">
+        再次点击返回键退出应用
+      </div>
       <ion-content class="padding">
         <div class="date">
           <table >
@@ -66,9 +69,117 @@
         <div class="has-msg-span common">
           <p ng-click="goMessage()"><i class="icon ion-ios-paperplane-outline"></i>消息 <i class="icon ion-ios-arrow-right right"></i><span ng-show="messageNum">{{messageNum}}</span></p>
         </div>
-      </ion-content>
-    </ion-view>
 
+
+      </ion-content>
+      <style>
+        .home .show-small-tool{
+          position: fixed;
+          bottom:55px;
+          right:5px;
+          background-color: #555;
+          width: 40px;
+          height: 40px;
+          border-radius:20px;
+          line-height: 40px;
+          font-size: 0;
+          text-align: center;
+          z-index: 10;
+        }
+        .home .show-small-tool span{
+          display: inline-block;
+          vertical-align: middle;
+          width: 22.63px;
+          height: 1px;
+          background-color: white;
+          transition: background-color 0.2s;
+        }
+        .home .show-small-tool span:before{
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top:12px;
+          left:8.65px;
+          width: 22.63px;
+          height: 1px;
+          background-color: white;
+          transition: transform 0.2s;
+        }
+        .home .show-small-tool span:after{
+          content: '';
+          display: inline-block;
+          position: absolute;
+          top:28px;
+          left:8.65px;
+          width: 22.63px;
+          height: 1px;
+          background-color: white;
+          transition: transform 0.4s;
+        }
+        .home .show-small-tool.close-small-tool span{
+          background-color:transparent;
+          transition: background-color 0.4s;
+        }
+        .home .show-small-tool.close-small-tool span:before{
+          transform: translateY(7.4px) rotate(45deg);
+          transition: all 0.4s;
+        }
+        .home .show-small-tool.close-small-tool span:after{
+          transform: translateY(-8px) rotate(-45deg);
+          transition: all 0.4s;
+        }
+        .home .small-tool{
+          position: fixed;
+          bottom:60px;
+          right:10px;
+          background-color: #555;
+          width: 30px;
+          height: 30px;
+          border-radius: 15px;
+          line-height: 30px;
+          font-size: 0;
+          text-align: center;
+          z-index: 9;
+          transition: all 0.4s;
+        }
+        .home .small-tool i{
+          font-size: 20px;
+          color: #fff;
+        }
+        .home .tool-one.show{
+          transform: translateY(-80px);
+          transition: all 0.4s;
+        }
+        .home .tool-two.show{
+          transform: translate(-69.28px,-40px);
+          transition: all 0.4s;
+        }
+        .home .tool-three.show{
+          transform: translate(-40px,-69.28px);
+          transition: all 0.4s;
+        }
+        .home .tool-four.show{
+          transform: translateX(-80px);
+          transition: all 0.4s;
+        }
+      </style>
+      <div class="show-small-tool" ng-class="{true:'close-small-tool', false:''}[showSmallTool]" ng-click="clickSmallTool()">
+        <span>
+        </span>
+      </div>
+      <div class="small-tool tool-one" ng-click="toNight()" ng-class="{true:'show', false:''}[showSmallTool]">
+        <i class="icon ion-ios-moon-outline"></i>
+      </div>
+      <div class="small-tool tool-two" ng-click="" ng-class="{true:'show', false:''}[showSmallTool]">
+        <i class="icon ion-ios-gear-outline"></i>
+      </div>
+      <div class="small-tool tool-three" ng-click=""  ng-class="{true:'show', false:''}[showSmallTool]">
+        <i class="icon ion-ios-paper-outline"></i>
+      </div>
+      <div class="small-tool tool-four" ng-click="goLock()" ng-class="{true:'show', false:''}[showSmallTool]">
+        <i class="icon ion-ios-locked-outline"></i>
+      </div>
+    </ion-view>
   </ion-slide>
   <ion-slide>
     <div ng-include="'templates/Home/dashboard-aggregate.html'">
