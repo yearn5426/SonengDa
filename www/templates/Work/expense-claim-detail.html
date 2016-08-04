@@ -24,7 +24,7 @@
         <label>总金额</label><span>{{expenseClaim.totalSum}}</span>
       </div>
       <div class="suggestion">
-        <i class="icon ion-ios-paper-outline"></i><input type="text" ng-model="input" placeholder="-请填写审批意见">
+        <i class="icon ion-ios-paper-outline"></i><input type="text" class="no-border" ng-if="expenseClaim.examine" ng-model="suggestion.suggestion" placeholder="-未填写审批意见"><input type="text" ng-if="!expenseClaim.examine" ng-model="suggestion.suggestion" placeholder="-请填写审批意见">
       </div>
     </div>
     <p>报销单明细</p>

@@ -6,10 +6,10 @@
     再次点击返回键退出应用
   </div>
   <ion-content scroll="false">
-    <div class="background"></div>
+    <div class="background" ng-class="{true:'animated shake', false:''}[showToast]"></div>
     <img ng-src="{{me.face}}">
     <div class="password">
-      <i class="icon" ng-class="{true:'ion-ios-unlocked-outline', false:'ion-ios-locked-outline'}[isInput]"></i><input ng-change="input()" ng-model="password.password" type="password" maxlength="20">
+      <i class="icon" ng-class="{true:'ion-ios-unlocked-outline', false:'ion-ios-locked-outline'}[pass]"></i><input ng-change="input()" ng-model="password.password" type="password" maxlength="20">
     </div>
     <button ng-click="goHome()">
       Enter

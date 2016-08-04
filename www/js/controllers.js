@@ -184,24 +184,8 @@ angular.module('starter.controllers', [])
       }
       return index;
     };
+
     $scope.init = function(){
-      // for(var i = 0; i < 26; i++){
-      //   $scope.charPosition[i] = {
-      //     num:0,
-      //     position:0
-      //   }
-      // }
-      // for(i = 0; i < $scope.contacts.length; i++){
-      //   $scope.charPosition[pinyin.getCamelChars($scope.contacts[i].name)[0].charCodeAt() - 'A'.charCodeAt()].num += 1;
-      // }
-      // $scope.charPosition[0].position = 0;
-      // for(i = 1; i < 26; i++){
-      //   $scope.charPosition[i].position += $scope.charPosition[i-1].position;
-      //   if($scope.charPosition[i-1].num != 0){
-      //     $scope.charPosition[i].position += 20;
-      //     $scope.charPosition[i].position += $scope.charPosition[i-1].num * 80;
-      //   }
-      // }
       for(var i = 0; i < $scope.contacts.length; i++) {
         if ($scope.charPosition.length == 0) {
           $scope.charPosition[0] = {
@@ -233,9 +217,16 @@ angular.module('starter.controllers', [])
     $scope.init();
 
     $scope.goAddressDetail = function(name){
-      $state.go('tab.address-detail',{
-        'Name':name
-      });
+      var currentViewName = $state.current.name;
+      if( currentViewName == 'tab.address-list'){
+        $state.go('tab.address-detail',{
+          'Name':name
+        });
+      } else {
+        $state.go('tab.address-detail-home',{
+          'Name':name
+        });
+      }
     };
     $scope.toChar = function (name) {
       return pinyin.getCamelChars(name)[0];
@@ -316,10 +307,11 @@ angular.module('starter.controllers', [])
     $rootScope.$on('DELETE_CONTACT',function(e,name){
       var index;
       for(var i = 0; i < $scope.contacts.length; i++){
-        if($scope.contacts[i].name == name)
+        if($scope.contacts[i].name == name){
           index = i;
+        }
       }
-      $scope.contacts.splice(index,1);
+      $scope.contacts.splice(index, 1);
       $scope.init();
     })
   })
@@ -341,6 +333,11 @@ angular.module('starter.controllers', [])
       $rootScope.$broadcast('DELETE_CONTACT',contact.name);
       $ionicHistory.goBack();
     };
+    $scope.goSendEmail = function(){
+      $state.go('tab.send-email',{
+        'Name':$scope.contact.name
+      })
+    }
   })
 
   .controller('CrmCtrl', function($scope, $state, $rootScope, $timeout) {
@@ -795,12 +792,15 @@ angular.module('starter.controllers', [])
 
   .controller('ExpenseClaimDetailCtrl', function($scope, ExpenseClaim, $ionicHistory, $stateParams, $rootScope) {
     $scope.expenseClaim = ExpenseClaim.getByHead($stateParams.ExpenseClaimHead);
-
+    $scope.suggestion = {
+      suggestion:$scope.expenseClaim.suggestion
+    };
     $scope.back = function(){
       $ionicHistory.goBack();
     };
 
     $scope.doExamine = function(isApproval){
+      $scope.expenseClaim.suggestion = $scope.suggestion.suggestion;
       var param = {
         head:$stateParams.ExpenseClaimHead,
         approval:isApproval
@@ -1182,6 +1182,14 @@ angular.module('starter.controllers', [])
         $scope.showReturn = false;
       }, 2000);
     });
+
+    $scope.goPasswordSetting = function () {
+      $state.go('tab.password-setting-home');
+    };
+
+    $scope.goAddressList = function () {
+      $state.go('tab.address-list-home');
+    };
   })
 
   .controller('KeyNicheCtrl', function($scope, $ionicHistory) {
@@ -1279,16 +1287,15 @@ angular.module('starter.controllers', [])
     };
     $scope.showToast = false;
     $scope.showReturn = false;
-    $scope.isInput = false;
-    $scope.input = function(){
-      if(!$scope.isInput)
-        $scope.isInput = true;
-    };
+    $scope.pass = false;
     $scope.goHome = function(){
       if($scope.me.password == $scope.password.password){
-        $state.go('tab.home');
-        $scope.password.password = '';
-        $scope.isInput = false;
+        $scope.pass = true;
+        $timeout(function(){
+          $state.go('tab.home');
+          $scope.password.password = '';
+          $scope.pass = false;
+        }, 300);
       } else {
         if(!$scope.showToast)
           $scope.showToast = true;
@@ -2127,10 +2134,23 @@ angular.module('starter.controllers', [])
     });
   })
 
-  .controller('SendEmailCtrl', function($scope, $ionicHistory) {
+  .controller('SendEmailCtrl', function($scope, $ionicHistory, Contacts, $stateParams) {
+    $scope.contact = Contacts.getByName($stateParams.Name);
+    $scope.data = {
+      recipient:'',
+      cc:'',
+      bcc:'',
+      subject:'',
+      body:''
+    };
+    if($scope.contact != null)
+      $scope.data.recipient = $scope.contact.email;
     $scope.back = function(){
       $ionicHistory.goBack();
     };
+    $scope.sendEmail = function(){
+      window.location.href = "mailto:" + $scope.data.recipient + "?cc=" + $scope.data.cc + "&bcc=" + $scope.data.bcc + "&subject=" + $scope.data.subject + "&body=" +$scope.data.body;
+    }
   })
 
   .controller('SendMessageCtrl', function($scope, $ionicHistory, $stateParams) {

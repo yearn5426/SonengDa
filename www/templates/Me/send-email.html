@@ -4,29 +4,29 @@
       <i class="icon ion-ios-arrow-left"></i>
     </button>
     <h1 class="title">Send Email</h1>
-    <button class="button icon" ng-click="">
+    <button class="button icon" ng-click="sendEmail()">
       Send
     </button>
   </ion-header-bar>
   <ion-content>
     <div class="head">
       <div>
-        <label>收件人</label><input type="text" value="曹轲">
+        <label>收件人</label><input type="text" ng-model="data.recipient">
       </div>
       <div>
-        <label>抄送</label><input type="text">
+        <label>抄送</label><input type="text" ng-model="data.cc">
       </div>
       <div>
-        <label>密送</label><input type="text">
+        <label>密送</label><input type="text" ng-model="data.bcc">
       </div>
       <div>
         <label>发件人</label><input type="text" value="Mengyuan@hand-china.com">
       </div>
       <div>
-        <label>主题</label><input type="text">
+        <label>主题</label><input type="text" ng-model="data.subject">
       </div>
       <div>
-        <label>内容</label><textarea></textarea>
+        <label>内容</label><textarea ng-model="data.body"></textarea>
       </div>
     </div>
 

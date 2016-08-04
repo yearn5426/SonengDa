@@ -38,12 +38,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
     else if ($ionicHistory.backView()) {
       $ionicHistory.goBack();
     }
-    // else {
-    //   $rootScope.backButtonPressedOnceToExit = true;
-    //   setTimeout(function () {
-    //     $rootScope.backButtonPressedOnceToExit = false;
-    //   }, 2000);
-    // }
     e.preventDefault();
     return false;
   }, 101);
@@ -180,10 +174,33 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       }
     })
 
+    .state('tab.address-list-home',{
+      url: '/home/address-list',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/Me/address-list.html',
+          controller: 'AddressListCtrl'
+        }
+      }
+    })
+
     .state('tab.address-detail',{
       url: '/me/address-detail',
       views: {
         'tab-me': {
+          templateUrl: 'templates/Me/address-detail.html',
+          controller: 'AddressDetailCtrl'
+        }
+      },
+      params:{
+        'Name':''
+      }
+    })
+
+    .state('tab.address-detail-home',{
+      url: '/home/address-detail',
+      views: {
+        'tab-home': {
           templateUrl: 'templates/Me/address-detail.html',
           controller: 'AddressDetailCtrl'
         }
@@ -771,6 +788,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       }
     })
 
+    .state('tab.password-setting-home', {
+      url: '/home/password-setting',
+      views: {
+        'tab-home': {
+          templateUrl: 'templates/Me/password-setting.html',
+          controller: 'PasswordSettingCtrl'
+        }
+      }
+    })
+    
     .state('tab.quote-list', {
       url: '/crm/quote-list',
       views: {
@@ -897,6 +924,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
           templateUrl: 'templates/Me/send-email.html',
           controller: 'SendEmailCtrl'
         }
+      },
+      params:{
+        'Name':''
       }
     })
 

@@ -67,9 +67,6 @@ ion-content div.common i.right{
   float: right;
   color: black;
 }
-ion-content.has-header{
-  top:7vh;
-}
   /* 分隔p样式 */
 .work ion-content div div, .team ion-content div div, .search-result ion-content div div{
   margin-top:0;
@@ -108,9 +105,6 @@ div.tab-nav.tabs a span{
   /* tab栏样式end */
 
   /* head-bar样式 */
-ion-header-bar.head-bar{
-  height: 7vh;
-}
 ion-header-bar.head-bar .title{
   color: #fff;
   margin:0;
@@ -428,8 +422,8 @@ form.send .msg{
 .home .search {
   display: block;
   margin:0;
-  margin-top: 7vh;
-  height: 7.5vh;
+  margin-top: 44px;
+  height:50px;
   width:100%;
   padding:0 20px;
   border:0;
@@ -447,7 +441,7 @@ form.send .msg{
 
   /* home页面content样式 */
 .home .padding{
-  margin-top:7.5vh;
+  margin-top:45px;
 }
     /* home页面日历样式 */
 .home .padding .date{
@@ -553,6 +547,99 @@ form.send .msg{
 }
     /* home页面报销单和消息样式end */
   /* home页面content样式end */
+
+  /* home页面小工具样式 */
+.home .show-small-tool{
+  position: fixed;
+  bottom:55px;
+  right:5px;
+  background-color: #555;
+  width: 40px;
+  height: 40px;
+  border-radius:20px;
+  line-height: 40px;
+  font-size: 0;
+  text-align: center;
+  z-index: 10;
+}
+.home .show-small-tool span{
+  display: inline-block;
+  vertical-align: middle;
+  width: 22.63px;
+  height: 1px;
+  background-color: white;
+  transition: background-color 0.2s;
+}
+.home .show-small-tool span:before{
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top:12px;
+  left:8.65px;
+  width: 22.63px;
+  height: 1px;
+  background-color: white;
+  transition: transform 0.2s;
+}
+.home .show-small-tool span:after{
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top:28px;
+  left:8.65px;
+  width: 22.63px;
+  height: 1px;
+  background-color: white;
+  transition: transform 0.4s;
+}
+.home .show-small-tool.close-small-tool span{
+  background-color:transparent;
+  transition: background-color 0.4s;
+}
+.home .show-small-tool.close-small-tool span:before{
+  transform: translateY(8px) rotate(45deg);
+  transition: all 0.4s;
+}
+.home .show-small-tool.close-small-tool span:after{
+  transform: translateY(-8px) rotate(-45deg);
+  transition: all 0.4s;
+}
+.home .small-tool{
+  position: fixed;
+  bottom:60px;
+  right:10px;
+  background-color: #555;
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  line-height: 30px;
+  font-size: 0;
+  text-align: center;
+  z-index: 9;
+  transition: all 0.4s;
+}
+.home .small-tool i{
+  font-size: 20px;
+  color: #fff;
+}
+.home .tool-one.show{
+  transform: translateY(-80px);
+  transition: all 0.4s;
+}
+.home .tool-two.show{
+  transform: translate(-69.28px,-40px);
+  transition: all 0.4s;
+}
+.home .tool-three.show{
+  transform: translate(-40px,-69.28px);
+  transition: all 0.4s;
+}
+.home .tool-four.show{
+  transform: translateX(-80px);
+  transition: all 0.4s;
+}
+  /* home页面小工具样式end */
+
 /* home页面样式end */
 
 /*CRM页面样式*/
@@ -654,7 +741,6 @@ form.send .msg{
   padding: 10px;
 }
 .expense-claim .list .item.activated{
-  border: 0;
   background-color: white;
 }
 .expense-claim .list .item div{
@@ -720,6 +806,9 @@ form.send .msg{
   border:1px black solid;
   margin-top: 5px;
   vertical-align: top;
+}
+.expense-claim-detail .head-info div.suggestion input.no-border{
+  border:0;
 }
 .expense-claim-detail .head-info div:last-child{
   border-bottom: 0;
