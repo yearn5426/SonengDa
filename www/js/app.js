@@ -867,6 +867,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'starter
       }
     })
 
+    
     .state('tab.sale-funnel', {
       url: '/crm/dashboard/sale-funnel',
       views: {

@@ -70,21 +70,23 @@
           <p ng-click="goMessage()"><i class="icon ion-ios-paperplane-outline"></i>消息 <i class="icon ion-ios-arrow-right right"></i><span ng-show="messageNum">{{messageNum}}</span></p>
         </div>
       </ion-content>
-      <div class="show-small-tool" ng-class="{true:'close-small-tool', false:''}[showSmallTool]" ng-click="clickSmallTool()">
+      <div on-drag="moveTool($event)" class="tool-container" on-release="onRelease()">
+        <div class="show-small-tool" ng-class="{true:'close-small-tool', false:''}[showSmallTool]" ng-click="clickSmallTool()" >
         <span>
         </span>
-      </div>
-      <div class="small-tool tool-one" ng-click="toNight()" ng-class="{true:'show', false:''}[showSmallTool]">
-        <i class="icon ion-ios-moon-outline"></i>
-      </div>
-      <div class="small-tool tool-two" ng-click="goPasswordSetting()" ng-class="{true:'show', false:''}[showSmallTool]">
-        <i class="icon ion-ios-gear-outline"></i>
-      </div>
-      <div class="small-tool tool-three" ng-click="goAddressList()"  ng-class="{true:'show', false:''}[showSmallTool]">
-        <i class="icon ion-ios-paper-outline"></i>
-      </div>
-      <div class="small-tool tool-four" ng-click="goLock()" ng-class="{true:'show', false:''}[showSmallTool]">
-        <i class="icon ion-ios-locked-outline"></i>
+        </div>
+        <div class="small-tool tool-one" ng-click="toNight()" ng-class="{true:'show', false:''}[showSmallTool]">
+          <i class="icon ion-ios-moon-outline"></i>
+        </div>
+        <div class="small-tool tool-two" ng-click="goPasswordSetting()" ng-class="{true:'show', false:''}[showSmallTool]">
+          <i class="icon ion-ios-gear-outline"></i>
+        </div>
+        <div class="small-tool tool-three" ng-click="goAddressList()"  ng-class="{true:'show', false:''}[showSmallTool]">
+          <i class="icon ion-ios-paper-outline"></i>
+        </div>
+        <div class="small-tool tool-four" ng-click="goLock()" ng-class="{true:'show', false:''}[showSmallTool]">
+          <i class="icon ion-ios-locked-outline"></i>
+        </div>
       </div>
     </ion-view>
   </ion-slide>

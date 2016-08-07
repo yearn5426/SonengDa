@@ -176,7 +176,7 @@ angular.module('starter.controllers', [])
     });
     $scope.character = null;
     $scope.charPosition = [];
-    existInPosition = function(char){
+    $scope.existInPosition = function(char){
       var index = -1;
       for(var i = 0; i < $scope.charPosition.length; i++){
         if($scope.charPosition[i].name == char)
@@ -194,8 +194,8 @@ angular.module('starter.controllers', [])
             to: 0,
             num: 1
           }
-        } else if (existInPosition(pinyin.getCamelChars($scope.contacts[i].name)[0]) != -1) {
-          $scope.charPosition[existInPosition(pinyin.getCamelChars($scope.contacts[i].name)[0])].num++;
+        } else if ($scope.existInPosition(pinyin.getCamelChars($scope.contacts[i].name)[0]) != -1) {
+          $scope.charPosition[$scope.existInPosition(pinyin.getCamelChars($scope.contacts[i].name)[0])].num++;
         } else {
           $scope.charPosition[$scope.charPosition.length] = {
             name: pinyin.getCamelChars($scope.contacts[i].name)[0],
@@ -1190,6 +1190,24 @@ angular.module('starter.controllers', [])
     $scope.goAddressList = function () {
       $state.go('tab.address-list-home');
     };
+
+    $scope.toolContainerBottom = 55;  //用于保存最开始toolContainerBottom的位置和每次拖拽之后的位置
+    $scope.toolContainerRight = 5;
+    $scope.moveTool = function($event){
+      var toolContainer = document.getElementsByClassName('tool-container')[0];
+      var smallTools = document.getElementsByClassName('small-tool');
+      var toolContainerBottom = ($scope.toolContainerBottom - $event.gesture.deltaY);  //通过保存的位置和拖拽的偏移量求出拖拽之后的位置,通过DOM操作移动
+      var toolContainerRight = ($scope.toolContainerRight  - $event.gesture.deltaX);
+      toolContainer.setAttribute('style', 'right:'+ (toolContainerRight)  +'px; bottom:'+ (toolContainerBottom) +'px');
+      for(var i = 0; i < smallTools.length; i++){   //同时移动小球
+        smallTools[i].setAttribute('style', 'bottom:'+ 5 +'px;right:'+ 5 +'px');
+      }
+    };
+    $scope.onRelease = function(){
+      var toolContainer = document.getElementsByClassName('tool-container')[0];
+      $scope.toolContainerBottom = parseFloat(toolContainer.style.bottom);
+      $scope.toolContainerRight = parseFloat(toolContainer.style.right);
+    }
   })
 
   .controller('KeyNicheCtrl', function($scope, $ionicHistory) {

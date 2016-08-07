@@ -549,10 +549,14 @@ form.send .msg{
   /* home页面content样式end */
 
   /* home页面小工具样式 */
-.home .show-small-tool{
-  position: fixed;
+.home .tool-container{
+  position: absolute;
   bottom:55px;
   right:5px;
+  z-index: 15;
+}
+.home .show-small-tool{
+  position: relative;
   background-color: #555;
   width: 40px;
   height: 40px;
@@ -569,6 +573,7 @@ form.send .msg{
   height: 1px;
   background-color: white;
   transition: background-color 0.2s;
+  z-index:10;
 }
 .home .show-small-tool span:before{
   content: '';
@@ -580,6 +585,7 @@ form.send .msg{
   height: 1px;
   background-color: white;
   transition: transform 0.2s;
+  z-index:10;
 }
 .home .show-small-tool span:after{
   content: '';
@@ -591,6 +597,7 @@ form.send .msg{
   height: 1px;
   background-color: white;
   transition: transform 0.4s;
+  z-index:10;
 }
 .home .show-small-tool.close-small-tool span{
   background-color:transparent;
@@ -605,9 +612,9 @@ form.send .msg{
   transition: all 0.4s;
 }
 .home .small-tool{
-  position: fixed;
-  bottom:60px;
-  right:10px;
+  position: absolute;
+  bottom:5px;
+  right:5px;
   background-color: #555;
   width: 30px;
   height: 30px;
@@ -615,7 +622,7 @@ form.send .msg{
   line-height: 30px;
   font-size: 0;
   text-align: center;
-  z-index: 9;
+  z-index: 8;
   transition: all 0.4s;
 }
 .home .small-tool i{
@@ -642,13 +649,6 @@ form.send .msg{
 
 /* home页面样式end */
 
-/*CRM页面样式*/
-
-/* CRM页面样式end */
-
-/* Work页面样式 */
-
-/* Work页面样式end */
 
 /*team页面样式 */
 .team span{
@@ -2978,6 +2978,7 @@ ion-item.repeat-go-item.activated{
   width:100vw;
   height: 100vh;
   background-image: url('../img/lock.png');
+  background-size: cover;
   -webkit-filter: blur(2px) brightness(.95);
 }
 .lock ion-content img{
